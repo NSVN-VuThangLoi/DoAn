@@ -31,7 +31,7 @@ public class LoginProcess {
 		}
 		else{
 			LoginDto loginDto = new LoginDto();
-			loginDto.setPassword(generator.generatorSha256(query.getPassword()+query.getName()));
+			loginDto.setPassword(generator.generatorSha256(query.getPassword()+ query.getName()));
 			loginDto.setName(query.getName());
 			loginDto.setUserId(generator.generatorMd2(""+ new Date().getTime()+query.getName()));
 			loginDto.setAddress(query.getAddress());
@@ -50,11 +50,11 @@ public class LoginProcess {
 		return result;
 	}
 	
-	public InfoResult checkLogin(InfoQuery query) {
+	public LoginResult checkLogin(LoginQuery query) {
 
-		InfoDto dto = infoLogin.findLogin(query.getId(),generator.generatorSha256(query.getPassword()+query.getId()));
+		LoginDto dto = infoLogin.findLogin(query.getUserId(),generator.generatorSha256(query.getPassword()+ query.getName()));
 		
-		InfoResult result = new InfoResult();
+		LoginResult result = new LoginResult();
 		
 		if(dto == null){
 			result.setNameNotice("Không đúng, nhập lại");
@@ -62,8 +62,8 @@ public class LoginProcess {
 		}
 		else{
 			result.setNameNotice("Đăng nhập thành công ");
-			result.setAccessCode(dto.getAccessCode());
-			result.setUserName(dto.getUserName());
+			result.setUserId(dto.getUserId());
+			result.setUserName(dto.getName());
 			result.setLinkTopPage("/Note/data/index.xhtml");
 			result.setStatus(true);
 			userInfoLogin.setUserId(dto.getUserId());

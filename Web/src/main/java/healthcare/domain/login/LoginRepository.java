@@ -1,7 +1,7 @@
 package healthcare.domain.login;
 
 public interface LoginRepository {
-	LoginDto findData(String name);
+	LoginDto findData(String userId);
 	
 	LoginDto findLogin (String name, String passWord );
 	
