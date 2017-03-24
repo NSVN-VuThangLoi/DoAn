@@ -1,0 +1,25 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:com="http://xmlns.jcp.org/jsf/component"
+	xmlns:h="http://xmlns.jcp.org/jsf/html">
+<head>
+<script src="http://code.jquery.com/jquery-2.0.0.min.js"></script>
+<script src="https://ajax.aspnetcdn.com/ajax/knockout/knockout-3.1.0.js"></script>
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script type="text/javascript" src="start.js"></script>
+<script type="text/javascript" src="viewmodel.js"></script>
+<script type="text/javascript" src="service.js"></script>
+<link rel="stylesheet" type="text/css" href="main.css" />
+</head>
+<body>
+	<label>Gia tri</label>
+	<p>
+		<strong data-bind="text: user"></strong>
+	</p>
+	<button data-bind = "click : get">Click
+	</button>
+</body>
+</html>

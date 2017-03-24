@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Start Page</title>
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<style>
+#header {
+	background-color: #DEB887;
+	color: white;
+	text-align: center;
+	width: 100%;
+	padding: 5px;
+}
+
+a {
+	background: yellow;
+}
+
+#tittle {
+	background-color: #8B814C;
+	color: white;
+	width: 100%;
+	height: 50%;
+	padding: 5px;
+}
+
+#nav {
+	line-height: 30px;
+	background-color: #eeeeee;
+	height: 690px;
+	width: 30% px;
+	float: left;
+	padding: 5px;
+}
+
+#section {
+	width: 70%;
+	height: 690px;
+	float: left;
+	padding: 10px;
+}
+
+#footer {
+	background-color: #DEB887;
+	color: white;
+	clear: both;
+	text-align: center;
+	padding: 5px;
+}
+</style>
+<script language="javascript"
+	src="jquery.js"></script>
+
+
+<script>
+
+function setCookie(cname,cvalue,exdays) {
+    var d = new Date();
+    d.setTime(d.getTime() + (exdays*24*60*60*1000));
+    var expires = "expires=" + d.toGMTString();
+    document.cookie = cname+"="+cvalue+"; "+expires;
+}
+
+function getCookie(cname) {
+    var name = cname + "=";
+    var ca = document.cookie.split(';');
+    for(var i=0; i<ca.length; i++) {
+        var c = ca[i];
+        while (c.charAt(0)==' ') c = c.substring(1);
+        if (c.indexOf(name) == 0) {
+            return c.substring(name.length, c.length);
+        }
+    }
+    return "";
+}
+function load1()
+{
+	$('#infor').show(); 
+	$('#inforlink').attr("href", "demo.html");  
+	
+	var user=getCookie("tt");  
+	$('#inforlink').text(user);  
+}
+
+/* function checkCookie() {
+    var user=getCookie("username");
+    if (user != "") {
+        alert("Welcome again " + user);
+    } else {
+       user = prompt("Please enter your name:","");
+       if (user != "" && user != null) {
+           setCookie("username", user, 30);
+       }
+    }
+} */
+            
+            $(document).ready(function () {
+                var x,y;   
+                  ;                   
+                $("#Login").click(function () {
+                    $.ajax({
+                        url: "http://localhost:8080/DoAn/Demo/Login/insert",
+                        type: "post",
+                        contentType: "application/json",
+                        data: JSON.stringify({
+                        	userId: $('#User').val(),
+                            password: $('#Password').val()
+                        }),
+                        dataType : 'json',
+                        success: function (result) {
+                           
+                        	//$('#tittle #tab #tabtr').html(result);
+                        	//$( "#demo" ).remove();
+                        	              
+                        	//$( '#tittle #tab #tabtr #infor').
+                        	/* setCookie("tt",result.key2 , 30);
+                            load1();
+                        	localStorage.setItem("element",result.key2);
+                        	setCookie("username",result.key1 , 30); */
+                        	/* $("#input-content").show();
+                            // Set data into labels
+                            $("#us").val(result.key1);
+                            $("#pa").val(result.key1); */
+                        
+                        	 /*  window.alert(result);
+                        	  window.location=result; */ 
+                        	  if(result.linkTopPage!= null){
+                        	  window.location.href = result.linkTopPage;
+                        	  }
+                        	  	
+                        	 // $( "#section" ).load("index2.html #close" );
+                        	
+                      
+                        	
+                        }
+                    });
+                });
+                
+                 $("#Register").click(function () {
+                    $.ajax({
+                        url: "http://localhost:8080/Note/Demo/Login/check",
+                        type: "post",
+                        contentType: "application/json",
+                        dataType:"json",
+                        data: JSON.stringify({
+                            id: $('#User').val(),
+                            password: $('#Password').val()
+                        }),
+                        success: function (result) {
+                        	if(result.linkTopPage!= null){
+                          	  window.location.href = result.linkTopPage;
+                          	  }
+                        }
+                       
+                        
+                    });
+                });
+                
+            });
+        </script>
+</head>
+<body onload="load1()">
+	<div id="header">
+		<img src="a.jpg" alt="Logo Web " height="300px" width="100%">
+	</div>
+	<div id="tittle">
+		<table id="tab">
+			<tr id="tabtr">
+				<div id="infor" style="display: none;">
+					<a herf="#" id="inforlink"><p id="text"></p></a>
+				</div>
+			</tr>
+
+		</table>
+	</div>
+
+
+	<div id="nav">
+		<div id="result2" align="center" class="inner">
+
+			<marquee id="line" direction="right"
+				style="color: #DEB887; font-size: 25px">Welcome </marquee>
+		</div>
+		<div align="center">
+			<form id="2" name="login">
+				<table>
+					<tr>
+						<td style="margin-right: 0px; color: #DEB887;">ID</td>
+						<td><input id="User" type="text" name="User"
+							placeholder="Nhap so "
+							maxlength="8"></td>
+					</tr>
+					<tr>
+						<td style="color: #DEB887;">Passsword</td>
+						<td><input id="Password" type="password" name="Password"
+							placeholder="Mat khau"></td>
+					</tr>
+				</table>
+			</form>
+		</div>
+		<div align="center">
+
+			<div>
+				<button id="Login" style="color: #DEB887">Sign in</button>
+
+				<button id="Register" style="color: #DEB887">Sign up</button>
+			</div>
+		</div>
+	</div>
+	<div id="section" align="left">
+		<div id="input-content" style="display: none;">
+			UserName:<label id="us"></label><br /> Password:<label id="pa"></label>
+		</div>
+
+	</div>
+	<div id="footer">Xuan Thanh</div>
+</body>
+</html>

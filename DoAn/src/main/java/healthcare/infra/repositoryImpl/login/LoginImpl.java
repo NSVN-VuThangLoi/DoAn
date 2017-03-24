@@ -1,10 +1,15 @@
 package healthcare.infra.repositoryImpl.login;
 
+import java.util.List;
+
+import javax.ejb.Stateless;
+
 import healthcare.domain.login.LoginDto;
 import healthcare.domain.login.LoginRepository;
 import healthcare.infra.entity.login.DataConnection;
-
-public class LoginImpl extends DataConnection implements LoginRepository{
+import healthcare.infra.entity.login.LoginPatient;
+@Stateless
+public class LoginImpl extends DataConnection implements LoginRepository {
 
 		private static final String FIND_DATA_USER;
 
@@ -26,7 +31,7 @@ public class LoginImpl extends DataConnection implements LoginRepository{
 
 		@Override
 		public LoginDto findData(String userId) {
-			// TODO Auto-generated method stub
+			LoginPatient loginPatient =  this.em.createQuery(FIND_DATA_USER,LoginPatient.class).setParameter("userId", userId).getSingleResult();
 			return null;
 		}
 

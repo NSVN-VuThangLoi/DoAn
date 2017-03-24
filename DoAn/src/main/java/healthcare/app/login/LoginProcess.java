@@ -2,6 +2,7 @@ package healthcare.app.login;
 
 import java.util.Date;
 
+import javax.ejb.Stateless;
 import javax.inject.Inject;
 
 import healthcare.app.common.HashGenerator;
@@ -9,7 +10,7 @@ import healthcare.app.common.UserLogin;
 import healthcare.domain.login.LoginDto;
 import healthcare.domain.login.LoginRepository;
 
-
+@Stateless
 public class LoginProcess {
 	@Inject
 	private LoginRepository infoLogin;
@@ -21,7 +22,7 @@ public class LoginProcess {
 	private UserLogin userInfoLogin;
 	public LoginResult handle(LoginQuery query) {
 
-		LoginDto dto = infoLogin.findData(query.getName());
+		LoginDto dto = infoLogin.findData(query.getUserId());
 		
 		LoginResult result = new LoginResult();
 		
@@ -31,11 +32,9 @@ public class LoginProcess {
 		}
 		else{
 			LoginDto loginDto = new LoginDto();
-			loginDto.setPassword(generator.generatorSha256(query.getPassword()+ query.getName()));
-			loginDto.setName(query.getName());
-			loginDto.setUserId(generator.generatorMd2(""+ new Date().getTime()+query.getName()));
-			loginDto.setAddress(query.getAddress());
-			loginDto.setBirthDay(query.getBirthDay());
+			loginDto.setPassword(generator.generatorSha256(query.getPassword()+ query.getUserId()));
+			loginDto.setName(query.getUserId());
+			loginDto.setUserId(generator.generatorMd2(""+ new Date().getTime()+query.getUserId()));
 			loginDto.setVersion(1L);
 			
 			infoLogin.insertData(loginDto);
@@ -52,7 +51,7 @@ public class LoginProcess {
 	
 	public LoginResult checkLogin(LoginQuery query) {
 
-		LoginDto dto = infoLogin.findLogin(query.getUserId(),generator.generatorSha256(query.getPassword()+ query.getName()));
+		LoginDto dto = infoLogin.findLogin(query.getUserId(),generator.generatorSha256(query.getPassword()+ query.getUserId()));
 		
 		LoginResult result = new LoginResult();
 		

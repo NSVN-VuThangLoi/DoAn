@@ -1,5 +1,6 @@
 package healthcare.infra.entity.login;
 
+import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -10,12 +11,14 @@ import javax.persistence.Version;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Entity
-@Table(name = "hust_info_login")
+@Table(name = "patient")
 @Data
 @AllArgsConstructor
-public class LoginPatient {
+@NoArgsConstructor
+public class LoginPatient implements Serializable {
 	@Version
 	private long version;
 
