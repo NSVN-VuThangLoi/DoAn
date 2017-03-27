@@ -9,8 +9,5 @@ ScreenModel.prototype.start = function() {
 };
 ScreenModel.prototype.get = function() {
 	var self = this;
-//	var data = {
-//		type : "ThanhBau"
-//	}
 	services.queryInit();
 };

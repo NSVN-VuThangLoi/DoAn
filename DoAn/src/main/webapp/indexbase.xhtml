@@ -1,0 +1,82 @@
+<?xml version='1.0' encoding='UTF-8' ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:com="http://xmlns.jcp.org/jsf/component">
+
+    <h:head>
+    	<style>
+div {background-color: green;}
+div a {
+    text-decoration: none;
+    color: white;
+    font-size: 20px;
+    padding: 15px;
+    display:inline-block;
+}
+ul {
+  display: inline;
+  margin: 0;
+  padding: 0;
+}
+ul li {display: inline-block;}
+ul li:hover {background: #555;}
+ul li:hover ul {display: block;}
+ul li ul {
+  position: absolute;
+  width: 200px;
+  display: none;
+}
+ul li ul li { 
+  background: #555; 
+  display: block; 
+}
+ul li ul li a {display:block !important;} 
+ul li ul li:hover {background: #666;}
+</style>
+    	<com:favicon />
+    	
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        
+        <com:stylefile set="BASIC" />
+        
+        <com:viewcontext />
+        
+        <com:scriptfile set="BASIC" />
+
+        <ui:insert name="htmlHead" />
+    </h:head>
+
+    <h:body>
+        
+        <div id="header" style="height:100px;background: #66ffff; font-size: 25px;text-align: center;padding-top: 10px;">
+	       HEALTHCARE
+	    </div>
+	    <div>
+		  <ul>
+		    <li>
+		      <a href="#">X-QUANG</a>
+		      <ul>
+		        <li><a href="#">Link 1</a></li>
+		        <li><a href="#">Link 2</a></li>
+		        <li><a href="#">Link 3</a></li>
+		      </ul>
+		    </li>
+		    <li>
+		      <a href="#">SIÊU ÂM</a>
+		      <ul>
+		        <li><a href="#">Link 1</a></li>
+		        <li><a href="#">Link 2</a></li>
+		        <li><a href="#">Link 3</a></li>
+		      </ul>
+		    </li>
+		  </ul>
+		</div>
+        
+        <ui:insert name="content" />
+
+    </h:body>
+
+</html>
