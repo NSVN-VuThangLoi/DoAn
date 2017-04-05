@@ -47,4 +47,29 @@ dependencies {
     
     // https://mvnrepository.com/artifact/javax.ejb/ejb-api
     compile group: 'javax.ejb', name: 'ejb-api', version: '3.0'
+    // https://mvnrepository.com/artifact/dcm4che/dcm4che
+   compile group: 'dcm4che', name: 'dcm4che', version: '2.0.29'
+   // https://mvnrepository.com/artifact/org.dcm4che.test/dcm4che2-test
+	compile group: 'org.dcm4che.test', name: 'dcm4che2-test', version: '1.1'
+	
+	// https://mvnrepository.com/artifact/dcm4che/dcm4che-imageio
+    compile group: 'dcm4che', name: 'dcm4che-imageio', version: '2.0.29'
+    
+    // https://mvnrepository.com/artifact/dcm4che/dcm4che-core
+	compile group: 'dcm4che', name: 'dcm4che-core', version: '2.0.29'
+	// https://mvnrepository.com/artifact/dcm4che/dcm4che-audit
+	compile group: 'dcm4che', name: 'dcm4che-audit', version: '2.0.29'
+
+    // https://mvnrepository.com/artifact/dcm4che.tool/dcm4che-tool-dcm2dcm
+compile group: 'dcm4che.tool', name: 'dcm4che-tool-dcm2dcm', version: '2.0.29'
+
+// https://mvnrepository.com/artifact/dcm4che.tool/dcm4che-tool-dcm2jpg
+compile group: 'dcm4che.tool', name: 'dcm4che-tool-dcm2jpg', version: '2.0.29'
+// https://mvnrepository.com/artifact/org.slf4j/slf4j-log4j12
+compile group: 'org.slf4j', name: 'slf4j-log4j12', version: '1.7.25'
+
+
+    
+   
+    
 }
