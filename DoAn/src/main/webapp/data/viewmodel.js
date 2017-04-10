@@ -6,7 +6,10 @@ function ScreenModel() {
 
 ScreenModel.prototype.start = function() {
 	var self = this;
-
+	services.getAllDoctor().done(function(patterns) {
+		self.items(patterns);
+		dfd.resolve();
+	});
 };
 
 ScreenModel.prototype.goCreateMode = function() {

@@ -5,7 +5,7 @@ Request.prototype.requestAjax = function(data, path) {
 	var self = this;
 	var d = $.Deferred();
 	$.ajax({
-		url : path,
+		url :"http://localhost:8080/DoAn/Demo/" + path,
 		type : "post",
 		contentType : "application/json",
 		data : JSON.stringify(data),
