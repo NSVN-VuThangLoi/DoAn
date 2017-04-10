@@ -15,6 +15,7 @@ public class LoginConf extends Application {
 	}
     private void addRest(Set<Class<?>>resource)	
     {
-    	resource.add(healthcare.webservice.Testlogin.class);
+    	resource.add(healthcare.webservice.Doctor.class);
+    	
     }
 }

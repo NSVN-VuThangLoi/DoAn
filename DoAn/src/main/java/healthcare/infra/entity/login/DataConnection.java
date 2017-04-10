@@ -7,5 +7,5 @@ import lombok.Data;
 @Data
 public class DataConnection {
 	@PersistenceContext(unitName = "DOAN")
-	public EntityManager em;
+	public EntityManager entityManager;
 }

@@ -31,7 +31,7 @@ public class LoginImpl extends DataConnection implements LoginRepository {
 
 		@Override
 		public LoginDto findData(String userId) {
-			LoginPatient loginPatient =  this.em.createQuery(FIND_DATA_USER,LoginPatient.class).setParameter("userId", userId).getSingleResult();
+			LoginPatient loginPatient =  this.entityManager.createQuery(FIND_DATA_USER,LoginPatient.class).setParameter("userId", userId).getSingleResult();
 			return null;
 		}
 

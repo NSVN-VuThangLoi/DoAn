@@ -22,30 +22,31 @@ public class LoginProcess {
 	private UserLogin userInfoLogin;
 	public LoginResult handle(LoginQuery query) {
 
-		LoginDto dto = infoLogin.findData(query.getUserId());
+	//	LoginDto dto = infoLogin.findData(query.getUserId());
 		
 		LoginResult result = new LoginResult();
+		result.setLinkTopPage("a.html");
 		
-		if(dto != null){
-			result.setNameNotice("Tên đăng kí đã có người sử dụng");
-			result.setStatus(false);
-		}
-		else{
-			LoginDto loginDto = new LoginDto();
-			loginDto.setPassword(generator.generatorSha256(query.getPassword()+ query.getUserId()));
-			loginDto.setName(query.getUserId());
-			loginDto.setUserId(generator.generatorMd2(""+ new Date().getTime()+query.getUserId()));
-			loginDto.setVersion(1L);
-			
-			infoLogin.insertData(loginDto);
-			result.setNameNotice("Đăng kí thành công ");
-			result.setUserId(loginDto.getUserId());
-			result.setUserName(loginDto.getName());
-			result.setLinkTopPage("/Note/data/index.xhtml");
-			result.setStatus(true);
-			
-			userInfoLogin.setUserId(loginDto.getUserId());
-		}
+//		if(dto != null){
+//			result.setNameNotice("Tên đăng kí đã có người sử dụng");
+//			result.setStatus(false);
+//		}
+//		else{
+//			LoginDto loginDto = new LoginDto();
+//			loginDto.setPassword(generator.generatorSha256(query.getPassword()+ query.getUserId()));
+//			loginDto.setName(query.getUserId());
+//			loginDto.setUserId(generator.generatorMd2(""+ new Date().getTime()+query.getUserId()));
+//			loginDto.setVersion(1L);
+//			
+//			infoLogin.insertData(loginDto);
+//			result.setNameNotice("Đăng kí thành công ");
+//			result.setUserId(loginDto.getUserId());
+//			result.setUserName(loginDto.getName());
+//			result.setLinkTopPage("/Note/data/index.xhtml");
+//			result.setStatus(true);
+//			
+//			userInfoLogin.setUserId(loginDto.getUserId());
+//		}
 		return result;
 	}
 	

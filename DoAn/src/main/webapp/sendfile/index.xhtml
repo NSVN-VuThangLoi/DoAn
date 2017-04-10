@@ -1,0 +1,72 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:com="http://xmlns.jcp.org/jsf/component"
+	xmlns:h="http://xmlns.jcp.org/jsf/html">
+<body>
+	<ui:composition template="../indexbase.xhtml">
+		<ui:define name="htmlHead">
+			<com:stylefile path="main.css" />
+			<com:scriptfile path="form.js" />
+			<com:scriptfile path="viewmodel.js" />
+			<com:scriptfile path="start.js" />
+			<com:scriptfile path="service.js" />
+			<script src="http://code.jquery.com/jquery-2.0.0.min.js"></script>
+			<script src="https://ajax.aspnetcdn.com/ajax/knockout/knockout-3.1.0.js"></script>
+			<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+			<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+		</ui:define>
+		<ui:define name="content">
+		<div id = "contentleft">
+			<table id ="content">
+		 		<tr>
+                    <th class="required"><h:outputText value="UserId"/></th>
+                    <td>
+                        <input type="text" id="UserId" />
+                    </td>
+                </tr>
+                <tr>
+                    <th class="required"><h:outputText value="Name"/></th>
+                    <td>
+                        <input type="text" id="name" />
+                    </td>
+                </tr>
+                 <tr>
+                    <th class="required"><h:outputText value="Email"/></th>
+                    <td>
+                        <input type="text" id="email" />
+                    </td>
+                </tr>
+                <tr>
+                    <th class="required"><h:outputText value="Password"/></th>
+                    <td>
+                        <input type="text" id="password" />
+                    </td>
+                </tr>
+                <tr>
+                    <th class="required"><h:outputText value="confirmPassword"/></th>
+                    <td>
+                        <input type="text" id="confirmPassword" />
+                    </td>
+                </tr>
+                <tr>
+                    <th class="required"><h:outputText value="BirthDay"/></th>
+                    <td>
+                        <input type="text" id="birthDay" />
+                    </td>
+                </tr>
+                 <tr>
+                    <th class="required"><h:outputText value="Address"/></th>
+                    <td>
+                        <input type="text" id="address" />
+                    </td>
+                </tr>
+			</table>
+		</div>
+		<div id = "contentright">
+		</div>
+		</ui:define>
+	</ui:composition>	
+</body>
+</html>
