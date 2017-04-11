@@ -31,9 +31,15 @@ public class Doctor {
 
 	}
 	@POST
-	@Path("/getDoctor")
+	@Path("/getAllDoctor")
 	@Produces(MediaType.APPLICATION_JSON)
 	public List<DoctorDto> getAllDoctor() {
+		return finderDoctor.getAllDoctor();
+	}
+	@POST
+	@Path("/getDoctor")
+	@Produces(MediaType.APPLICATION_JSON)
+	public List<DoctorDto> getDoctor() {
 		return finderDoctor.getAllDoctor();
 	}
 }

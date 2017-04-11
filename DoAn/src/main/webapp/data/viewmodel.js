@@ -2,14 +2,13 @@ function ScreenModel() {
 	var self = this;
 	self.doctor = ko.observable(new Doctor());
 	self.listDoctor = ko.observable(new ListDoctor());
+	self.doctorListItem = ko.observable(new DoctorListItem());
 }
 
 ScreenModel.prototype.start = function() {
 	var self = this;
-	services.getAllDoctor().done(function(patterns) {
-		self.items(patterns);
-		dfd.resolve();
-	});
+	self.listDoctor().reload();
+	
 };
 
 ScreenModel.prototype.goCreateMode = function() {
@@ -64,4 +63,41 @@ function ListDoctor(){
 	var self = this;
 	self.items = ko.observableArray([]);
 	self.selectedCode = ko.observable();
+	self.selectionChangedEvent = $.Callbacks();
+	self.selectedCode.subscribe(function(selectedCode) {
+//		if (self.unselecting()) {
+//			self.unselecting(false);
+//			return;
+//		}
+//		if (self.items().length === 0) {
+//			screenModel.createMode();
+//			return;
+//		}
+		if (selectedCode === undefined) {
+			// when selected item is removed
+			self.selectFirst();
+			return;
+		}
+
+		self.selectionChangedEvent.fire(selectedCode);
+	});
+}
+ListDoctor.prototype.reload = function(){
+	var self = this;
+	var dfd = $.Deferred();
+	services.getAllDoctor().done(function(patterns) {
+		self.items(patterns);
+		dfd.resolve();
+	});
+	return dfd.promise();
+}
+ListDoctor.prototype.select =
+function DoctorListItem(userId, name) {
+	var self = this;
+	self.userId = ko.observable(userId);
+	self.name = ko.observable(name);
+	self.displayText = ko.computed(function() {
+		return self.userId()
+				+ '     ' + self.name();
+	}, self);
 }

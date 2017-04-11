@@ -3,7 +3,7 @@
 var services = (function() {
 
 	var servicePath = {
-		getAllDoctor : 'Doctor/getDoctor',
+		getAllDoctor : 'Doctor/getAllDoctor',
 		registerDoctor : 'mn/pers/0202/command/personalmedical/add',
 		registerFamilyMedicalHistory : 'mn/pers/0202/command/familymedical/add',
 		queryInit : 'Doctor/insert'
@@ -19,13 +19,16 @@ var services = (function() {
 	};
 	services.getAllDoctor = function() {
 		 var d = $.Deferred();
+		 var i;
 		request.requestAjax(null,servicePath.getAllDoctor).done(function(data){
-			var patterns = _.map(data, function(pattern){
-				return new ListDoctor(pattern.code,pattern.name);
-			});
+			var patterns = [];
+			for(i = 0; i < data.length; i++){
+				patterns.push(new DoctorListItem(data[i].doctorId,data[i].name));
+			}
+			
 			d.resolve(patterns);
 		}) ;
-		return dfd.promise();
+		return d.promise();
 	};
 	return services;
 })();

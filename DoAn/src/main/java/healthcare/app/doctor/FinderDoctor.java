@@ -12,8 +12,10 @@ public class FinderDoctor {
 	@Inject
 	private DoctorRepository doctorRep;
 	public List<DoctorDto> getAllDoctor(){
-		
 		return doctorRep.getAllDoctor();
+	}
+	public DoctorDto getDoctor(String userId){
+		return doctorRep.getDoctor(userId);
 	}
 
 }

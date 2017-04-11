@@ -22,4 +22,18 @@ public class DoctorDto {
 	private String addressWord;
 	
 	private Boolean sex;
+	
+	public DoctorDto(){
+		
+	}
+	public DoctorDto(String doctorId,String name,Date birthDay,int phoneNumber,String email,String position,String addressWord,Boolean sex){
+		this.doctorId = doctorId;
+		this.name = name;
+		this.birthDay = birthDay;
+		this.phoneNumber = phoneNumber;
+		this.email = email;
+		this.position = position;
+		this.addressWord =addressWord;
+	}
 }
+
