@@ -4,7 +4,7 @@ var services = (function() {
 
 	var servicePath = {
 		getAllDoctor : 'Doctor/getAllDoctor',
-		registerDoctor : 'mn/pers/0202/command/personalmedical/add',
+		getDoctor : 'Doctor/getDoctor',
 		registerFamilyMedicalHistory : 'mn/pers/0202/command/familymedical/add',
 		queryInit : 'Doctor/insert'
 	};
@@ -12,9 +12,7 @@ var services = (function() {
 	var services = {};
 	var request = new Request();
 	services.queryInit = function(data) {
-		 var d = $.Deferred();
 		request.requestAjax(data,servicePath.queryInit).done(function(data){
-			d.resolve();
 		}) ;
 	};
 	services.getAllDoctor = function() {
@@ -30,5 +28,13 @@ var services = (function() {
 		}) ;
 		return d.promise();
 	};
+	services.getDoctor = function(data) {
+		 var d = $.Deferred();
+		request.requestAjax(data,servicePath.getDoctor).done(function(res){
+			d.resolve(res);
+		}) ;
+		return d.promise();
+	};
+	
 	return services;
 })();

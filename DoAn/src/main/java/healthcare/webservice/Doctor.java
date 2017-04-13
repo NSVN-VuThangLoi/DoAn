@@ -38,8 +38,7 @@ public class Doctor {
 	}
 	@POST
 	@Path("/getDoctor")
-	@Produces(MediaType.APPLICATION_JSON)
-	public List<DoctorDto> getDoctor() {
-		return finderDoctor.getAllDoctor();
+	public DoctorDto getDoctor(String userId) {
+		return finderDoctor.getDoctor(userId);
 	}
 }

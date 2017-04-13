@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.ejb.Stateless;
+import javax.persistence.TypedQuery;
 
 import healthcare.domain.doctor.DoctorDto;
 import healthcare.domain.doctor.DoctorRepository;
@@ -20,13 +21,14 @@ public class DoctorImpl extends DataConnection implements DoctorRepository{
 		
 		queryBuilder = new StringBuilder();
 		queryBuilder.append(FINDALL);
-		queryBuilder.append("WHERE t.userId =: userId");
+		queryBuilder.append(" WHERE t.doctorId = :doctorId");
 		FINDUSERID = queryBuilder.toString();
 	}
 
 
 	@Override
 	public void insertDoctor(DoctorDto dto) {
+		
 		DoctorEntity entity = new DoctorEntity();
 		entity.setAddress(dto.getAddressWord());
 		entity.setDoctorId(dto.getDoctorId());
@@ -42,27 +44,41 @@ public class DoctorImpl extends DataConnection implements DoctorRepository{
 
 	@Override
 	public List<DoctorDto> getAllDoctor() {
-		List<DoctorDto> doctorDtos = new ArrayList<>();
-	
-		List<DoctorEntity> doctorEntitys = this.entityManager.createQuery(FINDALL,DoctorEntity.class).getResultList();
-		for(DoctorEntity entity : doctorEntitys){
-			DoctorDto doctor = new DoctorDto();
-			doctor.setAddressWord(entity.getAddress());
-			doctor.setBirthDay(entity.getBirthDay());
-			doctor.setDoctorId(entity.getDoctorId());
-			doctor.setEmail(entity.getEmail());
-			doctor.setName(entity.getName());
-			doctor.setPassword(entity.getPassword());
-			doctorDtos.add(doctor);
-		}
 		
-		return doctorDtos;
+		List<DoctorEntity> doctorEntitys = this.entityManager.createQuery(FINDALL,DoctorEntity.class).getResultList();
+		if(doctorEntitys != null){
+			List<DoctorDto> doctorDtos = new ArrayList<>();
+			for(DoctorEntity entity : doctorEntitys){
+				DoctorDto doctor = new DoctorDto();
+				doctor.setAddressWord(entity.getAddress());
+				doctor.setBirthDay(entity.getBirthDay());
+				doctor.setDoctorId(entity.getDoctorId());
+				doctor.setEmail(entity.getEmail());
+				doctor.setName(entity.getName());
+				doctor.setPassword(entity.getPassword());
+				doctorDtos.add(doctor);
+			}
+			return doctorDtos;
+		}
+		return null;
 	}
 
 	@Override
 	public DoctorDto getDoctor(String userId) {
-		DoctorDto doctorDto = new DoctorDto();
-		DoctorEntity doctorEntity = this.entityManager.createQuery(FINDUSERID, DoctorEntity.class).setParameter("userId",userId).getSingleResult();
+		
+		TypedQuery<DoctorEntity> query = this.entityManager.createQuery(FINDUSERID, DoctorEntity.class).setParameter("doctorId",userId);
+		DoctorEntity doctorEntity = query.getSingleResult();
+		if(doctorEntity != null){
+			DoctorDto dto = new DoctorDto(doctorEntity.getDoctorId(),
+					doctorEntity.getName(),
+					doctorEntity.getBirthDay(),
+					doctorEntity.getPhoneNumber(),
+					doctorEntity.getEmail(),
+					doctorEntity.getPosition(),
+					doctorEntity.getAddress(),
+					doctorEntity.getSex());
+			return dto;
+		}
 		return null;
 	}
 	

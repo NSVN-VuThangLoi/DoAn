@@ -26,7 +26,7 @@ public class DoctorDto {
 	public DoctorDto(){
 		
 	}
-	public DoctorDto(String doctorId,String name,Date birthDay,int phoneNumber,String email,String position,String addressWord,Boolean sex){
+public DoctorDto(String doctorId,String name,Date birthDay,int phoneNumber,String email,String position,String addressWord,Boolean sex){
 		this.doctorId = doctorId;
 		this.name = name;
 		this.birthDay = birthDay;
@@ -34,6 +34,7 @@ public class DoctorDto {
 		this.email = email;
 		this.position = position;
 		this.addressWord =addressWord;
+		this.sex = sex;
 	}
 }
 
