@@ -1,10 +1,10 @@
 function ScreenModel() {
 	var self = this;
-	self.doctor = ko.observable(new Doctor());
-	self.listDoctor = ko.observable(new ListDoctor());
-	self.listDoctor().selectionChangedEvent.add(function(selectedCode) {
+	self.patient = ko.observable(new Doctor());
+	self.listPatient = ko.observable(new ListPatient());
+	self.listPatient().selectionChangedEvent.add(function(selectedCode) {
 		if (selectedCode !== undefined) {
-			self.doctor().reload(selectedCode);
+			self.patient().reload(selectedCode);
 		}
 	});
 }
@@ -12,8 +12,8 @@ function ScreenModel() {
 ScreenModel.prototype.start = function() {
 	var self = this;
 	var dfd = $.Deferred();
-	$.when(self.listDoctor().reload()).done(function() {
-		self.listDoctor().selectFirst();
+	$.when(self.listPatient().reload()).done(function() {
+		self.listPatient().selectFirst();
 		dfd.resolve();
 	});
 	return dfd.promise();
@@ -21,7 +21,7 @@ ScreenModel.prototype.start = function() {
 
 ScreenModel.prototype.goCreateMode = function() {
 	var self = this;
-	self.doctor().clear();
+	self.patient().clear();
 }
 ScreenModel.prototype.register = function() {
 	var self = this;
@@ -47,7 +47,7 @@ ScreenModel.prototype.register = function() {
 		}
 		services.insertDoctor(data).done(function(res) {
 			alert(res.result);
-			self.listDoctor().reload();
+			self.listPatient().reload();
 		}).fail(function(res){
 			alert(res.result);
 		});
@@ -57,12 +57,12 @@ ScreenModel.prototype.deleteDoctor = function() {
 	var self = this;
 	services.removeDoctor(self.doctor().userId()).done(function(res) {
 		alert(res);
-		self.listDoctor().reload();
+		self.listPatient().reload();
 	}).fail(function(res){
 		alert(res);
 	});
 }
-function Doctor (){
+function Patient (){
 		var self = this;
 		self.userId = ko.observable('');
 		self.name = ko.observable('');
@@ -75,7 +75,7 @@ function Doctor (){
 		self.position = ko.observable('');
 		self.gender = ko.observable(true);
 }
-Doctor.prototype.clear = function(){
+Patient.prototype.clear = function(){
 	var self = this;
 	self.userId('');
 	self.name('');
@@ -88,7 +88,7 @@ Doctor.prototype.clear = function(){
 	self.position('');
 	self.gender('true');
 }
-Doctor.prototype.reload = function(userId) {
+Patient.prototype.reload = function(userId) {
 	var self = this;
 	var request = new Request();
 	var dfd = $.Deferred();
@@ -111,7 +111,7 @@ Doctor.prototype.reload = function(userId) {
 	});
 	return dfd.promise();
 }
-function ListDoctor(){
+function ListPatient(){
 	var self = this;
 	self.items = ko.observableArray([]);
 	self.selectedCode = ko.observable();
@@ -135,7 +135,7 @@ function ListDoctor(){
 	});
 	self.unselecting = ko.observable(false);
 }
-ListDoctor.prototype.reload = function(){
+ListPatient.prototype.reload = function(){
 	var self = this;
 	var dfd = $.Deferred();
 	services.getAllDoctor().done(function(patterns) {
@@ -144,12 +144,12 @@ ListDoctor.prototype.reload = function(){
 	});
 	return dfd.promise();
 }
-ListDoctor.prototype.selectFirst = function() {
+ListPatient.prototype.selectFirst = function() {
 	var self = this;
 	self.select(self.items()[0].userId());
 
 };
-ListDoctor.prototype.select = function(code) {
+ListPatient.prototype.select = function(code) {
 	var self = this;
 	self.selectedCode(code);
 };

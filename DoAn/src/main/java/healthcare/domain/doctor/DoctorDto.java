@@ -5,6 +5,9 @@ import java.util.Date;
 import lombok.Data;
 @Data
 public class DoctorDto {
+	
+	private long version;
+	
 	private String doctorId;
 	
 	private String name;
@@ -26,7 +29,8 @@ public class DoctorDto {
 	public DoctorDto(){
 		
 	}
-public DoctorDto(String doctorId,String name,Date birthDay,int phoneNumber,String email,String position,String addressWord,Boolean sex){
+public DoctorDto(long version,String doctorId,String name,Date birthDay,int phoneNumber,String email,String position,String addressWord,Boolean sex){
+		this.version = version;
 		this.doctorId = doctorId;
 		this.name = name;
 		this.birthDay = birthDay;

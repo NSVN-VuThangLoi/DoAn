@@ -28,17 +28,38 @@ public class DoctorImpl extends DataConnection implements DoctorRepository{
 
 	@Override
 	public void insertDoctor(DoctorDto dto) {
+		DoctorDto doctorDto = new DoctorDto();
+		boolean isInsert = true;
+		doctorDto = getDoctor(dto.getDoctorId());
+			if(doctorDto != null){
+				isInsert = false;
+			}	
 		
 		DoctorEntity entity = new DoctorEntity();
-		entity.setAddress(dto.getAddressWord());
-		entity.setDoctorId(dto.getDoctorId());
-		entity.setName(dto.getName());
-		entity.setBirthDay(dto.getBirthDay());
-		entity.setEmail(dto.getEmail());
-		entity.setPassword(dto.getPassword());
-		entity.setPosition(dto.getPosition());
-		entity.setPhoneNumber(dto.getPhoneNumber());
-		entity.setSex(dto.getSex());
+		if(isInsert){
+			entity.setAddress(dto.getAddressWord());
+			entity.setDoctorId(dto.getDoctorId());
+			entity.setName(dto.getName());
+			entity.setBirthDay(dto.getBirthDay());
+			entity.setEmail(dto.getEmail());
+			entity.setPassword(dto.getPassword());
+			entity.setPosition(dto.getPosition());
+			entity.setPhoneNumber(dto.getPhoneNumber());
+			entity.setSex(dto.getSex());
+		}else{
+			entity.setAddress(dto.getAddressWord());
+			entity.setDoctorId(dto.getDoctorId());
+			entity.setName(dto.getName());
+			entity.setBirthDay(dto.getBirthDay());
+			entity.setEmail(dto.getEmail());
+			entity.setPassword(dto.getPassword());
+			entity.setPosition(dto.getPosition());
+			entity.setPhoneNumber(dto.getPhoneNumber());
+			entity.setSex(dto.getSex());
+			entity.setVersion(dto.getVersion());
+		}
+		
+			
 		this.entityManager.merge(entity);
 	}
 
@@ -67,20 +88,27 @@ public class DoctorImpl extends DataConnection implements DoctorRepository{
 	public DoctorDto getDoctor(String userId) {
 		
 		TypedQuery<DoctorEntity> query = this.entityManager.createQuery(FINDUSERID, DoctorEntity.class).setParameter("doctorId",userId);
-		DoctorEntity doctorEntity = query.getSingleResult();
-		if(doctorEntity != null){
-			DoctorDto dto = new DoctorDto(doctorEntity.getDoctorId(),
-					doctorEntity.getName(),
-					doctorEntity.getBirthDay(),
-					doctorEntity.getPhoneNumber(),
-					doctorEntity.getEmail(),
-					doctorEntity.getPosition(),
-					doctorEntity.getAddress(),
-					doctorEntity.getSex());
-			return dto;
+		if(query.getResultList().size() > 0){
+			DoctorEntity doctorEntity = query.getResultList().get(0);
+				DoctorDto dto = new DoctorDto(doctorEntity.getVersion(),
+						doctorEntity.getDoctorId(),
+						doctorEntity.getName(),
+						doctorEntity.getBirthDay(),
+						doctorEntity.getPhoneNumber(),
+						doctorEntity.getEmail(),
+						doctorEntity.getPosition(),
+						doctorEntity.getAddress(),
+						doctorEntity.getSex());
+				return dto;
 		}
 		return null;
 	}
-	
 
+	@Override
+	public void remove(String doctorId) {
+		String REMOVE = "DELETE FROM DoctorEntity e"
+                + " WHERE e.doctorId = :doctorId";
+        this.entityManager.createQuery(REMOVE).setParameter("doctorId", doctorId).executeUpdate();
+		
+	}
 }

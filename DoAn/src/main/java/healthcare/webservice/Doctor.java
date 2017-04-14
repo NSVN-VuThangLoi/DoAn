@@ -12,7 +12,9 @@ import javax.ws.rs.core.MediaType;
 import healthcare.app.doctor.FinderDoctor;
 import healthcare.app.doctor.InsertDoctorCommand;
 import healthcare.app.doctor.InsertDoctorCommandHandle;
+import healthcare.app.doctor.RemoveDoctorCommandHandle;
 import healthcare.domain.doctor.DoctorDto;
+import healthcare.domain.doctor.ResultInsert;
 
 @Path("/Doctor")
 @Stateless
@@ -21,13 +23,15 @@ public class Doctor {
 	private InsertDoctorCommandHandle insertdoctor;
 	@Inject
 	private FinderDoctor finderDoctor;
+	@Inject
+	private RemoveDoctorCommandHandle removeDoctor;
 
 	@POST
 	@Path("/insert")
 	@Produces(MediaType.APPLICATION_JSON)
-	public void Insert(InsertDoctorCommand command) {
+	public ResultInsert Insert(InsertDoctorCommand command) {
 
-		insertdoctor.handle(command);
+		return insertdoctor.handle(command);
 
 	}
 	@POST
@@ -40,5 +44,11 @@ public class Doctor {
 	@Path("/getDoctor")
 	public DoctorDto getDoctor(String userId) {
 		return finderDoctor.getDoctor(userId);
+	}
+	@POST
+	@Path("/removeDoctor")
+	@Produces(MediaType.TEXT_PLAIN)
+	public String removeDoctor(String doctorId) {
+		return removeDoctor.handle(doctorId);
 	}
 }
