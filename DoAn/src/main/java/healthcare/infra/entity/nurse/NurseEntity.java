@@ -1,4 +1,4 @@
-package healthcare.infra.entity.login;
+package healthcare.infra.entity.nurse;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -9,27 +9,27 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Version;
 
+import healthcare.infra.entity.doctor.DoctorEntity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
 @Entity
-@Table(name = "patient")
+@Table(name = "Doctor")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class LoginPatient implements Serializable {
+public class NurseEntity implements Serializable{
+
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-
 	@Version
 	private long version;
 
 	@Id
-	@Column(name = "user_id")
-	private String userId;
+	@Column(name = "nurse_id")
+	private String doctorId;
 
 	@Column(name = "password")
 	private String password;
@@ -46,10 +46,12 @@ public class LoginPatient implements Serializable {
 	@Column(name = "email")
 	private String email;
 	
-	@Column(name = "address")
+	@Column(name = "address_word")
 	private String address;
 	
 	@Column(name = "sex")
 	private Boolean sex;
-
+	
+	@Column(name ="position")
+	private String position;
 }

@@ -1,4 +1,4 @@
-package healthcare.infra.entity.login;
+package healthcare.infra.entity.patient;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -18,7 +18,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class LoginPatient implements Serializable {
+public class PatientEntity implements Serializable {
 	/**
 	 * 
 	 */
@@ -51,5 +51,4 @@ public class LoginPatient implements Serializable {
 	
 	@Column(name = "sex")
 	private Boolean sex;
-
 }

@@ -1,6 +1,6 @@
 function ScreenModel() {
 	var self = this;
-	self.patient = ko.observable(new Doctor());
+	self.patient = ko.observable(new Patient());
 	self.listPatient = ko.observable(new ListPatient());
 	self.listPatient().selectionChangedEvent.add(function(selectedCode) {
 		if (selectedCode !== undefined) {
@@ -25,44 +25,45 @@ ScreenModel.prototype.goCreateMode = function() {
 }
 ScreenModel.prototype.register = function() {
 	var self = this;
-	if(self.doctor().birthDay() ==""){
+	if(self.patient().birthDay() ==""){
 		alert("Bạn chưa nhập ngày sinh");
-	}else if(self.doctor().userId() ==""){
+	}else if(self.patient().userId() ==""){
 		alert("Bạn chưa nhập userId");
-	}else if(self.doctor().name() ==""){
+	}else if(self.patient().name() ==""){
 		alert("Bạn chưa nhập name");
-	}else if(self.doctor().password() ==""){
+	}else if(self.patient().password() ==""){
 		alert("Bạn chưa nhập password");
 	}else{
 		var data = {
-				doctorId : self.doctor().userId(),
-				name: self.doctor().name(),
-				birthDay: self.doctor().birthDay(),
-				password : self.doctor().password(),
-				phoneNumber: self.doctor().phoneNumber(),
-				email: self.doctor().email(),
-				position: self.doctor().position(),
-				addressWord: self.doctor().address(),
-				sex: self.doctor().gender()	
+				userId : self.patient().userId(),
+				name: self.patient().name(),
+				birthDay: self.patient().birthDay(),
+				password : self.patient().password(),
+				phoneNumber: self.patient().phoneNumber(),
+				email: self.patient().email(),
+				address: self.patient().address(),
+				sex: self.patient().gender()	
 		}
-		services.insertDoctor(data).done(function(res) {
+		services.insertPatient(data).done(function(res) {
 			alert(res.result);
+			self.patient().clear();
 			self.listPatient().reload();
+			self.listPatient().select(res.userId);
 		}).fail(function(res){
 			alert(res.result);
 		});
 	}
 }
-ScreenModel.prototype.deleteDoctor = function() {
+ScreenModel.prototype.deletePatient = function() {
 	var self = this;
-	services.removeDoctor(self.doctor().userId()).done(function(res) {
+	services.removePatient(self.patient().userId()).done(function(res) {
 		alert(res);
 		self.listPatient().reload();
 	}).fail(function(res){
 		alert(res);
 	});
 }
-function Patient (){
+function Patient(){
 		var self = this;
 		self.userId = ko.observable('');
 		self.name = ko.observable('');
@@ -72,7 +73,6 @@ function Patient (){
 		self.password = ko.observable('');
 		self.confirmPassword = ko.observable('');
 		self.phoneNumber = ko.observable('');
-		self.position = ko.observable('');
 		self.gender = ko.observable(true);
 }
 Patient.prototype.clear = function(){
@@ -85,22 +85,20 @@ Patient.prototype.clear = function(){
 	self.password('');
 	self.confirmPassword('');
 	self.phoneNumber('');
-	self.position('');
 	self.gender('true');
 }
 Patient.prototype.reload = function(userId) {
 	var self = this;
 	var request = new Request();
 	var dfd = $.Deferred();
-	services.getDoctor(userId).done(function(res) {
-		self.userId(res.doctorId);
+	services.getPatient(userId).done(function(res) {
+		self.userId(res.userId);
 		self.name(res.name);
 		var date = new Date(res.birthDay);
 		self.birthDay(request.formatDate(date, 'yyyy-MM-dd'));
-		self.address(res.addressWord);
+		self.address(res.address);
 		self.email(res.email);
 		self.phoneNumber(res.phoneNumber);
-		self.position(res.position);
 		if(res.sex){
 			self.gender('true');
 		}else{
@@ -138,8 +136,10 @@ function ListPatient(){
 ListPatient.prototype.reload = function(){
 	var self = this;
 	var dfd = $.Deferred();
-	services.getAllDoctor().done(function(patterns) {
-		self.items(patterns);
+	services.getAllPatient().done(function(patterns) {
+		if(patterns != null){
+			self.items(patterns);
+		}
 		dfd.resolve();
 	});
 	return dfd.promise();
@@ -153,7 +153,7 @@ ListPatient.prototype.select = function(code) {
 	var self = this;
 	self.selectedCode(code);
 };
-function DoctorListItem(userId, name) {
+function PatientListItem(userId, name) {
 	var self = this;
 	self.userId = ko.observable(userId);
 	self.name = ko.observable(name);

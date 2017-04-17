@@ -40,9 +40,11 @@ public class InsertDoctorCommandHandle {
 				dto.setSex(command.getSex());
 				doctorRep.insertDoctor(dto);
 				result.setResult("Đăng kí thành công DoctorId = " + command.getDoctorId());
+				result.setDoctorId(command.getDoctorId());
 			} catch (Exception e) {
 				// TODO: handle exception
 				result.setResult("Đăng kí thất bại DoctorId = " + command.getDoctorId());
+				result.setDoctorId(command.getDoctorId());
 			}
 		}else{
 			try {
@@ -58,9 +60,11 @@ public class InsertDoctorCommandHandle {
 				dto.setSex(command.getSex());
 				doctorRep.insertDoctor(dto);
 				result.setResult("Update thành công DoctorId = " + command.getDoctorId());
+				result.setDoctorId(command.getDoctorId());
 			} catch (Exception e) {
 				// TODO: handle exception
 				result.setResult("Update thất bại DoctorId = " + command.getDoctorId());
+				result.setDoctorId(command.getDoctorId());
 			}
 		}
 		

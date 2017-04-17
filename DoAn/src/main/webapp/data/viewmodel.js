@@ -47,7 +47,9 @@ ScreenModel.prototype.register = function() {
 		}
 		services.insertDoctor(data).done(function(res) {
 			alert(res.result);
+			self.doctor().clear();
 			self.listDoctor().reload();
+			self.listDoctor().select(res.doctorId);
 		}).fail(function(res){
 			alert(res.result);
 		});
