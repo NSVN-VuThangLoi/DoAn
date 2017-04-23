@@ -5,6 +5,7 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
 import javax.ejb.Stateless;
+
 @Stateless
 public class HashGenerator {
 	public String generatorSha256(String input) {
