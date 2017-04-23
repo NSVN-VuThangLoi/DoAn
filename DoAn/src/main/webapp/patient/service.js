@@ -3,29 +3,29 @@
 var services = (function() {
 
 	var servicePath = {
-		getAllDoctor : 'Doctor/getAllDoctor',
-		getDoctor : 'Doctor/getDoctor',
-		removeDoctor : 'Doctor/removeDoctor',
-		insertDoctor : 'Doctor/insert'
+		getAllPatient : 'Patient/getAllPatient',
+		getPatient : 'Patient/getPatient',
+		removePatient : 'Patient/removePatient',
+		insertPatient : 'Patient/insertPatient'
 	};
 
 	var services = {};
 	var request = new Request();
-	services.insertDoctor = function(data) {
+	services.insertPatient = function(data) {
 		var d = $.Deferred();
-		request.requestAjax(data,servicePath.insertDoctor).done(function(res){
+		request.requestAjax(data,servicePath.insertPatient).done(function(res){
 			d.resolve(res);
 		}) ;
 		return d.promise();
 	};
 	
-	services.getAllDoctor = function() {
+	services.getAllPatient = function() {
 		 var d = $.Deferred();
 		 var i;
-		request.requestAjax(null,servicePath.getAllDoctor).done(function(data){
+		request.requestAjax(null,servicePath.getAllPatient).done(function(data){
 			var patterns = [];
 			for(i = 0; i < data.length; i++){
-				patterns.push(new DoctorListItem(data[i].doctorId,data[i].name));
+				patterns.push(new PatientListItem(data[i].userId,data[i].name));
 			}
 			
 			d.resolve(patterns);
@@ -33,16 +33,16 @@ var services = (function() {
 		return d.promise();
 	};
 	
-	services.getDoctor = function(data) {
+	services.getPatient = function(data) {
 		 var d = $.Deferred();
-		request.requestAjax(data,servicePath.getDoctor).done(function(res){
+		request.requestAjax(data,servicePath.getPatient).done(function(res){
 			d.resolve(res);
 		}) ;
 		return d.promise();
 	};
-	services.removeDoctor = function(data) {
+	services.removePatient = function(data) {
 		 var d = $.Deferred();
-		request.requestText(data,servicePath.removeDoctor).done(function(res){
+		request.requestText(data,servicePath.removePatient).done(function(res){
 			d.resolve(res);
 		}) ;
 		return d.promise();
