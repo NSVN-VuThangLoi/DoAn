@@ -1,12 +1,9 @@
 package healthcare.app.readfile;
 
 import java.awt.image.BufferedImage;
-import java.io.BufferedOutputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
-import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.OutputStream;
 import java.util.Iterator;
 
 import javax.ejb.Stateless;
@@ -18,9 +15,6 @@ import javax.imageio.stream.ImageInputStream;
 import org.dcm4che2.data.DicomObject;
 import org.dcm4che2.data.Tag;
 import org.dcm4che2.io.DicomInputStream;
-
-import com.sun.image.codec.jpeg.JPEGCodec;
-import com.sun.image.codec.jpeg.JPEGImageEncoder;
 
 
 @Stateless
