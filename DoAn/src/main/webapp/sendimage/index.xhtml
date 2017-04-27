@@ -1,71 +1,16 @@
-<?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:ui="http://java.sun.com/jsf/facelets"
-	xmlns:com="http://xmlns.jcp.org/jsf/component"
-	xmlns:h="http://xmlns.jcp.org/jsf/html">
-<body>
-	<ui:composition template="../indexbase.xhtml">
-		<ui:define name="htmlHead">
-
-    <!-- JavaScript Library Dependencies -->
+<html>
+<head>
     <script src="http://code.jquery.com/jquery-3.1.1.min.js"></script>
-    <script src="http://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
-    <script src="https://ajax.aspnetcdn.com/ajax/knockout/knockout-3.1.0.js"></script>
+    <script type="text/javascript" src="viewmodel.js"></script>
+</head>
+<body>
 
-    <!-- Ignite UI Required Combined JavaScript Files (Trial) -->
-    <script src="http://cdn-na.infragistics.com/igniteui/latest/js/infragistics.core.js"></script>
-    <script src="http://cdn-na.infragistics.com/igniteui/latest/js/infragistics.lob.js"></script>
-    <script src="http://cdn-na.infragistics.com/igniteui/latest/js/infragistics.dv.js"></script>
-			
-			<script type="text/javascript" src="viewmodel.js"></script>
-			<script type="text/javascript" src="../common/request.js"></script>
-			<script type="text/javascript" src="service.js"></script>
-				<script type="text/javascript" src="start.js"></script>
-			<link rel="stylesheet" type="text/css" href="main.css" />
-		</ui:define>
-		<ui:define name="content">
-		<div id ="function">
-			<button data-bind ="click: goCreateMode">New</button>
-			<button data-bind ="click: register">Save</button>
-<!-- 		<button data-bind ="click: deletePatient">Delete</button> -->
-		</div>
-		<div>
-				<table>
-					<tr>
-						<td id="contentleft" data-bind ="with: listPatient">
-								<div><h:outputText value="Danh Sách Hồ Sơ Khám" /></div>
-								<select id="contract-list" size="40"
-									data-bind="
-                                 options: items, 
-                                 value: selectedCode,
-                                 optionsText: 'displayText', 
-                                 optionsValue: 'userId'"></select> 
-							
- 						</td> 
-						<td id="contentright">
-							<tr id="form">
-										<th class="required"><h:outputText value="UserId" /></th>
-										<td><input type="text" id="UserId" data-bind="value: userId "/></td>
-									</tr>
-									<tr id="form">
-										<th class="required"><h:outputText value="Name" /></th>
-										<td><input type="text" id="name" data-bind=" value: name " /></td>
-									</tr>
-									<tr id="form">
-										<th class="required"><h:outputText value="DAY CARE" /></th>
-										<td><input type="date" id="birthDay" data-bind=" value: dayCare"/></td>
-									</tr>
-									<tr>
-										 <td>
-		                                   <p>Choose : <input type="file" name="upload_file" /></p> 
-	                               		 </td>
-									</tr>
-						</td>
-					</tr>
-				</table>
-			</div>
-		</ui:define>
-	</ui:composition>	
+    <h1>Upload a File</h1>
+
+
+    <p>Choose : <input type="file" name="upload_file" /></p>
+    <button id="upload_btn">Start Uploading</button>
+
 </body>
 </html>
