@@ -1,101 +1,103 @@
 function ScreenModel() {
 	var self = this;
-	self.doctor = ko.observable(new listExamRecords());
+	self.userId = ko.observable('');
+	self.name = ko.observable('');
+	self.dayCare = ko.observable(new Date());
+	self.fileInput = ko.observable();
+    self.fileName = ko.observable();
+    self.someReader = new FileReader();
 	self.listPatient = ko.observable(new listPatient());
-	self.listPatient().selectionChangedEvent.add(function(selectedCode) {
-		if (selectedCode !== undefined) {
-			self.doctor().reload(selectedCode);
-		}
-	});
-	self.UploadedFile = ko.observable("");
+//	self.listPatient().selectionChangedEvent.add(function(selectedCode) {
+//		if (selectedCode !== undefined) {
+//			self.doctor().reload(selectedCode);
+//		}
+//	});
 }
 
 ScreenModel.prototype.start = function() {
 	var self = this;
 	var dfd = $.Deferred();
-	$.when(self.listPatient().reload()).done(function() {
-		self.listPatient().selectFirst();
-		dfd.resolve();
-	});
+//	$.when(self.listPatient().reload()).done(function() {
+//		self.listPatient().selectFirst();
+//		dfd.resolve();
+//	});
 	return dfd.promise();
 };
 ScreenModel.prototype.importFile = function(){
 	var self = this;
 	$("#file")[0].click();
 }
-ScreenModel.prototype.sendFile = function(){
-	var self = this;
-}
+
 ScreenModel.prototype.goCreateMode = function() {
 	var self = this;
 	self.doctor().clear();
 }
 ScreenModel.prototype.register = function() {
 	var self = this;
-	
-		var data = {
-				doctorId : self.doctor().userId(),
-				name: self.doctor().name(),
-				birthDay: self.doctor().birthDay(),
-				password : self.doctor().password(),
-				phoneNumber: self.doctor().phoneNumber(),
-				email: self.doctor().email(),
-				position: self.doctor().position(),
-				addressWord: self.doctor().address(),
-				sex: self.doctor().gender()	}
-		services.insertDoctor(data).done(function(res) {
+	var file = $('input[name="upload_file"]').get(0).files[0];
+	var formData = new FormData();
+    formData.append('file', file);
+//		var data = {
+//				userId : self.userId(),
+//				name: self.name(),
+//				dayCare: self.dayCare(),
+//				fileInput : self.fileInput(),
+//				fileName: self.fileName(),
+//				someReader: self.someReader()
+//				}
+		services.insertFile(formData).done(function(res) {
 			alert(res.result);
-			self.doctor().clear();
-			self.listPatient().reload();
-			self.listPatient().select(res.doctorId);
+//			self.doctor().clear();
+//			self.listPatient().reload();
+//			self.listPatient().select(res.doctorId);
 		}).fail(function(res){
 			alert(res.result);
 		});
 }
-ScreenModel.prototype.deleteDoctor = function() {
-	var self = this;
-	services.removeDoctor(self.doctor().userId()).done(function(res) {
-		alert(res);
-		self.listPatient().reload();
-	}).fail(function(res){
-		alert(res);
-	});
-}
-function listExamRecords (){
-		var self = this;
-		self.userId = ko.observable('');
-		self.name = ko.observable('');
-		self.dayCare = ko.observable(new Date());
-}
-listExamRecords.prototype.clear = function(){
-	var self = this;
-	self.userId('');
-	self.name('');
-	self.dayCare('');
-}
-listExamRecords.prototype.reload = function(userId) {
-	var self = this;
-	var request = new Request();
-	var dfd = $.Deferred();
-	services.getDoctor(userId).done(function(res) {
-		self.userId(res.doctorId);
-		self.name(res.name);
-		var date = new Date(res.birthDay);
-		self.birthDay(request.formatDate(date, 'yyyy-MM-dd'));
-		self.address(res.addressWord);
-		self.email(res.email);
-		self.phoneNumber(res.phoneNumber);
-		self.position(res.position);
-		if(res.sex){
-			self.gender('true');
-		}else{
-			self.gender('false');
-		}
-		
-		dfd.resolve();
-	});
-	return dfd.promise();
-}
+//ScreenModel.prototype.deleteDoctor = function() {
+//	var self = this;
+//	services.removeDoctor(self.doctor().userId()).done(function(res) {
+//		alert(res);
+//		self.listPatient().reload();
+//	}).fail(function(res){
+//		alert(res);
+//	});
+//}
+//function listExamRecords (){
+//		var self = this;
+//		self.userId = ko.observable('');
+//		self.name = ko.observable('');
+//		self.dayCare = ko.observable(new Date());
+//}
+//listExamRecords.prototype.clear = function(){
+//	var self = this;
+//	self.userId('');
+//	self.name('');
+//	self.dayCare('');
+//}
+//listExamRecords.prototype.reload = function(userId) {
+//	var self = this;
+//	var request = new Request();
+//	var dfd = $.Deferred();
+//	services.getDoctor(userId).done(function(res) {
+//		self.userId(res.doctorId);
+//		self.name(res.name);
+//		var date = new Date(res.birthDay);
+//		self.birthDay(request.formatDate(date, 'yyyy-MM-dd'));
+//		self.address(res.addressWord);
+//		self.email(res.email);
+//		self.phoneNumber(res.phoneNumber);
+//		self.position(res.position);
+//		if(res.sex){
+//			self.gender('true');
+//		}else{
+//			self.gender('false');
+//		}
+//		
+//		dfd.resolve();
+//	});
+//	return dfd.promise();
+//}
 function listPatient(){
 	var self = this;
 	self.items = ko.observableArray([]);

@@ -31,7 +31,7 @@
 <!-- 		<button data-bind ="click: deletePatient">Delete</button> -->
 		</div>
 		<div>
-				<table  >
+				<table>
 					<tr>
 						<td id="contentleft" data-bind ="with: listPatient">
 								<div><h:outputText value="Danh Sách Hồ Sơ Khám" /></div>
@@ -44,9 +44,7 @@
 							
  						</td> 
 						<td id="contentright">
-							<div >
-								<table id="content-doctor" data-bind ="with: listExamRecords" >
-									<tr id="form">
+							<tr id="form">
 										<th class="required"><h:outputText value="UserId" /></th>
 										<td><input type="text" id="UserId" data-bind="value: userId "/></td>
 									</tr>
@@ -60,23 +58,9 @@
 									</tr>
 									<tr>
 										 <td>
-		                                    <input type="file" id="file" name="files[]" /> 
-<!-- 		                                    <input type="text" class="txt_file" id="txt_selectFile" -->
-<!-- 		                                           data-bind="value: $root.UploadedFile" /> -->
-		                                    <button class="import" data-bind="click: $root.importFile">
-		                                        <h:outputText
-		                                            value="importFile" />
-		                                    </button>
-	                               		 </td>
-	                               		 <td>
-	                               		 	<button class="sendFile" data-bind="click: $root.sendFile">
-		                                        <h:outputText
-		                                            value="sendFile" />
-		                                    </button>
+		                                   <p>Choose : <input type="file" name="upload_file" /></p> 
 	                               		 </td>
 									</tr>
-								</table>
-							</div>
 						</td>
 					</tr>
 				</table>

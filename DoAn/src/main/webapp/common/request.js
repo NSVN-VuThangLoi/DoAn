@@ -58,6 +58,34 @@ Request.prototype.requestText = function(data, path) {
 	});
 	return d.promise();
 };
+Request.prototype.requestFile = function(data, path) {
+	var self = this;
+	var d = $.Deferred();
+	$.ajax({
+		url :"http://localhost:8080/DoAn/Demo/" + path,
+		type : "post",
+		data : data,
+		cache: false,
+        contentType: false,
+        processData: false,
+        success : function(result) {
+			return result;
+			d.resolve();
+			d.reject(res);
+		}
+	}).done(function(res) {
+		if (res === undefined) {
+			d.resolve();
+		} else if (res.businessException) {
+			d.reject(res);
+		} else {
+			d.resolve(res);
+		}
+	}).fail(function(res) {
+		d.resolve(res);
+	});
+	return d.promise();
+}
 
 Request.prototype.formatDate = function(date, format) {
     if (!format)
