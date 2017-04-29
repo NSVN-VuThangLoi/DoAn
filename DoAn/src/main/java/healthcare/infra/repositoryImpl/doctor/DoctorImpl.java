@@ -96,9 +96,11 @@ public class DoctorImpl extends DataConnection implements DoctorRepository{
 						doctorEntity.getBirthDay(),
 						doctorEntity.getPhoneNumber(),
 						doctorEntity.getEmail(),
+						doctorEntity.getPassword(),
 						doctorEntity.getPosition(),
 						doctorEntity.getAddress(),
 						doctorEntity.getSex());
+				
 				return dto;
 		}
 		return null;

@@ -14,4 +14,5 @@ public interface XquangRepository {
 	void updateXquang(XquangDto dto);
 	
 	void removeXquang(String userId,String doctorId, Date dayCare);
+	public List<XquangDto> getAllXquangNonImage();
 }

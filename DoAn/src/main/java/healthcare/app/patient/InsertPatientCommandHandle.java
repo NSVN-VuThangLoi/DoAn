@@ -3,12 +3,9 @@ package healthcare.app.patient;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 
-import healthcare.domain.doctor.DoctorDto;
-import healthcare.domain.doctor.DoctorRepository;
-import healthcare.domain.doctor.ResultInsert;
 import healthcare.domain.patient.PatientDto;
-import healthcare.domain.patient.PatientResultInsert;
 import healthcare.domain.patient.PatientRepository;
+import healthcare.domain.patient.PatientResultInsert;
 
 @Stateless
 public class InsertPatientCommandHandle {

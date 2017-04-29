@@ -1,79 +1,77 @@
 function ScreenModel() {
 	var self = this;
-	self.doctor = ko.observable(new listExamRecords());
-	self.listPatient = ko.observable(new listPatient());
-	self.listPatient().selectionChangedEvent.add(function(selectedCode) {
+	self.information = ko.observable(new information());
+	self.listFile = ko.observable(new listFile());
+	self.listFile().selectionChangedEvent.add(function(selectedCode) {
 		if (selectedCode !== undefined) {
-			self.doctor().reload(selectedCode);
+			self.information().reload(selectedCode);
 		}
 	});
-	self.UploadedFile = ko.observable("");
 }
 
 ScreenModel.prototype.start = function() {
 	var self = this;
 	var dfd = $.Deferred();
-	$.when(self.listPatient().reload()).done(function() {
-		self.listPatient().selectFirst();
+	$.when(self.listFile().reload()).done(function() {
+		self.listFile().selectFirst();
 		dfd.resolve();
 	});
 	return dfd.promise();
 };
-ScreenModel.prototype.importFile = function(){
-	var self = this;
-	$("#file")[0].click();
-}
-ScreenModel.prototype.sendFile = function(){
-	var self = this;
-}
-ScreenModel.prototype.goCreateMode = function() {
-	var self = this;
-	self.doctor().clear();
+function progress(e) {
+    if (e.lengthComputable) {
+        $('#progress_percent').text(Math.floor((e.loaded * 100) / e.total));
+        $('progress').attr({value:e.loaded,max:e.total});
+    }
 }
 ScreenModel.prototype.register = function() {
 	var self = this;
-	
-		var data = {
-				doctorId : self.doctor().userId(),
-				name: self.doctor().name(),
-				birthDay: self.doctor().birthDay(),
-				password : self.doctor().password(),
-				phoneNumber: self.doctor().phoneNumber(),
-				email: self.doctor().email(),
-				position: self.doctor().position(),
-				addressWord: self.doctor().address(),
-				sex: self.doctor().gender()	}
-		services.insertDoctor(data).done(function(res) {
-			alert(res.result);
-			self.doctor().clear();
-			self.listPatient().reload();
-			self.listPatient().select(res.doctorId);
-		}).fail(function(res){
-			alert(res.result);
-		});
+	var file = $('input[name="upload_file"]').get(0).files[0];
+
+    var formData = new FormData();
+    formData.append('file', file);
+    formData.append('userId', self.information().userId());
+    $.ajax({
+        url: 'http://localhost:8080/Note/Demo/login/upload',
+        type: 'POST',
+        data: formData,
+        cache: false,
+        contentType: false,
+        processData: false,
+        success: function(){
+            alert('file upload complete');
+        },
+        error: function(response){
+            var error = "error";
+            if (response.status === 409){
+                error = response.responseText;
+            }
+            alert(error);
+        },
+        xhr: function() {
+            var myXhr = $.ajaxSettings.xhr();
+            if (myXhr.upload) {
+                myXhr.upload.addEventListener('progress', progress, false);
+            } else {
+                console.log('Upload progress is not supported.');
+            }
+            return myXhr;
+        }
+    });
 }
-ScreenModel.prototype.deleteDoctor = function() {
-	var self = this;
-	services.removeDoctor(self.doctor().userId()).done(function(res) {
-		alert(res);
-		self.listPatient().reload();
-	}).fail(function(res){
-		alert(res);
-	});
-}
-function listExamRecords (){
+function information (){
 		var self = this;
 		self.userId = ko.observable('');
 		self.name = ko.observable('');
 		self.dayCare = ko.observable(new Date());
 }
-listExamRecords.prototype.clear = function(){
+information.prototype.clear = function(){
 	var self = this;
 	self.userId('');
 	self.name('');
 	self.dayCare('');
 }
-listExamRecords.prototype.reload = function(userId) {
+information.prototype.reload = function(userId) {
 	var self = this;
 	var request = new Request();
 	var dfd = $.Deferred();
@@ -96,7 +94,7 @@ listExamRecords.prototype.reload = function(userId) {
 	});
 	return dfd.promise();
 }
-function listPatient(){
+function listFile(){
 	var self = this;
 	self.items = ko.observableArray([]);
 	self.selectedCode = ko.observable();
@@ -120,7 +118,7 @@ function listPatient(){
 	});
 	self.unselecting = ko.observable(false);
 }
-listPatient.prototype.reload = function(){
+listFile.prototype.reload = function(){
 	var self = this;
 	var dfd = $.Deferred();
 	services.getAllDoctor().done(function(patterns) {
@@ -129,12 +127,12 @@ listPatient.prototype.reload = function(){
 	});
 	return dfd.promise();
 }
-listPatient.prototype.selectFirst = function() {
+listFile.prototype.selectFirst = function() {
 	var self = this;
 	self.select(self.items()[0].userId());
 
 };
-listPatient.prototype.select = function(code) {
+listFile.prototype.select = function(code) {
 	var self = this;
 	self.selectedCode(code);
 };

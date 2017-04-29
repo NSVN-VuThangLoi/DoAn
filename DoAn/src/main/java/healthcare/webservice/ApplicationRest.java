@@ -5,7 +5,7 @@ import java.util.Set;
 
 import javax.ws.rs.core.Application;
 @javax.ws.rs.ApplicationPath("Demo")
-public class LoginConf extends Application {
+public class ApplicationRest extends Application {
 
 	@Override
 	public Set<Class<?>> getClasses() {
@@ -17,5 +17,6 @@ public class LoginConf extends Application {
     {
     	resource.add(healthcare.webservice.Doctor.class);
     	resource.add(healthcare.webservice.PatientWebservice.class);
+    	resource.add(healthcare.webservice.LoginDotorWebservice.class);
     }
 }

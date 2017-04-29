@@ -48,6 +48,9 @@ public class XquangEntity implements Serializable {
 	@Column(name = "address_Patient")
 	private String addressPatient;
 	
-	@Column(name ="image_xquang")
-	private Byte imageXquang;
+	@Column(name ="url_image")
+	private String urlImage;
+	
+	@Column(name ="isIamge")
+	private Boolean isIamge;
 }

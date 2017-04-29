@@ -23,6 +23,8 @@ public class XquangDto {
  
  private String addressPatient;
  
- private Byte imageXquang;
+ private String urlImage;
+ 
+ private Boolean isImage;
  
 }

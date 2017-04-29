@@ -1,7 +1,5 @@
 package healthcare.infra.repositoryImpl.login;
 
-import java.util.List;
-
 import javax.ejb.Stateless;
 
 import healthcare.domain.login.LoginDto;

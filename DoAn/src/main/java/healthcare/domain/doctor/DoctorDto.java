@@ -29,13 +29,14 @@ public class DoctorDto {
 	public DoctorDto(){
 		
 	}
-public DoctorDto(long version,String doctorId,String name,Date birthDay,int phoneNumber,String email,String position,String addressWord,Boolean sex){
+public DoctorDto(long version,String doctorId,String name,Date birthDay,int phoneNumber,String email,String passWord,String position,String addressWord,Boolean sex){
 		this.version = version;
 		this.doctorId = doctorId;
 		this.name = name;
 		this.birthDay = birthDay;
 		this.phoneNumber = phoneNumber;
 		this.email = email;
+		this.password = passWord;
 		this.position = position;
 		this.addressWord =addressWord;
 		this.sex = sex;
