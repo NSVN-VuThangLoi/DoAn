@@ -4,7 +4,7 @@ function ScreenModel() {
 	self.listFile = ko.observable(new listFile());
 	self.listFile().selectionChangedEvent.add(function(selectedCode) {
 		if (selectedCode !== undefined) {
-			self.information().reload(selectedCode);
+//			self.information().reload(selectedCode);
 		}
 	});
 }
@@ -12,10 +12,10 @@ function ScreenModel() {
 ScreenModel.prototype.start = function() {
 	var self = this;
 	var dfd = $.Deferred();
-	$.when(self.listFile().reload()).done(function() {
-		self.listFile().selectFirst();
-		dfd.resolve();
-	});
+//	$.when(self.listFile().reload()).done(function() {
+//		self.listFile().selectFirst();
+//		dfd.resolve();
+//	});
 	return dfd.promise();
 };
 function progress(e) {
@@ -32,7 +32,7 @@ ScreenModel.prototype.register = function() {
     formData.append('file', file);
     formData.append('userId', self.information().userId());
     $.ajax({
-        url: 'http://localhost:8080/Note/Demo/login/upload',
+        url: 'http://localhost:8080/DoAn/Demo/xquang/upload',
         type: 'POST',
         data: formData,
         cache: false,
@@ -118,15 +118,15 @@ function listFile(){
 	});
 	self.unselecting = ko.observable(false);
 }
-listFile.prototype.reload = function(){
-	var self = this;
-	var dfd = $.Deferred();
-	services.getAllDoctor().done(function(patterns) {
-		self.items(patterns);
-		dfd.resolve();
-	});
-	return dfd.promise();
-}
+//listFile.prototype.reload = function(){
+//	var self = this;
+//	var dfd = $.Deferred();
+//	services.getAllDoctor().done(function(patterns) {
+//		self.items(patterns);
+//		dfd.resolve();
+//	});
+//	return dfd.promise();
+//}
 listFile.prototype.selectFirst = function() {
 	var self = this;
 	self.select(self.items()[0].userId());

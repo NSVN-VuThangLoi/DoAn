@@ -57,13 +57,35 @@ public class XquangImpl extends DataConnection implements XquangRepository {
 
 	@Override
 	public void insertXquang(XquangDto dto) {
-		// TODO Auto-generated method stub
+		XquangEntity entity = new XquangEntity();
+		entity.setUserId(dto.getUserId());
+		entity.setDoctorId(dto.getDoctorId());
+		entity.setDayCare(dto.getDayCare());
+		entity.setAddressPatient(dto.getAddressPatient());
+		entity.setIsImage(false);
+		entity.setAge(dto.getAge());
+		entity.setDiagnose(dto.getDiagnose());
+		entity.setIsResult(false);
 		
+		this.entityManager.persist(entity);
 	}
 
 	@Override
 	public void updateXquang(XquangDto dto) {
-		// TODO Auto-generated method stub
+		XquangEntity entity = new XquangEntity();
+		entity.setUserId(dto.getUserId());
+		entity.setDoctorId(dto.getDoctorId());
+		entity.setDayCare(dto.getDayCare());
+		entity.setAddressPatient(dto.getAddressPatient());
+		entity.setAge(dto.getAge());
+		entity.setDiagnose(dto.getDiagnose());
+		entity.setResult(dto.getResult());
+		entity.setIsImage(dto.getIsImage());
+		entity.setIsResult(dto.getIsResult());
+		entity.setVersion(dto.getVersion());
+		entity.setUrlImage(dto.getUrlImage());
+		
+		this.entityManager.merge(entity);
 		
 	}
 

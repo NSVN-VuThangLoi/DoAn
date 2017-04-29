@@ -27,4 +27,5 @@ public class XquangDto {
  
  private Boolean isImage;
  
+ private Boolean isResult;
 }

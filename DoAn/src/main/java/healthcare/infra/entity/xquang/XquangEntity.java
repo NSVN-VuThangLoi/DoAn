@@ -51,6 +51,9 @@ public class XquangEntity implements Serializable {
 	@Column(name ="url_image")
 	private String urlImage;
 	
-	@Column(name ="isIamge")
-	private Boolean isIamge;
+	@Column(name ="isImage")
+	private Boolean isImage;
+	
+	@Column(name ="isResult")
+	private Boolean isResult;
 }
