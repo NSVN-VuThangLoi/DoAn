@@ -4,10 +4,13 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
 import javax.ejb.Stateless;
+import javax.inject.Inject;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
@@ -20,10 +23,14 @@ import org.apache.commons.io.IOUtils;
 import org.jboss.resteasy.plugins.providers.multipart.InputPart;
 import org.jboss.resteasy.plugins.providers.multipart.MultipartFormDataInput;
 
+import healthcare.app.readfile.ReadFile;
+
 @Path("/xquang")
 @Stateless
 public class XquangWebservice {
-	private static final String SAVE_FOLDER = "D:\\Do_an\\Xquang\\";
+	@Inject
+	private ReadFile readfile;
+	private static final String SAVE_FOLDER = "D:\\Xquang\\";
 	private final String UPLOADED_FILE_PATH = "d:\\";
 
 	@POST
@@ -37,11 +44,10 @@ public class XquangWebservice {
 		List<InputPart> inputParts = uploadForm.get("file");
 		List<InputPart> inputUserId = uploadForm.get("userId");
 		for (InputPart inputPart : inputUserId) {
-				MultivaluedMap<String, String> header = inputPart.getHeaders();
 				InputStream inputStream = inputPart.getBody(InputStream.class,null);
 
 				byte [] bytes = IOUtils.toByteArray(inputStream);
-				userId = UPLOADED_FILE_PATH + new String(bytes);
+				userId = new String(bytes);
 				
 		}
 
@@ -56,12 +62,14 @@ public class XquangWebservice {
 				InputStream inputStream = inputPart.getBody(InputStream.class, null);
 
 				byte[] bytes = IOUtils.toByteArray(inputStream);
-
+				SimpleDateFormat formatDate = new SimpleDateFormat("yyyyymmddhhmmss");
+				Date date = new Date();
+				String dayCare = formatDate.format(date);
 				// constructs upload file path
-				fileName = SAVE_FOLDER + fileName +".dcm";
+				fileName = SAVE_FOLDER + userId + dayCare + ".dcm";
 
 				writeFile(bytes, fileName);
-
+				readfile.getImage(fileName);
 				System.out.println("Done");
 
 			} catch (IOException e) {

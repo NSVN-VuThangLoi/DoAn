@@ -25,14 +25,14 @@ import com.sun.image.codec.jpeg.JPEGImageEncoder;
 
 @Stateless
 public class ReadFile {
-	  public static FileDicomDto getImage(File file) throws IOException {
+	  public static FileDicomDto getImage(String file) throws IOException {
 		  FileDicomDto result = new FileDicomDto();
 //		    String manufacturer, a = null;
 
 
 		            DicomObject dcmObj4;
 		            DicomInputStream din4 = null;
-		            din4 = new DicomInputStream(file);
+		            din4 = new DicomInputStream(new File("125464764020170029080057.dcm"));
 		            dcmObj4 = din4.readDicomObject();
 //
 //		            manufacturer = dcmObj4.getString(Tag.Manufacturer);
@@ -72,7 +72,7 @@ public class ReadFile {
 		  		result.setImage(imageInByte);
 		  		String patientId=dcmObj4.getString(Tag.PatientID);
 		  		result.setPatientId(patientId);
-		  		File myJpegFile = new File("anh.jpg"); //création du fichier
+		  		File myJpegFile = new File("D:\\Xquang\\anh.jpg"); //création du fichier
 		  		OutputStream output = new BufferedOutputStream(new FileOutputStream(myJpegFile)); //mise des fichiers en sortie
 		  		JPEGImageEncoder encoder = JPEGCodec.createJPEGEncoder(output);//convertion en sortie 
 		  		encoder.encode(myJpegImage);//Create encodage

@@ -16,12 +16,12 @@
 			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="C:/Users/vuthangloi/OneDrive/TestToeic/report/library/dcm4che-core-2.0.25.jar/dcm4che-core-2.0.25.jar"/>
-	<classpathentry kind="lib" path="C:/Users/vuthangloi/OneDrive/TestToeic/report/library/jai_imageio-1.1.jar/jai_imageio-1.1.jar"/>
-	<classpathentry kind="lib" path="C:/Users/vuthangloi/OneDrive/TestToeic/report/library/dcm4che-image-2.0.28.jar"/>
-	<classpathentry kind="lib" path="C:/Users/vuthangloi/OneDrive/TestToeic/report/library/dcm4che-imageio-2.0.28.jar"/>
-	<classpathentry kind="lib" path="C:/Users/vuthangloi/OneDrive/TestToeic/report/library/slf4j-api-1.7.7.jar"/>
-	<classpathentry kind="lib" path="C:/Users/vuthangloi/OneDrive/TestToeic/report/library/slf4j-log4j12-1.7.7.jar"/>
-	<classpathentry kind="lib" path="C:/Program Files/Java/jre1.8.0_60/lib/rt.jar"/>
+	<classpathentry exported="true" kind="lib" path="C:/Users/vuthangloi/OneDrive/TestToeic/report/library/jai_imageio-1.1.jar/jai_imageio-1.1.jar"/>
+	<classpathentry exported="true" kind="lib" path="C:/Users/vuthangloi/OneDrive/TestToeic/report/library/dcm4che-image-2.0.28.jar"/>
+	<classpathentry exported="true" kind="lib" path="C:/Users/vuthangloi/OneDrive/TestToeic/report/library/dcm4che-imageio-2.0.28.jar"/>
+	<classpathentry exported="true" kind="lib" path="C:/Users/vuthangloi/OneDrive/TestToeic/report/library/slf4j-api-1.7.7.jar"/>
+	<classpathentry exported="true" kind="lib" path="C:/Users/vuthangloi/OneDrive/TestToeic/report/library/slf4j-log4j12-1.7.7.jar"/>
+	<classpathentry exported="true" kind="lib" path="C:/Program Files/Java/jre1.8.0_60/lib/rt.jar"/>
+	<classpathentry exported="true" kind="lib" path="C:/Users/vuthangloi/OneDrive/TestToeic/report/library/dcm4che-core-2.0.25.jar/dcm4che-core-2.0.25.jar" sourcepath="C:/Users/vuthangloi/OneDrive/TestToeic/report/library/dcm4che-core-2.0.25.jar/dcm4che-core-2.0.25.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
