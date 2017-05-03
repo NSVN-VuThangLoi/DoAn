@@ -16,12 +16,45 @@
 			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry exported="true" kind="lib" path="C:/Users/vuthangloi/OneDrive/TestToeic/report/library/jai_imageio-1.1.jar/jai_imageio-1.1.jar"/>
-	<classpathentry exported="true" kind="lib" path="C:/Users/vuthangloi/OneDrive/TestToeic/report/library/dcm4che-image-2.0.28.jar"/>
-	<classpathentry exported="true" kind="lib" path="C:/Users/vuthangloi/OneDrive/TestToeic/report/library/dcm4che-imageio-2.0.28.jar"/>
-	<classpathentry exported="true" kind="lib" path="C:/Users/vuthangloi/OneDrive/TestToeic/report/library/slf4j-api-1.7.7.jar"/>
-	<classpathentry exported="true" kind="lib" path="C:/Users/vuthangloi/OneDrive/TestToeic/report/library/slf4j-log4j12-1.7.7.jar"/>
-	<classpathentry exported="true" kind="lib" path="C:/Users/vuthangloi/OneDrive/TestToeic/report/library/dcm4che-core-2.0.25.jar/dcm4che-core-2.0.25.jar" sourcepath="C:/Users/vuthangloi/OneDrive/TestToeic/report/library/dcm4che-core-2.0.25.jar/dcm4che-core-2.0.25.jar"/>
-	<classpathentry kind="lib" path="C:/Program Files/Java/jdk1.8.0_60/jre/lib/rt.jar"/>
+	<classpathentry kind="lib" path="C:/Program Files/Java/jre1.8.0_131/lib/rt.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="C:/Users/vuthangloi/OneDrive/TestToeic/report/library/jai_imageio-1.1.jar/jai_imageio-1.1.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="C:/Users/vuthangloi/OneDrive/TestToeic/report/library/dcm4che-image-2.0.28.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="C:/Users/vuthangloi/OneDrive/TestToeic/report/library/dcm4che-imageio-2.0.28.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="C:/Users/vuthangloi/OneDrive/TestToeic/report/library/slf4j-api-1.7.7.jar" sourcepath="C:/Users/vuthangloi/.m2/repository/org/slf4j/slf4j-api/1.7.7/slf4j-api-1.7.7-sources.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="C:/Users/vuthangloi/OneDrive/TestToeic/report/library/slf4j-log4j12-1.7.7.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="C:/Users/vuthangloi/Downloads/log4j-1.2.17/apache-log4j-1.2.17/log4j-1.2.17.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="C:/Users/vuthangloi/OneDrive/TestToeic/report/library/dcm4che-core-2.0.25.jar/dcm4che-core-2.0.25.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

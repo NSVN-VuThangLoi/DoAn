@@ -22,17 +22,16 @@ import org.dcm4che2.io.DicomInputStream;
 import com.sun.image.codec.jpeg.JPEGCodec;
 import com.sun.image.codec.jpeg.JPEGImageEncoder;
 
-
 @Stateless
 public class ReadFile {
-	  public static FileDicomDto getImage(String file) throws IOException {
-		  FileDicomDto result = new FileDicomDto();
-//		    String manufacturer, a = null;
-
-
+	public static String getImage(String file, String urlImage) throws IOException {
+		  String result = "";
+////		    String manufacturer, a = null;
+		  
+		  			File fileTest = new File(file);
 		            DicomObject dcmObj4;
 		            DicomInputStream din4 = null;
-		            din4 = new DicomInputStream(new File("125464764020170029080057.dcm"));
+		            din4 = new DicomInputStream(fileTest);
 		            dcmObj4 = din4.readDicomObject();
 //
 //		            manufacturer = dcmObj4.getString(Tag.Manufacturer);
@@ -60,7 +59,7 @@ public class ReadFile {
 		  		  ImageReadParam param =  readers.getDefaultReadParam();//return DicomImageReadParam
 //		  		  	Adjust the values of Rows and Columns in it and add a Pixel Data attribute with the byte array from the DataBuffer of the scaled Raster 
 
-		  		  ImageInputStream iis = ImageIO.createImageInputStream(file);//give image input 
+		  		  ImageInputStream iis = ImageIO.createImageInputStream(fileTest);//give image input 
 
 		  		  readers.setInput(iis, true);//sets the input source to use the given ImageInputSteam or other Object 
 
@@ -68,16 +67,14 @@ public class ReadFile {
 		  		ByteArrayOutputStream baos = new ByteArrayOutputStream();
 		  		ImageIO.write(myJpegImage, "jpg", baos);
 		  		baos.flush();
-		  		byte[] imageInByte = baos.toByteArray();
-		  		result.setImage(imageInByte);
 		  		String patientId=dcmObj4.getString(Tag.PatientID);
-		  		result.setPatientId(patientId);
-		  		File myJpegFile = new File("D:\\Xquang\\anh.jpg"); //création du fichier
+		  		File myJpegFile = new File(urlImage); //création du fichier
 		  		OutputStream output = new BufferedOutputStream(new FileOutputStream(myJpegFile)); //mise des fichiers en sortie
 		  		JPEGImageEncoder encoder = JPEGCodec.createJPEGEncoder(output);//convertion en sortie 
 		  		encoder.encode(myJpegImage);//Create encodage
 		  		din4.close();
 		    return result;
+		    
 		} 
 
 }

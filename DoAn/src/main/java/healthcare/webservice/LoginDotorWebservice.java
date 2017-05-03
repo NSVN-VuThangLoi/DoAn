@@ -16,5 +16,6 @@ public class LoginDotorWebservice {
 	@Path("/checkDoctor")
 	public LoginResult signIn(LoginQuery query){
 		return loginProcess.handle(query);
+		
 	}
 }

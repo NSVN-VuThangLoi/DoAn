@@ -30,8 +30,8 @@ import healthcare.app.readfile.ReadFile;
 public class XquangWebservice {
 	@Inject
 	private ReadFile readfile;
-	private static final String SAVE_FOLDER = "D:\\Xquang\\";
-	private final String UPLOADED_FILE_PATH = "d:\\";
+	private static final String SAVE_FOLDER = "D:\\Xquang\\dicom\\";
+	private final String URL_IMAGE = "D:\\Xquang\\image\\";
 
 	@POST
 	@Path("/upload")
@@ -67,10 +67,10 @@ public class XquangWebservice {
 				String dayCare = formatDate.format(date);
 				// constructs upload file path
 				fileName = SAVE_FOLDER + userId + dayCare + ".dcm";
-
+				String fileUrl = URL_IMAGE + userId + dayCare +".jpg";
 				writeFile(bytes, fileName);
-				readfile.getImage(fileName);
-				System.out.println("Done");
+				String result = readfile.getImage(fileName,fileUrl);
+				System.out.println(result);
 
 			} catch (IOException e) {
 				e.printStackTrace();

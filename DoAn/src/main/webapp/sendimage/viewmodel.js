@@ -61,9 +61,10 @@ ScreenModel.prototype.register = function() {
 }
 function information (){
 		var self = this;
+		var request = new Request();
 		self.userId = ko.observable('');
 		self.name = ko.observable('');
-		self.dayCare = ko.observable(new Date());
+		self.dayCare = ko.observable(request.formatDate(new Date(), 'yyyy-MM-dd'));
 }
 information.prototype.clear = function(){
 	var self = this;
