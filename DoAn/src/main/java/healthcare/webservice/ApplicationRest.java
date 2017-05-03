@@ -19,5 +19,6 @@ public class ApplicationRest extends Application {
     	resource.add(healthcare.webservice.PatientWebservice.class);
     	resource.add(healthcare.webservice.LoginDotorWebservice.class);
     	resource.add(healthcare.webservice.XquangWebservice.class);
+    	resource.add(healthcare.webservice.DiagnoseWebservice.class);
     }
 }

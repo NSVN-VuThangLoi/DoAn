@@ -16,7 +16,6 @@ import javax.imageio.ImageReader;
 import javax.imageio.stream.ImageInputStream;
 
 import org.dcm4che2.data.DicomObject;
-import org.dcm4che2.data.Tag;
 import org.dcm4che2.io.DicomInputStream;
 
 import com.sun.image.codec.jpeg.JPEGCodec;
@@ -24,7 +23,7 @@ import com.sun.image.codec.jpeg.JPEGImageEncoder;
 
 @Stateless
 public class ReadFile {
-	public static String getImage(String file, String urlImage) throws IOException {
+	public String getImage(String file, String urlImage) throws IOException {
 		  String result = "";
 ////		    String manufacturer, a = null;
 		  
@@ -67,7 +66,7 @@ public class ReadFile {
 		  		ByteArrayOutputStream baos = new ByteArrayOutputStream();
 		  		ImageIO.write(myJpegImage, "jpg", baos);
 		  		baos.flush();
-		  		String patientId=dcmObj4.getString(Tag.PatientID);
+//		  		String patientId=dcmObj4.getString(Tag.PatientID);
 		  		File myJpegFile = new File(urlImage); //création du fichier
 		  		OutputStream output = new BufferedOutputStream(new FileOutputStream(myJpegFile)); //mise des fichiers en sortie
 		  		JPEGImageEncoder encoder = JPEGCodec.createJPEGEncoder(output);//convertion en sortie 

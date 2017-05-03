@@ -23,7 +23,7 @@ public class XquangImpl extends DataConnection implements XquangRepository {
 		query.append(FIND +" WHERE t.userId = :userId");
 		FINDUSERID = query.toString();
 		query = new StringBuilder();
-		query.append(FIND +" WHERE t.isImage = False");
+		query.append(FIND +" WHERE t.isImage = 0");
 		FINDNONIMAGE = query.toString();
 	}
 	@Override
@@ -97,7 +97,7 @@ public class XquangImpl extends DataConnection implements XquangRepository {
 
 	@Override
 	public List<XquangDto> getAllXquangNonImage() {
-		List<XquangEntity> xquangEntitys = this.entityManager.createNamedQuery(FINDNONIMAGE, XquangEntity.class).getResultList();
+		List<XquangEntity> xquangEntitys = this.entityManager.createQuery(FINDNONIMAGE, XquangEntity.class).getResultList();
 		if(xquangEntitys != null){
 			List<XquangDto> xquangDtos = new ArrayList<>();
 			for(XquangEntity entity : xquangEntitys){

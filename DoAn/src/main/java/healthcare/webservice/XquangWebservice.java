@@ -24,12 +24,16 @@ import org.jboss.resteasy.plugins.providers.multipart.InputPart;
 import org.jboss.resteasy.plugins.providers.multipart.MultipartFormDataInput;
 
 import healthcare.app.readfile.ReadFile;
+import healthcare.app.xquang.FinderXquang;
+import healthcare.domain.xquang.XquangDto;
 
 @Path("/xquang")
 @Stateless
 public class XquangWebservice {
 	@Inject
 	private ReadFile readfile;
+	@Inject 
+	private FinderXquang find;
 	private static final String SAVE_FOLDER = "D:\\Xquang\\dicom\\";
 	private final String URL_IMAGE = "D:\\Xquang\\image\\";
 
@@ -79,6 +83,12 @@ public class XquangWebservice {
 		}
 
 		return Response.status(200).entity("uploadFile is called, Uploaded file name : " + fileName).build();
+	}
+	
+	@POST
+	@Path("/getNonImage")
+	public List<XquangDto> getAllNonXquang(){
+		return find.getAllNonImage();
 	}
 
 	// get uploaded filename, is there a easy way in RESTEasy?

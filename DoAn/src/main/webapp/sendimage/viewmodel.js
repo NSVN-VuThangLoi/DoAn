@@ -12,10 +12,10 @@ function ScreenModel() {
 ScreenModel.prototype.start = function() {
 	var self = this;
 	var dfd = $.Deferred();
-//	$.when(self.listFile().reload()).done(function() {
+	$.when(self.listFile().reload()).done(function() {
 //		self.listFile().selectFirst();
-//		dfd.resolve();
-//	});
+		dfd.resolve();
+	});
 	return dfd.promise();
 };
 function progress(e) {
@@ -119,15 +119,15 @@ function listFile(){
 	});
 	self.unselecting = ko.observable(false);
 }
-//listFile.prototype.reload = function(){
-//	var self = this;
-//	var dfd = $.Deferred();
-//	services.getAllDoctor().done(function(patterns) {
-//		self.items(patterns);
-//		dfd.resolve();
-//	});
-//	return dfd.promise();
-//}
+listFile.prototype.reload = function(){
+	var self = this;
+	var dfd = $.Deferred();
+	services.getAllXquang().done(function(patterns) {
+		self.items(patterns);
+		dfd.resolve();
+	});
+	return dfd.promise();
+}
 listFile.prototype.selectFirst = function() {
 	var self = this;
 	self.select(self.items()[0].userId());
