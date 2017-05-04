@@ -9,6 +9,8 @@ public class XquangDto {
 	
  private long version;
  
+ private String xquangId;
+ 
  private String userId;
  
  private String doctorId;

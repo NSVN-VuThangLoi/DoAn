@@ -29,6 +29,10 @@ public class XquangEntity implements Serializable {
 	@Id
 	@Column(name = "user_id")
 	private String userId;
+	
+	@Id
+	@Column(name = "xquang_id")
+	private String xquangId;
 
 	@Column(name = "doctor_id")
 	private String doctorId;
@@ -56,4 +60,5 @@ public class XquangEntity implements Serializable {
 	
 	@Column(name ="isResult")
 	private Boolean isResult;
+
 }

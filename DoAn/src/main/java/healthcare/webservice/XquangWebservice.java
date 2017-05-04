@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
@@ -44,15 +45,22 @@ public class XquangWebservice {
 	public Response uploadFile(MultipartFormDataInput input) throws IOException {
 		String fileName = "";
 		String userId = "";
+		String dayCare ="";
 		Map<String, List<InputPart>> uploadForm = input.getFormDataMap();
 		List<InputPart> inputParts = uploadForm.get("file");
 		List<InputPart> inputUserId = uploadForm.get("userId");
+		List<InputPart> inputDayCare = uploadForm.get("dayCare");
 		for (InputPart inputPart : inputUserId) {
 				InputStream inputStream = inputPart.getBody(InputStream.class,null);
 
 				byte [] bytes = IOUtils.toByteArray(inputStream);
 				userId = new String(bytes);
 				
+		}
+		for(InputPart inputPart : inputDayCare){
+			InputStream inputStream = inputPart.getBody(InputStream.class, null);
+			byte [] bytes = IOUtils.toByteArray(inputStream);
+			dayCare = new String(bytes);
 		}
 
 		for (InputPart inputPart : inputParts) {
@@ -67,11 +75,17 @@ public class XquangWebservice {
 
 				byte[] bytes = IOUtils.toByteArray(inputStream);
 				SimpleDateFormat formatDate = new SimpleDateFormat("yyyyymmddhhmmss");
-				Date date = new Date();
-				String dayCare = formatDate.format(date);
+				Date dateCare = new Date();
+				try {
+					dateCare = formatDate.parse(dayCare);
+				} catch (ParseException e) {
+					e.printStackTrace();
+				}
+
+				dayCare = formatDate.format(dateCare);
 				// constructs upload file path
-				fileName = SAVE_FOLDER + userId + dayCare + ".dcm";
-				String fileUrl = URL_IMAGE + userId + dayCare +".jpg";
+				fileName = SAVE_FOLDER + userId + dateCare + ".dcm";
+				String fileUrl = URL_IMAGE + userId + dateCare +".jpg";
 				writeFile(bytes, fileName);
 				String result = readfile.getImage(fileName,fileUrl);
 				System.out.println(result);

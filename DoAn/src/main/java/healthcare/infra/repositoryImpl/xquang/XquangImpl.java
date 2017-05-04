@@ -58,6 +58,7 @@ public class XquangImpl extends DataConnection implements XquangRepository {
 	@Override
 	public void insertXquang(XquangDto dto) {
 		XquangEntity entity = new XquangEntity();
+		entity.setXquangId(dto.getXquangId());
 		entity.setUserId(dto.getUserId());
 		entity.setDoctorId(dto.getDoctorId());
 		entity.setDayCare(dto.getDayCare());

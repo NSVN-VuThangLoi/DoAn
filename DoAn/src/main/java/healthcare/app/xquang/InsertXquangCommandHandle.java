@@ -1,5 +1,7 @@
 package healthcare.app.xquang;
 
+import java.text.SimpleDateFormat;
+
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 
@@ -11,6 +13,8 @@ public class InsertXquangCommandHandle {
 	@Inject
 	private XquangRepository xQuangrep;
 	public String handle(InsertXquangCommand command){
+		SimpleDateFormat formatDate = new SimpleDateFormat("yyyyymmddhhmmss");
+		String dayCare = formatDate.format(command.getDayCare());
 		XquangDto dto = new XquangDto();
 		dto.setUserId(command.getUserId());
 		dto.setDoctorId(command.getDoctorId());
@@ -22,6 +26,7 @@ public class InsertXquangCommandHandle {
 		dto.setAge(command.getAge());
 		dto.setIsImage(false);
 		dto.setResult(null);
+		dto.setXquangId(dto.getUserId() + dayCare );
 		try {
 			xQuangrep.insertXquang(dto);
 		} catch (Exception e) {

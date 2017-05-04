@@ -2,11 +2,11 @@ function ScreenModel() {
 	var self = this;
 	self.information = ko.observable(new information());
 	self.listFile = ko.observable(new listFile());
-	self.listFile().selectionChangedEvent.add(function(selectedCode) {
-		if (selectedCode !== undefined) {
+//	self.listFile().selectionChangedEvent.add(function(selectedCode) {
+//		if (selectedCode !== undefined) {
 //			self.information().reload(selectedCode);
-		}
-	});
+//		}
+//	});
 }
 
 ScreenModel.prototype.start = function() {
@@ -31,6 +31,7 @@ ScreenModel.prototype.register = function() {
     var formData = new FormData();
     formData.append('file', file);
     formData.append('userId', self.information().userId());
+    formData.append('dayCare',self.information().dayCare());
     $.ajax({
         url: 'http://localhost:8080/DoAn/Demo/xquang/upload',
         type: 'POST',
