@@ -4,9 +4,6 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -24,8 +21,11 @@ import org.apache.commons.io.IOUtils;
 import org.jboss.resteasy.plugins.providers.multipart.InputPart;
 import org.jboss.resteasy.plugins.providers.multipart.MultipartFormDataInput;
 
+import healthcare.app.common.UserLogin;
 import healthcare.app.readfile.ReadFile;
 import healthcare.app.xquang.FinderXquang;
+import healthcare.app.xquang.UpdateForDoctor;
+import healthcare.app.xquang.UpdateXquangCommandHandle;
 import healthcare.domain.xquang.XquangDto;
 
 @Path("/xquang")
@@ -35,6 +35,11 @@ public class XquangWebservice {
 	private ReadFile readfile;
 	@Inject 
 	private FinderXquang find;
+	@Inject
+	private UpdateXquangCommandHandle handle;
+	@Inject
+	private UserLogin userLogin;
+	
 	private static final String SAVE_FOLDER = "D:\\Xquang\\dicom\\";
 	private final String URL_IMAGE = "D:\\Xquang\\image\\";
 
@@ -44,25 +49,17 @@ public class XquangWebservice {
 	@Consumes("multipart/form-data")
 	public Response uploadFile(MultipartFormDataInput input) throws IOException {
 		String fileName = "";
-		String userId = "";
-		String dayCare ="";
+		String xquangId = "";
 		Map<String, List<InputPart>> uploadForm = input.getFormDataMap();
 		List<InputPart> inputParts = uploadForm.get("file");
-		List<InputPart> inputUserId = uploadForm.get("userId");
-		List<InputPart> inputDayCare = uploadForm.get("dayCare");
-		for (InputPart inputPart : inputUserId) {
+		List<InputPart> inputXquangId = uploadForm.get("xquangId");
+		for (InputPart inputPart : inputXquangId) {
 				InputStream inputStream = inputPart.getBody(InputStream.class,null);
 
 				byte [] bytes = IOUtils.toByteArray(inputStream);
-				userId = new String(bytes);
+				xquangId = new String(bytes);
 				
 		}
-		for(InputPart inputPart : inputDayCare){
-			InputStream inputStream = inputPart.getBody(InputStream.class, null);
-			byte [] bytes = IOUtils.toByteArray(inputStream);
-			dayCare = new String(bytes);
-		}
-
 		for (InputPart inputPart : inputParts) {
 
 			try {
@@ -74,20 +71,16 @@ public class XquangWebservice {
 				InputStream inputStream = inputPart.getBody(InputStream.class, null);
 
 				byte[] bytes = IOUtils.toByteArray(inputStream);
-				SimpleDateFormat formatDate = new SimpleDateFormat("yyyyymmddhhmmss");
-				Date dateCare = new Date();
-				try {
-					dateCare = formatDate.parse(dayCare);
-				} catch (ParseException e) {
-					e.printStackTrace();
-				}
 
-				dayCare = formatDate.format(dateCare);
-				// constructs upload file path
-				fileName = SAVE_FOLDER + userId + dateCare + ".dcm";
-				String fileUrl = URL_IMAGE + userId + dateCare +".jpg";
+				
+				fileName = SAVE_FOLDER + xquangId + ".dcm";
+				String fileUrl = URL_IMAGE + xquangId +".PNG";
 				writeFile(bytes, fileName);
 				String result = readfile.getImage(fileName,fileUrl);
+				XquangDto dto = find.getXquangId(xquangId);
+				dto.setUrlImage(fileUrl);
+				dto.setIsImage(true);
+				handle.handle(dto);
 				System.out.println(result);
 
 			} catch (IOException e) {
@@ -104,7 +97,34 @@ public class XquangWebservice {
 	public List<XquangDto> getAllNonXquang(){
 		return find.getAllNonImage();
 	}
-
+	
+	@POST
+	@Path("/getXquangId")
+	public XquangDto getXquangId(String xquangId){
+		return find.getXquangId(xquangId);
+	}
+	@POST
+	@Path("/getConformDoctorId")
+	public List<XquangDto> getConformDoctorId(){
+		String doctorId = userLogin.getUserId();
+		return find.getAllDoctorId(doctorId);
+	}
+	@POST
+	@Path("/updateXquang")
+	public String update(UpdateForDoctor dto){
+		String result ="";
+		try {
+			XquangDto xquangDto = find.getXquangId(dto.getXquangId());
+			xquangDto.setResult(dto.getResult());
+			xquangDto.setIsResult(true);
+			handle.handle(xquangDto);
+			result ="update thành công";
+		} catch (Exception e) {
+			// TODO: handle exception
+			result ="update thất bại";
+		}
+		return result;
+	}
 	// get uploaded filename, is there a easy way in RESTEasy?
 	private String getFileName(MultivaluedMap<String, String> header) {
 

@@ -27,6 +27,7 @@ public class InsertXquangCommandHandle {
 		dto.setIsImage(false);
 		dto.setResult(null);
 		dto.setXquangId(dto.getUserId() + dayCare );
+		dto.setName(command.getName());
 		try {
 			xQuangrep.insertXquang(dto);
 		} catch (Exception e) {

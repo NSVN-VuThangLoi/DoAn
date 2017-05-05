@@ -1,19 +1,22 @@
+var screnn;
 function ScreenModel() {
 	var self = this;
+	screen = self;
+	self.xquangId = ko.observable('');
 	self.information = ko.observable(new information());
 	self.listFile = ko.observable(new listFile());
-//	self.listFile().selectionChangedEvent.add(function(selectedCode) {
-//		if (selectedCode !== undefined) {
-//			self.information().reload(selectedCode);
-//		}
-//	});
+	self.listFile().selectionChangedEvent.add(function(selectedCode) {
+		if (selectedCode !== undefined) {
+			self.information().reload(selectedCode);
+		}
+	});
 }
 
 ScreenModel.prototype.start = function() {
 	var self = this;
 	var dfd = $.Deferred();
 	$.when(self.listFile().reload()).done(function() {
-//		self.listFile().selectFirst();
+		self.listFile().selectFirst();
 		dfd.resolve();
 	});
 	return dfd.promise();
@@ -30,8 +33,7 @@ ScreenModel.prototype.register = function() {
 
     var formData = new FormData();
     formData.append('file', file);
-    formData.append('userId', self.information().userId());
-    formData.append('dayCare',self.information().dayCare());
+    formData.append('xquangId',self.xquangId());
     $.ajax({
         url: 'http://localhost:8080/DoAn/Demo/xquang/upload',
         type: 'POST',
@@ -39,7 +41,7 @@ ScreenModel.prototype.register = function() {
         cache: false,
         contentType: false,
         processData: false,
-        success: function(){
+        success: function(res){
             alert('file upload complete');
         },
         error: function(response){
@@ -73,25 +75,14 @@ information.prototype.clear = function(){
 	self.name('');
 	self.dayCare('');
 }
-information.prototype.reload = function(userId) {
+information.prototype.reload = function(xquangId) {
 	var self = this;
 	var request = new Request();
 	var dfd = $.Deferred();
-	services.getDoctor(userId).done(function(res) {
-		self.userId(res.doctorId);
-		self.name(res.name);
-		var date = new Date(res.birthDay);
-		self.birthDay(request.formatDate(date, 'yyyy-MM-dd'));
-		self.address(res.addressWord);
-		self.email(res.email);
-		self.phoneNumber(res.phoneNumber);
-		self.position(res.position);
-		if(res.sex){
-			self.gender('true');
-		}else{
-			self.gender('false');
-		}
-		
+	services.getXquangId(xquangId).done(function(res) {
+		self.userId(res.userId);
+		var date = new Date(res.dayCare);
+		self.dayCare(request.formatDate(date, 'yyyy-MM-dd'));
 		dfd.resolve();
 	});
 	return dfd.promise();
@@ -115,7 +106,7 @@ function listFile(){
 			self.selectFirst();
 			return;
 		}
-
+		screen.xquangId(selectedCode);
 		self.selectionChangedEvent.fire(selectedCode);
 	});
 	self.unselecting = ko.observable(false);
@@ -131,19 +122,19 @@ listFile.prototype.reload = function(){
 }
 listFile.prototype.selectFirst = function() {
 	var self = this;
-	self.select(self.items()[0].userId());
+	self.select(self.items()[0].xquangId());
 
 };
 listFile.prototype.select = function(code) {
 	var self = this;
 	self.selectedCode(code);
 };
-function DoctorListItem(userId, name) {
+function DoctorListItem(xquangId, name) {
 	var self = this;
-	self.userId = ko.observable(userId);
+	self.xquangId = ko.observable(xquangId);
 	self.name = ko.observable(name);
 	self.displayText = ko.computed(function() {
-		return self.userId()
+		return self.xquangId()
 				+ '     ' + self.name();
 	}, self);
 }

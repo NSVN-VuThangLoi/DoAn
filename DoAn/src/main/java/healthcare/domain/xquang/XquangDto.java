@@ -13,6 +13,8 @@ public class XquangDto {
  
  private String userId;
  
+ private String name;
+ 
  private String doctorId;
  
  private String age;

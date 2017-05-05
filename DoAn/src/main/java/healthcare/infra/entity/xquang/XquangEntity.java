@@ -60,5 +60,9 @@ public class XquangEntity implements Serializable {
 	
 	@Column(name ="isResult")
 	private Boolean isResult;
+	
+	@Column(name ="name")
+	private String name;
+	
 
 }

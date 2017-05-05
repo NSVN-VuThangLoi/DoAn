@@ -46,6 +46,7 @@ public class DiagnoseWebservice {
 				command.setUserId(dto.getUserId());
 				command.setDoctorId(login.getUserId());
 				command.setDiagnose(dto.getDiagnose());
+				command.setName(dto.getName());
 				xQuangHandle.handle(command);
 				return "thanh cong"; 
 			}

@@ -15,5 +15,10 @@ public class FinderXquang {
 	public List<XquangDto> getAllNonImage(){
 		return xquangRep.getAllXquangNonImage();
 	}
-
+	public XquangDto getXquangId(String xquangId){
+		return xquangRep.getXquangId(xquangId);
+	}
+	public List<XquangDto> getAllDoctorId(String doctorId){
+		return xquangRep.getDoctorId(doctorId);
+	}
 }

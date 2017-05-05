@@ -18,5 +18,7 @@ public class InsertXquangCommand {
 	
 	private String addressPatern;
 	
+	private String name;
+	
 
 }
