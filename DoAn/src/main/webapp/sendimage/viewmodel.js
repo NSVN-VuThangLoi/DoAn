@@ -81,6 +81,7 @@ information.prototype.reload = function(xquangId) {
 	var dfd = $.Deferred();
 	services.getXquangId(xquangId).done(function(res) {
 		self.userId(res.userId);
+		self.name(res.name);
 		var date = new Date(res.dayCare);
 		self.dayCare(request.formatDate(date, 'yyyy-MM-dd'));
 		dfd.resolve();
@@ -122,7 +123,11 @@ listFile.prototype.reload = function(){
 }
 listFile.prototype.selectFirst = function() {
 	var self = this;
-	self.select(self.items()[0].xquangId());
+	if(self.items().length != 0){
+		self.select(self.items()[0].xquangId());
+	}else{
+		alert("Đã hết hồ sơ khám");
+	}
 
 };
 listFile.prototype.select = function(code) {

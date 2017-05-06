@@ -151,15 +151,16 @@ public class XquangImpl extends DataConnection implements XquangRepository {
 			dto.setDiagnose(xquangEntity.getDiagnose());
 			dto.setResult(xquangEntity.getResult());
 			dto.setIsResult(xquangEntity.getIsResult());
-			File file = new File(xquangEntity.getUrlImage());
-		     try {
-		    	 FileUtils.readFileToByteArray(file);
-		    	 dto.setUrlImage("data:image/gif;base64,"+Base64.getEncoder().encodeToString(FileUtils.readFileToByteArray(file)));
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}  
-		//	dto.setUrlImage(xquangEntity.getUrlImage());
+			if(xquangEntity.getUrlImage() != null){
+				File file = new File(xquangEntity.getUrlImage());
+			     try {
+			    	 FileUtils.readFileToByteArray(file);
+			    	 dto.setUrlImage("data:image/gif;base64,"+Base64.getEncoder().encodeToString(FileUtils.readFileToByteArray(file)));
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}  
+			}
 			dto.setIsImage(xquangEntity.getIsImage());
 			dto.setVersion(xquangEntity.getVersion());
 			dto.setName(xquangEntity.getName());

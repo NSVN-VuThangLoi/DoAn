@@ -9,13 +9,19 @@ import healthcare.app.login.LoginQuery;
 import healthcare.app.login.LoginResult;
 
 @Path("/loginDoctor")
-public class LoginDotorWebservice {
+public class LoginWebservice {
 	@Inject
 	private LoginProcess loginProcess;
 	@POST
 	@Path("/checkDoctor")
 	public LoginResult signIn(LoginQuery query){
 		return loginProcess.handle(query);
+		
+	}
+	@POST
+	@Path("/checkDoctor")
+	public LoginResult signInPatient(LoginQuery query){
+		return loginProcess.loginPatient(query);
 		
 	}
 }

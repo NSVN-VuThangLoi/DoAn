@@ -17,4 +17,10 @@ public class UserLogin implements Serializable{
 	 */
 	private static final long serialVersionUID = 1L;
 	private String userId;
+	
+	private String doctorId;
+	
+	private Boolean isPatient = false;
+	
+	private Boolean isDoctor = false;
 }
