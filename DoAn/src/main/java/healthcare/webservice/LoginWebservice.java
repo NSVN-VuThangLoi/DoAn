@@ -19,7 +19,7 @@ public class LoginWebservice {
 		
 	}
 	@POST
-	@Path("/checkDoctor")
+	@Path("/checkPatient")
 	public LoginResult signInPatient(LoginQuery query){
 		return loginProcess.loginPatient(query);
 		

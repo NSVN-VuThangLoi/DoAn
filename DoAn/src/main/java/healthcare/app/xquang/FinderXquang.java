@@ -21,4 +21,7 @@ public class FinderXquang {
 	public List<XquangDto> getAllDoctorId(String doctorId){
 		return xquangRep.getDoctorId(doctorId);
 	}
+	public List<XquangDto> getUserId(String userId){
+		return xquangRep.getUserId(userId);
+	}
 }

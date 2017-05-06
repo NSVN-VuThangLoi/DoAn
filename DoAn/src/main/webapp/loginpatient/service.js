@@ -3,15 +3,15 @@
 var services = (function() {
 
 	var servicePath = {
-		getDoctor : 'loginDoctor/checkDoctor',
+		getPatient : 'loginDoctor/checkPatient',
 	};
 
 	var services = {};
 	var request = new Request();
 	
-	services.getDoctor = function(data) {
+	services.getPatient = function(data) {
 		 var d = $.Deferred();
-		request.requestAjax(data,servicePath.getDoctor).done(function(res){
+		request.requestAjax(data,servicePath.getPatient).done(function(res){
 			d.resolve(res);
 		}) ;
 		return d.promise();

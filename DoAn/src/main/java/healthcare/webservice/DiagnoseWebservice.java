@@ -44,7 +44,7 @@ public class DiagnoseWebservice {
 				command.setAge(age);
 				command.setDayCare(new Date());
 				command.setUserId(dto.getUserId());
-				command.setDoctorId(login.getUserId());
+				command.setDoctorId(login.getDoctorId());
 				command.setDiagnose(dto.getDiagnose());
 				command.setName(dto.getName());
 				xQuangHandle.handle(command);

@@ -22,11 +22,6 @@ ScreenModel.prototype.start = function() {
 	});
 	return dfd.promise();
 };
-
-ScreenModel.prototype.goCreateMode = function() {
-	var self = this;
-	self.patient().clear();
-}
 ScreenModel.prototype.register = function() {
 	var self = this;
 		var data = {
@@ -58,10 +53,6 @@ Patient.prototype.clear = function(){
 	self.name('');
 	self.dayCare('');
 	self.address('');
-	self.email('');
-	self.password('');
-	self.confirmPassword('');
-	self.phoneNumber('');
 	self.gender('true');
 }
 Patient.prototype.reload = function(xquangId) {
@@ -97,7 +88,6 @@ function listCare(){
 			return;
 		}
 		if (self.items().length === 0) {
-			screenModel.createMode();
 			return;
 		}
 		if (selectedCode === undefined) {

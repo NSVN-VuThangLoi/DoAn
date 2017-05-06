@@ -16,6 +16,7 @@ import javax.imageio.ImageReader;
 import javax.imageio.stream.ImageInputStream;
 
 import org.dcm4che2.data.DicomObject;
+import org.dcm4che2.data.Tag;
 import org.dcm4che2.io.DicomInputStream;
 
 import com.sun.image.codec.jpeg.JPEGCodec;
@@ -32,24 +33,24 @@ public class ReadFile {
 		            DicomInputStream din4 = null;
 		            din4 = new DicomInputStream(fileTest);
 		            dcmObj4 = din4.readDicomObject();
-//
+
 //		            manufacturer = dcmObj4.getString(Tag.Manufacturer);
 //		            System.out.println(manufacturer);
 //		            a = dcmObj4.getString(Tag.PixelData);
 //		            System.out.println(a);
-//		            System.out.println( dcmObj4.getString(Tag.SamplesPerPixel));
-//		            System.out.println(dcmObj4.getString(Tag.PhotometricInterpretation));
-//		            System.out.println(dcmObj4.getString(Tag.PlanarConfiguration));
-//		            System.out.println(dcmObj4.getString(Tag.NumberOfFrames));
-//		            System.out.println(dcmObj4.getString(Tag. Rows));
-//		            System.out.println(dcmObj4.getString(Tag.Columns));
-//		            System.out.println(dcmObj4.getString(Tag.BitsAllocated));
-//		            System.out.println(dcmObj4.getString(Tag.BitsStored));
-//		            System.out.println(dcmObj4.getString(Tag.HighBit));
-//		            System.out.println(dcmObj4.getString(Tag.PixelRepresentation));
-//		            System.out.println(dcmObj4.getString(Tag.LossyImageCompression));
-//		            System.out.println(dcmObj4.getString(Tag.LossyImageCompressionRatio));
-//		            System.out.println(dcmObj4.getString(Tag.LossyImageCompressionMethod));
+		            System.out.println( dcmObj4.getString(Tag.SamplesPerPixel));
+		            System.out.println(dcmObj4.getString(Tag.PhotometricInterpretation));
+		            System.out.println(dcmObj4.getString(Tag.PlanarConfiguration));
+		            System.out.println(dcmObj4.getString(Tag.NumberOfFrames));
+		            System.out.println(dcmObj4.getString(Tag. Rows));
+		            System.out.println(dcmObj4.getString(Tag.Columns));
+		            System.out.println(dcmObj4.getString(Tag.BitsAllocated));
+		            System.out.println(dcmObj4.getString(Tag.BitsStored));
+		            System.out.println(dcmObj4.getString(Tag.HighBit));
+		            System.out.println(dcmObj4.getString(Tag.PixelRepresentation));
+		            System.out.println(dcmObj4.getString(Tag.LossyImageCompression));
+		            System.out.println(dcmObj4.getString(Tag.LossyImageCompressionRatio));
+		            System.out.println(dcmObj4.getString(Tag.LossyImageCompressionMethod));
 		            
 		          Iterator<ImageReader> iter = ImageIO.getImageReadersByFormatName("DICOM");//specifation dicom	
 

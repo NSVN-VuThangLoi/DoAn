@@ -106,7 +106,7 @@ public class XquangWebservice {
 	@POST
 	@Path("/getConformDoctorId")
 	public List<XquangDto> getConformDoctorId(){
-		String doctorId = userLogin.getUserId();
+		String doctorId = userLogin.getDoctorId();
 		return find.getAllDoctorId(doctorId);
 	}
 	@POST
@@ -125,6 +125,14 @@ public class XquangWebservice {
 		}
 		return result;
 	}
+	
+	@POST
+	@Path("/getConformUserId")
+	public List<XquangDto> getConformUserId(){
+		String userId = userLogin.getUserId();
+		return find.getUserId(userId);
+	}
+	
 	// get uploaded filename, is there a easy way in RESTEasy?
 	private String getFileName(MultivaluedMap<String, String> header) {
 

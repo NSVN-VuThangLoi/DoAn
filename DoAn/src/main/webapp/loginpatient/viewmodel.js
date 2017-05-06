@@ -18,7 +18,7 @@ ScreenModel.prototype.signIn = function() {
 			userId: self.userId(),
 			password: self.password()
 	}
-	services.getDoctor(data).done(function(res){
+	services.getPatient(data).done(function(res){
 		if(res.nameNotice == "Đăng nhập thành công"){
 			alert(res.nameNotice);
 			window.location.href='http://localhost:8080/DoAn/resultxquang/index.xhtml?preUrl='+window.location.href;
