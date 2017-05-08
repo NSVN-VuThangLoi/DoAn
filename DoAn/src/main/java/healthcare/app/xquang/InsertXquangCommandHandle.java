@@ -5,6 +5,7 @@ import java.text.SimpleDateFormat;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 
+import healthcare.domain.bloodtest.ResultBloodTest;
 import healthcare.domain.xquang.XquangDto;
 import healthcare.domain.xquang.XquangRepository;
 
@@ -12,7 +13,8 @@ import healthcare.domain.xquang.XquangRepository;
 public class InsertXquangCommandHandle {
 	@Inject
 	private XquangRepository xQuangrep;
-	public String handle(InsertXquangCommand command){
+	public ResultBloodTest handle(InsertXquangCommand command){
+		ResultBloodTest result = new ResultBloodTest();
 		SimpleDateFormat formatDate = new SimpleDateFormat("yyyyymmddhhmmss");
 		String dayCare = formatDate.format(command.getDayCare());
 		XquangDto dto = new XquangDto();
@@ -30,10 +32,11 @@ public class InsertXquangCommandHandle {
 		dto.setName(command.getName());
 		try {
 			xQuangrep.insertXquang(dto);
+			result.setResult("Insert thành công");
 		} catch (Exception e) {
-			return "error";
+			result.setResult("Insert thất bại");
 		}
 		
-		return null;
+		return result;
 	}
 }

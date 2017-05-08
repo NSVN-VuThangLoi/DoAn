@@ -28,13 +28,14 @@ ScreenModel.prototype.register = function() {
 				diagnose: self.doctor().diagnose(),
 				supersonic:  self.doctor().supersonic(),
 				takeXQuang:  self.doctor().takeXQuang(),
-				ctScanner: self.doctor().ctScanner()	
+				ctScanner: self.doctor().ctScanner(),
+				bloodtest: self.doctor().bloodtest()
 		}
 		services.insertDiagnose(data).done(function(res) {
-			alert(res);
+			alert(res.result);
 			self.doctor().clear();
 		}).fail(function(res){
-			alert(res);
+			alert(res.result);
 		});
 	}
 }
@@ -46,6 +47,7 @@ function Doctor (){
 		self.supersonic = ko.observable(false);
 		self.takeXQuang = ko.observable(false);
 		self.ctScanner = ko.observable(false);
+		self.bloodtest = ko.observable(false);
 }
 Doctor.prototype.clear = function(){
 	var self = this;

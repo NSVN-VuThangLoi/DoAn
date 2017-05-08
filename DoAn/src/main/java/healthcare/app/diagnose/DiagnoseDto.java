@@ -13,4 +13,5 @@ public class DiagnoseDto {
 	private Boolean supersonic;
 	private Boolean takeXQuang;
 	private Boolean ctScanner;
+	private Boolean bloodtest;
 }

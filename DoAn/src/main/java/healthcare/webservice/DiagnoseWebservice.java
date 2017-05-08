@@ -9,11 +9,14 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
+import healthcare.app.bloodtest.InsertBloodTestCommand;
+import healthcare.app.bloodtest.InsertBloodTestCommandHandle;
 import healthcare.app.common.UserLogin;
 import healthcare.app.diagnose.DiagnoseDto;
 import healthcare.app.patient.FinderPatient;
 import healthcare.app.xquang.InsertXquangCommand;
 import healthcare.app.xquang.InsertXquangCommandHandle;
+import healthcare.domain.bloodtest.ResultBloodTest;
 import healthcare.domain.patient.PatientDto;
 
 @Path("/diagnose")
@@ -25,12 +28,14 @@ public class DiagnoseWebservice {
 	private FinderPatient find;
 	@Inject 
 	private UserLogin login;
-	
+	@Inject
+	private InsertBloodTestCommandHandle bloodTestHandle;
 	
 	@POST
 	@Path("/insert")
 	@Produces(MediaType.APPLICATION_JSON)
-	public String insertDiagnose(DiagnoseDto dto){
+	public ResultBloodTest insertDiagnose(DiagnoseDto dto){
+		ResultBloodTest result = new ResultBloodTest();
 		PatientDto patienDto = find.getPatient(dto.getUserId());
 		if(patienDto != null){
 			@SuppressWarnings("deprecation")
@@ -47,10 +52,19 @@ public class DiagnoseWebservice {
 				command.setDoctorId(login.getDoctorId());
 				command.setDiagnose(dto.getDiagnose());
 				command.setName(dto.getName());
-				xQuangHandle.handle(command);
-				return "thanh cong"; 
+				result = xQuangHandle.handle(command);
+			}
+			if(dto.getBloodtest()){
+				InsertBloodTestCommand command = new InsertBloodTestCommand();
+				command.setUserId(dto.getUserId());
+				command.setDayCare(new Date());
+				command.setDiagnose(dto.getDiagnose());
+				command.setName(dto.getName());
+				command.setGender(patienDto.getSex());
+				command.setAddress(patienDto.getAddress());
+				result = bloodTestHandle.handle(command);
 			}
 		}
-		return null;
+		return result;
 	}
 }
