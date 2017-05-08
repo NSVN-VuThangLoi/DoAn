@@ -165,3 +165,49 @@ function DoctorListItem(userId, name) {
 				+ '     ' + self.name();
 	}, self);
 }
+function bloodTest(){
+	self.valueUre = ko.observable("123");
+	self.valueFe = ko.observable("123");
+	self.valueGlucose = ko.observable("123");
+	self.valueMagie = ko.observable("123");
+	self.valueCreatinin = ko.observable("123");
+	self.valueAstGot = ko.observable("123");
+	self.valueAcidUric = ko.observable("123");
+	self.valueAltGpt = ko.observable("123");
+	self.valueBilirubinTp = ko.observable("123");
+	self.valueAmylase = ko.observable("123");
+	self.valueBilirubinTt = ko.observable("123");
+	
+	self.valueCk = ko.observable("123");
+	self.valueBilirubinGt = ko.observable("123");
+	self.valueCkMb = ko.observable("123");
+	self.valueProteinTp = ko.observable("123");
+	self.valueLDH = ko.observable("123");
+	self.valueAlbunmin = ko.observable("123");
+	self.valueGGT = ko.observable("123");
+	self.valueGlobulin = ko.observable("123");
+	
+	self.valueCholinesterase = ko.observable("123");
+	self.valueRateAG = ko.observable("123");
+	self.valuePhosphatase = ko.observable("123");
+	self.valueFibrinogen = ko.observable("123");
+	self.valueCholesterol = ko.observable("123");
+	self.valuePHArtery = ko.observable("123");
+	self.valueTriglycerid = ko.observable("123");
+	
+	self.valuePCO2 = ko.observable("123");
+	self.valueHDLcho = ko.observable("123");
+	self.valuePO2Artery = ko.observable("123");
+	self.valueLDLCho = ko.observable("123");
+	self.valueStandardHCO3 = ko.observable("123");
+	self.valueNaPlus = ko.observable("123");
+	
+	self.valueAlkalineBalance = ko.observable("123");
+	self.valueKPlus = ko.observable("123");
+	self.valueClSubtract = ko.observable("123");
+	self.valueCalci = ko.observable("123");
+	self.valueCalciIon = ko.observable("123");
+	self.valuePhosho = ko.observable("123");
+	
+	
+}

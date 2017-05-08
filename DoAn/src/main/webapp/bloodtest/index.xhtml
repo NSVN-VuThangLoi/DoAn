@@ -73,7 +73,7 @@
                                     </td>
                                 	</tr>
 								</table>
-								<table id ="bloodTest">
+								<table id ="bloodTest" data-bind ="with:bloodTest">
 									<tr>
 										<th><h:outputText value="Tên xét nghiệm" /></th>
 										<th><h:outputText value="Trị số bình thường" /></th>
@@ -86,7 +86,7 @@
 										<th><h:outputText value="Urê" /></th>
 										<th><h:outputText value="2,5-7,5 mmol/L" /></th>
 										<td>
-											<span></span>
+											<span data-bind = "text: valueUre"></span>
 										</td>
 										<th><h:outputText value="Sắt" /></th>
 										<th>
@@ -94,20 +94,20 @@
 										<br/>
 										 Nữ:7-26 µmol/L</span></th>
 										<td>
-											<span></span>
+											<span data-bind = "text: valueFe"></span>
 										</td>
 									</tr>
 									<tr>
 										<th><h:outputText value="Glucose" /></th>
 										<th><h:outputText value="3,9 - 6,4 mmol/L" /></th>
 										<td>
-											<span></span>
+											<span data-bind = "text: valueGlucose"></span>
 										</td>
 										<th><h:outputText value="Magiê" /></th>
 										<th>
 										<span> 0,8-100 mmol/L</span></th>
 										<td>
-											<span></span>
+											<span data-bind = "text: valueMagie"></span>
 										</td>
 									</tr>
 									<tr>
@@ -116,13 +116,13 @@
 										<br/>
 										 Nữ:53-100 µmol/L</span></th>
 										<td>
-											<span></span>
+											<span data-bind = "text: valueCreatinin"></span>
 										</td>
 										<th><h:outputText value="AST(GOT)" /></th>
 										<th>
 										<span> &#8804; 37 U/L -37°C"</span></th>
 										<td>
-											<span></span>
+											<span data-bind = "text: valueAstGot"></span>
 										</td>
 									</tr>
 									<tr>
@@ -131,11 +131,253 @@
 										<br/>
 										 Nữ:150-360 µmol/L</span></th>
 										<td>
-											<span></span>
+											<span data-bind = "text: valueAcidUric"></span>
 										</td>
 										<th><h:outputText value="ALT(GPT)" /></th>
 										<th>
 										<span> &#8804; 40 U/L -37°C"</span></th>
+										<td>
+											<span data-bind = "text: valueAltGpt"></span>
+										</td>
+									</tr>
+									<tr>
+										<th><h:outputText value="Bilirubin T.P" /></th>
+										<th><span> &#8804; 17 µmol/L </span></th>
+										<td>
+											<span data-bind = "text: valueBilirubinTp"></span>
+										</td>
+										<th><h:outputText value="Amylase" /></th>
+										<th>
+										<span></span></th>
+										<td>
+											<span data-bind = "text: valueAmylase"></span>
+										</td>
+									</tr>
+									<tr>
+										<th><h:outputText value="Bilirubin T.T" /></th>
+										<th><span> &#8804; 4,3 µmol/L </span></th>
+										<td>
+											<span data-bind = "text: valueBilirubinTt"></span>
+										</td>
+										<th><h:outputText value="CK" /></th>
+										<th>
+										<span>Nam: 24-190U/L-37°
+										<br/>
+										Nữ:24-167U/L-37°</span></th>
+										<td>
+											<span data-bind = "text: valueCk"></span>
+										</td>
+									</tr>
+									<tr>
+										<th><h:outputText value="Bilirubin G.T" /></th>
+										<th><span> &#8804; 12,7 µmol/L </span></th>
+										<td>
+											<span data-bind = "text: valueBilirubinGt"></span>
+										</td>
+										<th><h:outputText value="CK-MB" /></th>
+										<th>
+										<span>&#8804; 24U/L-37°
+										</span></th>
+										<td>
+											<span data-bind = "text: valueCkMb"></span>
+										</td>
+									</tr>
+									<tr>
+										<th><h:outputText value="Protein T.P" /></th>
+										<th><span> 65-82 g/L </span></th>
+										<td>
+											<span data-bind = "text: valueProteinTp"></span>
+										</td>
+										<th><h:outputText value="LDH" /></th>
+										<th>
+										<span>230-460 U/L-37°
+										</span></th>
+										<td>
+											<span data-bind = "text: valueLDH"></span>
+										</td>
+									</tr>
+									<tr>
+										<th><h:outputText value="Albunmin" /></th>
+										<th><span> 35-50 g/L </span></th>
+										<td>
+											<span data-bind = "text: valueAlbunmin"></span>
+										</td>
+										<th><h:outputText value="GGT" /></th>
+										<th>
+										<span>Nam: 11-50 U/L-37°
+										<br/>
+										Nữ: 7-32 U/L-37°
+										</span></th>
+										<td>
+											<span data-bind = "text: valueGGT"></span>
+										</td>
+									</tr>
+									<tr>
+										<th><h:outputText value="Globulin" /></th>
+										<th><span> 24-38 g/L </span></th>
+										<td>
+											<span data-bind = "text: valueGlobulin"></span>
+										</td>
+										<th><h:outputText value="Cholinesterase" /></th>
+										<th>
+										<span>5300-12900 U/L-37°
+										</span></th>
+										<td>
+											<span data-bind = "text: valueCholinesterase"></span>
+										</td>
+									</tr>
+									<tr>
+										<th><h:outputText value="Tỷ lệ A/G" /></th>
+										<th><span> 1,3-1,8 </span></th>
+										<td>
+											<span data-bind = "text: valueRateAG"></span>
+										</td>
+										<th><h:outputText value="Phosphatase" /></th>
+										<th>
+										<span>
+										</span></th>
+										<td>
+											<span data-bind = "text: valuePhosphatase"></span>
+										</td>
+									</tr>
+									<tr>
+										<th><h:outputText value="Fibrinogen" /></th>
+										<th><span> 2-4 g/L </span></th>
+										<td>
+											<span data-bind = "text: valueFibrinogen"></span>
+										</td>
+										<th colspan="3"><h:outputText value="Các xét nghiệm khí máu" /></th>
+									</tr>
+									<tr>
+										<th><h:outputText value="Cholesterol" /></th>
+										<th><span> 3,9-5,2 mmol/L </span></th>
+										<td>
+											<span data-bind = "text: valueCholesterol"></span>
+										</td>
+										<th><h:outputText value="pH động mạch" /></th>
+										<th>
+										<span>7,37 -7,45
+										</span></th>
+										<td>
+											<span data-bind = "text: valuePHArtery"></span>
+										</td>
+									</tr>
+									<tr>
+										<th><h:outputText value="Triglycerid" /></th>
+										<th><span> 0,46-1,88 mmol/L </span></th>
+										<td>
+											<span data-bind = "text: valueTriglycerid"></span>
+										</td>
+										<th><h:outputText value="pCO2" /></th>
+										<th>
+										<span>Nam: 35-46 mmHg <br/> Nữ: 32-43 mmHg
+										</span></th>
+										<td>
+											<span data-bind = "text: valuePCO2"></span>
+										</td>
+									</tr>
+									<tr>
+										<th><h:outputText value="HDL-cho." /></th>
+										<th><span> &#8805; 0,9 mmol/L </span></th>
+										<td>
+											<span data-bind = "text: valueHDLcho"></span>
+										</td>
+										<th><h:outputText value="pO2 động mạch" /></th>
+										<th>
+										<span> 71-104 mmHg
+										</span></th>
+										<td>
+											<span data-bind = "text: valuePO2Artery"></span>
+										</td>
+									</tr>
+									<tr>
+										<th><h:outputText value="LDL-cho." /></th>
+										<th><span> &#8804; 3,4 mmol/L </span></th>
+										<td>
+											<span data-bind = "text: valueLDLCho"></span>
+										</td>
+										<th><h:outputText value="HCO3 chuẩn" /></th>
+										<th>
+										<span> 21-26 mmol/L
+										</span></th>
+										<td>
+											<span data-bind = "text: valueStandardHCO3"></span>
+										</td>
+									</tr>
+									<tr>
+										<th><h:outputText value="Na+" /></th>
+										<th><span> 135-145 mmol/L </span></th>
+										<td>
+											<span data-bind = "text: valueNaPlus" ></span>
+										</td>
+										<th><h:outputText value="Kiềm dư" /></th>
+										<th>
+										<span> -2 đến +3 mmol/L
+										</span></th>
+										<td>
+											<span data-bind = "text: valueAlkalineBalance"></span>
+										</td>
+									</tr>
+									<tr>
+										<th><h:outputText value="K+" /></th>
+										<th><span> 3,5-5 mmol/L </span></th>
+										<td>
+											<span data-bind = "text: valueKPlus" ></span>
+										</td>
+										<th colspan="3" ><h:outputText value="Các xét nghiệm khác" /></th>
+									</tr>
+									<tr>
+										<th><h:outputText value="Cl-" /></th>
+										<th><span> 98-106 mmol/L </span></th>
+										<td>
+											<span data-bind = "text: valueClSubtract"></span>
+										</td>
+										<th><h:outputText value="-" /></th>
+										<th>
+										<span>
+										</span></th>
+										<td>
+											<span></span>
+										</td>
+									</tr>
+									<tr>
+										<th><h:outputText value="Calci" /></th>
+										<th><span> 2,15-2,6 mmol/L </span></th>
+										<td>
+											<span data-bind = "text: valueCalci"></span>
+										</td>
+										<th><h:outputText value="-" /></th>
+										<th>
+										<span>
+										</span></th>
+										<td>
+											<span></span>
+										</td>
+									</tr>
+									<tr>
+										<th><h:outputText value="Calci ion hoá" /></th>
+										<th><span> 1,17-1,29 mmol/L </span></th>
+										<td>
+											<span data-bind = "text: valueCalciIon"></span>
+										</td>
+										<th><h:outputText value="-" /></th>
+										<th>
+										<span>
+										</span></th>
+										<td>
+											<span></span>
+										</td>
+									</tr>
+									<tr>
+										<th><h:outputText value="Phosho" /></th>
+										<th><span> TE: 1,3-2,2 mmol/L  <br/> NL: 0,9 -1,5 mmol/L</span></th>
+										<td>
+											<span data-bind = "text: valuePhosho"></span>
+										</td>
+										<th><h:outputText value="-" /></th>
+										<th>
+										<span>
+										</span></th>
 										<td>
 											<span></span>
 										</td>
