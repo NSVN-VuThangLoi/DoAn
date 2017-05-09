@@ -3,19 +3,19 @@
 var services = (function() {
 
 	var servicePath = {
-		getAllXquang: "xquang/getNonImage",
+		getAllBloodTest: "bloodTest/getIsBloodTest",
 		getXquangId:  "xquang/getXquangId"
 	};
 
 	var services = {};
 	var request = new Request();
-	services.getAllXquang = function() {
+	services.getAllBloodTest = function() {
 		var d = $.Deferred();
-		request.requestAjax(null,servicePath.getAllXquang).done(function(res){
+		request.requestAjax(null,servicePath.getAllBloodTest).done(function(res){
 			var patterns = [];
 			if(res != undefined){
 				for(i = 0; i < res.length; i++){
-					patterns.push(new DoctorListItem(res[i].xquangId,request.formatDate(new Date(res[i].dayCare), 'yyyy-MM-dd')));
+					patterns.push(new DoctorListItem(res[i].bloodtestId,request.formatDate(new Date(res[i].dayCare), 'yyyy-MM-dd')));
 				}
 			}
 			d.resolve(patterns);

@@ -32,19 +32,21 @@
 		<div>
 				<table id="content-doctor" data-bind ="with: doctor">
 									<tr id="form">
-										<th class="required"><h:outputText value="UserId" /></th>
+										<td class="required"><h:outputText value="UserId" /></td>
 										<td><input type="text" id="userId" data-bind="value: userId "/></td>
 									</tr>
 									<tr id="form">
-										<th class="required"><h:outputText value="Họ và Tên" /></th>
+										<td class="required"><h:outputText value="Họ và Tên" /></td>
 										<td><input type="text" id="name" data-bind=" value: name " /></td>
 									</tr>
 									<tr id="form">
-										<th class="required"><h:outputText value="Chuẩn Đoán" /></th>
-										<td><input type="text" id="diagnose" data-bind=" value: diagnose "/></td>
+										<td class="required"><h:outputText value="Chuẩn Đoán" /></td>
+										<td>
+											<textarea cols="45" rows="5" id="diagnose" data-bind=" value: diagnose "></textarea>
+										</td>
 									</tr>
 									<tr>
-                                    <th><h:outputText value="Yêu cầu xét nghiệm"/></th>
+                                    <td><h:outputText value="Yêu cầu xét nghiệm"/></td>
                                     <td>
                                         <label>
                                             <input type="checkbox" value="true" data-bind="checked: supersonic"/><h:outputText value="Siêu Âm"/>                                      

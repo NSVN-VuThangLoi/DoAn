@@ -22,6 +22,8 @@ import org.dcm4che2.io.DicomInputStream;
 import com.sun.image.codec.jpeg.JPEGCodec;
 import com.sun.image.codec.jpeg.JPEGImageEncoder;
 
+import healthcare.domain.bloodtest.BloodTestDto;
+
 @Stateless
 public class ReadFile {
 	public String getImage(String file, String urlImage) throws IOException {
@@ -76,5 +78,9 @@ public class ReadFile {
 		    return result;
 		    
 		} 
-
+	public BloodTestDto getFileCsv(String file){
+		BloodTestDto dto = new BloodTestDto();
+		
+		return dto;
+	}
 }

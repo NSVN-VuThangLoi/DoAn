@@ -22,29 +22,25 @@
 			<link rel="stylesheet" type="text/css" href="main.css" />
 	</head>
 <body>
-	
-		<div id ="function">
-			<label>HEALTHCARE</label>
-		</div>
+
+		
 		<div>
-								<table id="content-doctor">
-									<tr id="form">
-										<th class="required"><h:outputText value="DoctorId" /></th>
-										<td><input type="text" id="UserId" data-bind ="value: userId" /></td>
-									</tr>
-									<tr id="form">
-										<th class="required"><h:outputText value="Password" /></th>
-										<td><input type="password" id="password" data-bind ="value: password"/></td>
-									</tr>
-									<tr>
-										<td>
-											<button data-bind ="click: signIn">Đăng Nhập</button>
-										</td>
-<!-- 										<td> -->
-<!-- 											<button data-bind ="click: missPassword">Quên Mật Khẩu</button> -->
-<!-- 										</td> -->
-									</tr>
-								</table>
+			<table id="tblLogin">
+				<tr id="headerCss">
+					<td colspan="2"><label>HEALTHCARE</label></td>
+				</tr>
+				<tr class="txtCss">
+					<td><h:outputText value="DoctorId" /></td>
+					<td><input type="text" id="UserId" data-bind ="value: userId" /></td>
+				</tr>
+				<tr class="txtCss">
+					<td><h:outputText value="Password" /></td>
+					<td><input type="password" id="password" data-bind ="value: password"/></td>
+				</tr>
+				<tr id="tbnLoginCss">
+					<td colspan="2"><button data-bind ="click: signIn">Đăng Nhập</button></td>
+				</tr>
+			</table>
 		</div>
 </body>
 </html>

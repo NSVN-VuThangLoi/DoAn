@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.Map;
 
 import javax.ejb.Stateless;
+import javax.inject.Inject;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
@@ -19,11 +20,14 @@ import org.apache.commons.io.IOUtils;
 import org.jboss.resteasy.plugins.providers.multipart.InputPart;
 import org.jboss.resteasy.plugins.providers.multipart.MultipartFormDataInput;
 
-import healthcare.domain.xquang.XquangDto;
+import healthcare.app.bloodtest.FinderBloodTest;
+import healthcare.domain.bloodtest.BloodTestDto;
 
 @Path("/bloodTest")
 @Stateless
 public class BloodTestWebservice {
+	@Inject
+	private FinderBloodTest finder;
 	
 	private static final String SAVE_FOLDER = "D:\\BloodTest\\";
 	private final String URL_IMAGE = "D:\\Xquang\\image\\";
@@ -62,6 +66,13 @@ public class BloodTestWebservice {
 		}
 		return "thanh coong";
 	}
+	@POST
+	@Path("/getIsBloodTest")
+	public List<BloodTestDto> getAllNonBloodTest(){
+		return finder.getAllNonBloodTest();
+	}
+	
+	
 	private String getFileName(MultivaluedMap<String, String> header) {
 
 		String[] contentDisposition = header.getFirst("Content-Disposition").split(";");

@@ -29,7 +29,7 @@
 			<button data-bind ="click: register">Save</button>
 		</div>
 		<div>
-				<table>
+				<table id="tblMain">
 					<tr>
 						<td id="contentleft" data-bind ="with: listCare">
 								<div><h:outputText value="Danh Sách Hồ Sơ Khám" /></div>
@@ -43,27 +43,27 @@
  						</td> 
 						<td id="contentright">
 								<table id="content-doctor" data-bind ="with: patient" >
-									<tr id="form">
+									<tr class="form">
 										<th class="required"><h:outputText value="UserId" /></th>
 										<td><input type="text" id="UserId" data-bind="value: userId "/></td>
 									</tr>
-									<tr id="form">
+									<tr class="form">
 										<th class="required"><h:outputText value="Họ và Tên" /></th>
 										<td><input type="text" id="name" data-bind=" value: name " /></td>
 									</tr>
-									<tr id="form">
+									<tr class="form">
 										<th class="required"><h:outputText value="Tuổi" /></th>
 										<td><input type="text" id="age" data-bind=" value: age"/></td>
 									</tr>
-									<tr id="form">
+									<tr class="form">
 										<th class="required"><h:outputText value="Địa chỉ" /></th>
 										<td><input type="text" id="address" data-bind=" value: address "/></td>
 									</tr>
-									<tr id="form">
+									<tr class="form">
 										<th class="required"><h:outputText value="Ngày khám" /></th>
 										<td><input type="date" id="birthDay" data-bind=" value: dayCare"/></td>
 									</tr>
-									<tr>
+									<tr class="form">
                                     <th><h:outputText value="Giới Tính"/></th>
                                     <td>
                                         <label>
@@ -74,18 +74,22 @@
                                         </label>
                                     </td>
                                 </tr>
-									<tr id="form">
+									<tr class="form">
 										<th class="required"><h:outputText value="Chẩn Đoán" /></th>
-										<td><input type="text" data-bind=" value: diagnose" /></td>
+										<td>
+											<textarea rows="5" cols="25" data-bind=" value: diagnose"></textarea>
+										</td>
 									</tr>
-									<tr id="form">
+									<tr class="form">
 										<th class="required"><h:outputText value="Kết quả" /></th>
-										<td><input type="text" id="result" data-bind="value: result "/></td>
+										<td>
+											<textarea rows="5" cols="25" data-bind="value: result "></textarea>
+										</td>
 									</tr>
 								</table>
 						</td>
 						<td id ="image">
-							<img data-bind="attr: {src: urlImage}" />
+							<img data-bind="attr: {src: urlImage}" width='300' height='200' />
 						</td>
 					</tr>
 				</table>
@@ -94,3 +98,4 @@
 	</ui:composition>	
 </body>
 </html>
+
