@@ -33,9 +33,9 @@ ScreenModel.prototype.register = function() {
 
     var formData = new FormData();
     formData.append('file', file);
-    formData.append('xquangId',self.xquangId());
+//    formData.append('xquangId',self.xquangId());
     $.ajax({
-        url: 'http://localhost:8080/DoAn/Demo/xquang/upload',
+        url: 'http://localhost:8080/DoAn/Demo/bloodTest/upload',
         type: 'POST',
         data: formData,
         cache: false,
