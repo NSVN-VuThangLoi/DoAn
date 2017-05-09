@@ -79,7 +79,7 @@ information.prototype.reload = function(xquangId) {
 	var self = this;
 	var request = new Request();
 	var dfd = $.Deferred();
-	services.getXquangId(xquangId).done(function(res) {
+	services.getBloodTest(xquangId).done(function(res) {
 		self.userId(res.userId);
 		self.name(res.name);
 		var date = new Date(res.dayCare);
@@ -115,7 +115,7 @@ function listFile(){
 listFile.prototype.reload = function(){
 	var self = this;
 	var dfd = $.Deferred();
-	services.getAllXquang().done(function(patterns) {
+	services.getAllBloodTest().done(function(patterns) {
 		self.items(patterns);
 		dfd.resolve();
 	});

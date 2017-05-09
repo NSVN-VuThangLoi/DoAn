@@ -4,7 +4,7 @@ var services = (function() {
 
 	var servicePath = {
 		getAllBloodTest: "bloodTest/getIsBloodTest",
-		getXquangId:  "xquang/getXquangId"
+		getBloodTest:  "bloodTest/getBloodtest"
 	};
 
 	var services = {};
@@ -22,9 +22,9 @@ var services = (function() {
 		}) ;
 		return d.promise();
 	};
-	services.getXquangId = function(data) {
+	services.getBloodTest = function(data) {
 		var d = $.Deferred();
-		request.requestAjax(data,servicePath.getXquangId).done(function(res){
+		request.requestAjax(data,servicePath.getBloodTest).done(function(res){
 			d.resolve(res);
 		}) ;
 		return d.promise();

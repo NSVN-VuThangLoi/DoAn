@@ -15,4 +15,7 @@ public class FinderBloodTest {
 	public List<BloodTestDto> getAllNonBloodTest(){
 		return bloodTestRep.getNonvalueBloodTest();
 	}
+	public BloodTestDto getBloodTest(String bloodTestId){
+		return bloodTestRep.getBloodTestId(bloodTestId);
+	}
 }

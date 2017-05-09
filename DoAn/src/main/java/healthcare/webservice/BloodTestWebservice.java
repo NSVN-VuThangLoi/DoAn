@@ -21,13 +21,16 @@ import org.jboss.resteasy.plugins.providers.multipart.InputPart;
 import org.jboss.resteasy.plugins.providers.multipart.MultipartFormDataInput;
 
 import healthcare.app.bloodtest.FinderBloodTest;
+import healthcare.app.readfile.ReadFile;
 import healthcare.domain.bloodtest.BloodTestDto;
 
 @Path("/bloodTest")
 @Stateless
 public class BloodTestWebservice {
 	@Inject
-	private FinderBloodTest finder;
+		private FinderBloodTest finder;
+	@Inject
+		private ReadFile readFile;
 	
 	private static final String SAVE_FOLDER = "D:\\BloodTest\\";
 	private final String URL_IMAGE = "D:\\Xquang\\image\\";
@@ -56,7 +59,7 @@ public class BloodTestWebservice {
 				
 				fileName = SAVE_FOLDER + "loi" + ".csv";
 				writeFile(bytes, fileName);
-				
+				readFile.getFileCsv(fileName);
 				System.out.println(fileName);
 
 			} catch (IOException e) {
@@ -70,6 +73,11 @@ public class BloodTestWebservice {
 	@Path("/getIsBloodTest")
 	public List<BloodTestDto> getAllNonBloodTest(){
 		return finder.getAllNonBloodTest();
+	}
+	@POST
+	@Path("/getBloodtest")
+	public BloodTestDto getBlooTest(String bloodTestId){
+		return finder.getBloodTest(bloodTestId);
 	}
 	
 	

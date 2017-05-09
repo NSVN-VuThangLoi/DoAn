@@ -150,8 +150,6 @@ function resizeImage(image){
 	}
 $(function(){
 	$("#image img").hover(function(){
-		//alert(34);
-		//timer = 
 		timer();
 		});
 	
