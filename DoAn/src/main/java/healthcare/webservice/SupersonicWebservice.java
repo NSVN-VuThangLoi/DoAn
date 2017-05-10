@@ -23,25 +23,25 @@ import org.jboss.resteasy.plugins.providers.multipart.MultipartFormDataInput;
 
 import healthcare.app.common.UserLogin;
 import healthcare.app.readfile.ReadFile;
-import healthcare.app.xquang.FinderXquang;
-import healthcare.app.xquang.UpdateForDoctor;
-import healthcare.app.xquang.UpdateXquangCommandHandle;
-import healthcare.domain.xquang.XquangDto;
+import healthcare.app.supersonic.FinderSupersonic;
+import healthcare.app.supersonic.UpdateForDoctorSupersonic;
+import healthcare.app.supersonic.UpdateSupersonicCommandHandle;
+import healthcare.domain.supersonic.SupersonicDto;
 
-@Path("/xquang")
+@Path("/supersonic")
 @Stateless
-public class XquangWebservice {
+public class SupersonicWebservice {
 	@Inject
 	private ReadFile readfile;
 	@Inject 
-	private FinderXquang find;
+	private FinderSupersonic find;
 	@Inject
-	private UpdateXquangCommandHandle handle;
+	private UpdateSupersonicCommandHandle handle;
 	@Inject
 	private UserLogin userLogin;
 	
-	private static final String SAVE_FOLDER = "D:\\fileproject\\Xquang\\dicom\\";
-	private final String URL_IMAGE = "D:\\fileproject\\Xquang\\image\\";
+	private static final String SAVE_FOLDER = "D:\\fileproject\\Supersonic\\dicom\\";
+	private final String URL_IMAGE = "D:\\fileproject\\Supersonic\\image\\";
 
 	@POST
 	@Path("/upload")
@@ -49,15 +49,15 @@ public class XquangWebservice {
 	@Consumes("multipart/form-data")
 	public Response uploadFile(MultipartFormDataInput input) throws IOException {
 		String fileName = "";
-		String xquangId = "";
+		String supersonicId = "";
 		Map<String, List<InputPart>> uploadForm = input.getFormDataMap();
 		List<InputPart> inputParts = uploadForm.get("file");
-		List<InputPart> inputXquangId = uploadForm.get("xquangId");
-		for (InputPart inputPart : inputXquangId) {
+		List<InputPart> inputSupersonicId = uploadForm.get("supersonicId");
+		for (InputPart inputPart : inputSupersonicId) {
 				InputStream inputStream = inputPart.getBody(InputStream.class,null);
 
 				byte [] bytes = IOUtils.toByteArray(inputStream);
-				xquangId = new String(bytes);
+				supersonicId = new String(bytes);
 				
 		}
 		for (InputPart inputPart : inputParts) {
@@ -73,11 +73,11 @@ public class XquangWebservice {
 				byte[] bytes = IOUtils.toByteArray(inputStream);
 
 				
-				fileName = SAVE_FOLDER + xquangId + ".dcm";
-				String fileUrl = URL_IMAGE + xquangId +".PNG";
+				fileName = SAVE_FOLDER + supersonicId + ".dcm";
+				String fileUrl = URL_IMAGE + supersonicId +".PNG";
 				writeFile(bytes, fileName);
 				String result = readfile.getImage(fileName,fileUrl);
-				XquangDto dto = find.getXquangId(xquangId);
+				SupersonicDto dto = find.getSupersonicId(supersonicId);
 				dto.setUrlImage(fileUrl);
 				dto.setIsImage(true);
 				handle.handle(dto);
@@ -94,30 +94,30 @@ public class XquangWebservice {
 	
 	@POST
 	@Path("/getNonImage")
-	public List<XquangDto> getAllNonXquang(){
+	public List<SupersonicDto> getAllNonXquang(){
 		return find.getAllNonImage();
 	}
 	
 	@POST
-	@Path("/getXquangId")
-	public XquangDto getXquangId(String xquangId){
-		return find.getXquangId(xquangId);
+	@Path("/getSupersonicId")
+	public SupersonicDto getSupersonicId(String supersonicId){
+		return find.getSupersonicId(supersonicId);
 	}
 	@POST
 	@Path("/getConformDoctorId")
-	public List<XquangDto> getConformDoctorId(){
+	public List<SupersonicDto> getConformDoctorId(){
 		String doctorId = userLogin.getDoctorId();
 		return find.getAllDoctorId(doctorId);
 	}
 	@POST
-	@Path("/updateXquang")
-	public String update(UpdateForDoctor dto){
+	@Path("/updateSupersonic")
+	public String update(UpdateForDoctorSupersonic dto){
 		String result ="";
 		try {
-			XquangDto xquangDto = find.getXquangId(dto.getXquangId());
-			xquangDto.setResult(dto.getResult());
-			xquangDto.setIsResult(true);
-			handle.handle(xquangDto);
+			SupersonicDto supersonicDto = find.getSupersonicId(dto.getSupersonicId());
+			supersonicDto.setResult(dto.getResult());
+			supersonicDto.setIsResult(true);
+			handle.handle(supersonicDto);
 			result ="update thành công";
 		} catch (Exception e) {
 			// TODO: handle exception
@@ -128,7 +128,7 @@ public class XquangWebservice {
 	
 	@POST
 	@Path("/getConformUserId")
-	public List<XquangDto> getConformUserId(){
+	public List<SupersonicDto> getConformUserId(){
 		String userId = userLogin.getUserId();
 		return find.getUserId(userId);
 	}
@@ -163,5 +163,4 @@ public class XquangWebservice {
 		fop.close();
 
 	}
- 
 }

@@ -14,11 +14,8 @@ import org.apache.commons.io.FileUtils;
 
 import healthcare.domain.supersonic.SupersonicDto;
 import healthcare.domain.supersonic.SupersonicRepository;
-import healthcare.domain.xquang.XquangDto;
-import healthcare.domain.xquang.XquangRepository;
 import healthcare.infra.entity.login.DataConnection;
 import healthcare.infra.entity.supersonic.SupersonicEntity;
-import healthcare.infra.entity.xquang.XquangEntity;
 @Stateless
 public class SupersonicImpl extends DataConnection implements SupersonicRepository {
 	private static String FIND;

@@ -33,7 +33,6 @@ ScreenModel.prototype.register = function() {
 		}
 		services.insertDiagnose(data).done(function(res) {
 			alert(res.result);
-			self.doctor().clear();
 		}).fail(function(res){
 			alert(res.result);
 		});
