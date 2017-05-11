@@ -21,8 +21,10 @@ import org.jboss.resteasy.plugins.providers.multipart.InputPart;
 import org.jboss.resteasy.plugins.providers.multipart.MultipartFormDataInput;
 
 import healthcare.app.bloodtest.FinderBloodTest;
+import healthcare.app.common.UserLogin;
 import healthcare.app.readfile.ReadFile;
 import healthcare.domain.bloodtest.BloodTestDto;
+import healthcare.domain.bloodtest.BloodTestRepository;
 
 @Path("/bloodTest")
 @Stateless
@@ -31,9 +33,11 @@ public class BloodTestWebservice {
 		private FinderBloodTest finder;
 	@Inject
 		private ReadFile readFile;
-	
+	@Inject
+	private BloodTestRepository bloodRep;
+	@Inject 
+	private UserLogin login;
 	private static final String SAVE_FOLDER = "D:\\BloodTest\\";
-	private final String URL_IMAGE = "D:\\Xquang\\image\\";
 	
 	@POST
 	@Path("/upload")
@@ -41,9 +45,15 @@ public class BloodTestWebservice {
 	@Consumes("multipart/form-data")
 	public String uploadFile(MultipartFormDataInput input) throws Exception{
 		String fileName = "";
-		String xquangId = "";
+		String bloodTest = "";
 		Map<String, List<InputPart>> uploadForm = input.getFormDataMap();
 		List<InputPart> inputParts = uploadForm.get("file");
+		List<InputPart> inputBloodTest = uploadForm.get("bloodTest");
+		for(InputPart inputPart : inputBloodTest){
+			InputStream inputStream = inputPart.getBody(InputStream.class, null);
+			byte [] bytes = IOUtils.toByteArray(inputStream);
+			bloodTest = new String(bytes);
+		}
 		for (InputPart inputPart : inputParts) {
 
 			try {
@@ -57,11 +67,22 @@ public class BloodTestWebservice {
 				byte[] bytes = IOUtils.toByteArray(inputStream);
 
 				
-				fileName = SAVE_FOLDER + "loi" + ".csv";
+				fileName = SAVE_FOLDER + bloodTest + ".csv";
 				writeFile(bytes, fileName);
-				readFile.getFileCsv(fileName);
-				System.out.println(fileName);
-
+				BloodTestDto bloodTestDto = finder.getBloodTest(bloodTest);
+				BloodTestDto dto = new BloodTestDto();
+				dto = readFile.getFileCsv(fileName);
+				dto.setBloodtestId(bloodTestDto.getBloodtestId());
+				dto.setUserId(bloodTestDto.getUserId());
+				dto.setDayCare(bloodTestDto.getDayCare());
+				dto.setDoctorId(bloodTestDto.getDoctorId());
+				dto.setIsBloodTest(true);
+				dto.setDiagnose(bloodTestDto.getDiagnose());
+				dto.setGender(bloodTestDto.getGender());
+				dto.setIsResult(false);
+				dto.setVersion(bloodTestDto.getVersion());
+				dto.setName(bloodTestDto.getName());
+				bloodRep.Update(dto);
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
@@ -78,6 +99,12 @@ public class BloodTestWebservice {
 	@Path("/getBloodtest")
 	public BloodTestDto getBlooTest(String bloodTestId){
 		return finder.getBloodTest(bloodTestId);
+	}
+	@POST
+	@Path("/getBloodfollowDoctorId")
+	public List<BloodTestDto> getBloodTestDoctorId(){
+		String doctorId = login.getDoctorId();
+		return finder.getAllfollowDoctor(doctorId);
 	}
 	
 	

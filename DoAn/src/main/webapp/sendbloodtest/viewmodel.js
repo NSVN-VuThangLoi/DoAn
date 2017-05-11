@@ -2,7 +2,7 @@ var screnn;
 function ScreenModel() {
 	var self = this;
 	screen = self;
-	self.xquangId = ko.observable('');
+	self.bloodTest = ko.observable('');
 	self.information = ko.observable(new information());
 	self.listFile = ko.observable(new listFile());
 	self.listFile().selectionChangedEvent.add(function(selectedCode) {
@@ -33,7 +33,7 @@ ScreenModel.prototype.register = function() {
 
     var formData = new FormData();
     formData.append('file', file);
-//    formData.append('xquangId',self.xquangId());
+    formData.append('bloodTest',self.bloodTest());
     $.ajax({
         url: 'http://localhost:8080/DoAn/Demo/bloodTest/upload',
         type: 'POST',
@@ -107,7 +107,7 @@ function listFile(){
 			self.selectFirst();
 			return;
 		}
-		screen.xquangId(selectedCode);
+		screen.bloodTest(selectedCode);
 		self.selectionChangedEvent.fire(selectedCode);
 	});
 	self.unselecting = ko.observable(false);

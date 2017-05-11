@@ -1,7 +1,6 @@
 package healthcare.infra.entity.bloodtest;
 
 import java.io.Serializable;
-import java.math.BigDecimal;
 import java.util.Date;
 
 import javax.persistence.Basic;
@@ -33,118 +32,118 @@ public class BloodTestEntity implements Serializable{/**
 	    
 	    // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
 	    @Column(name = "value_ure")
-	    private BigDecimal valueUre;
+	    private Double valueUre;
 	    
 	    @Column(name = "value_fe")
-	    private BigDecimal valueFe;
+	    private Double valueFe;
 	    
 	    @Column(name = "value_glucose")
-	    private BigDecimal valueGlucose;
+	    private Double valueGlucose;
 	    
 	    @Column(name = "value_magie")
-	    private BigDecimal valueMagie;
+	    private Double valueMagie;
 	    
 	    @Column(name = "value_creatinin")
-	    private BigDecimal valueCreatinin;
+	    private Double valueCreatinin;
 	    
 	    @Column(name = "value_astgot")
-	    private BigDecimal valueAstgot;
+	    private Double valueAstgot;
 	    
 	    @Column(name = "value_acid_uric")
-	    private BigDecimal valueAcidUric;
+	    private Double valueAcidUric;
 	    
 	    @Column(name = "value_altgpt")
-	    private BigDecimal valueAltgpt;
+	    private Double valueAltgpt;
 	    
 	    @Column(name = "value_bilirubintp")
-	    private BigDecimal valueBilirubintp;
+	    private Double valueBilirubintp;
 	    
 	    @Column(name = "value_amylase")
-	    private BigDecimal valueAmylase;
+	    private Double valueAmylase;
 	    
 	    @Column(name = "value_bilirubintt")
-	    private BigDecimal valueBilirubintt;
+	    private Double valueBilirubintt;
 	    
 	    @Column(name = "value_ck")
-	    private BigDecimal valueCk;
+	    private Double valueCk;
 	    
 	    @Column(name = "value_bilirubingt")
-	    private BigDecimal valueBilirubingt;
+	    private Double valueBilirubingt;
 	    
 	    @Column(name = "value_ckmb")
-	    private BigDecimal valueCkmb;
+	    private Double valueCkmb;
 	    
 	    @Column(name = "value_proteintp")
-	    private BigDecimal valueProteintp;
+	    private Double valueProteintp;
 	    
 	    @Column(name = "value_ldh")
-	    private BigDecimal valueLdh;
+	    private Double valueLdh;
 	    
 	    @Column(name = "value_albunmin")
-	    private BigDecimal valueAlbunmin;
+	    private Double valueAlbunmin;
 	    
 	    @Column(name = "value_ggt")
-	    private BigDecimal valueGgt;
+	    private Double valueGgt;
 	    
 	    @Column(name = "value_globulin")
-	    private BigDecimal valueGlobulin;
+	    private Double valueGlobulin;
 	    
 	    @Column(name = "value_cholinesterase")
-	    private BigDecimal valueCholinesterase;
+	    private Double valueCholinesterase;
 	    
 	    @Column(name = "value_rateag")
-	    private BigDecimal valueRateag;
+	    private Double valueRateag;
 	    
 	    @Column(name = "value_phosphatase")
-	    private BigDecimal valuePhosphatase;
+	    private Double valuePhosphatase;
 	    
 	    @Column(name = "value_fibrinogen")
-	    private BigDecimal valueFibrinogen;
+	    private Double valueFibrinogen;
 	    
 	    @Column(name = "value_cholesterol")
-	    private BigDecimal valueCholesterol;
+	    private Double valueCholesterol;
 	    
 	    @Column(name = "value_ph_artery")
-	    private BigDecimal valuePhArtery;
+	    private Double valuePhArtery;
 	    
 	    @Column(name = "value_triglycerid")
-	    private BigDecimal valueTriglycerid;
+	    private Double valueTriglycerid;
 	    
 	    @Column(name = "value_pco2")
-	    private BigDecimal valuePco2;
+	    private Double valuePco2;
 	    
 	    @Column(name = "value_hdlcho")
-	    private BigDecimal valueHdlcho;
+	    private Double valueHdlcho;
 	    
 	    @Column(name = "value_po2_artery")
-	    private BigDecimal valuePo2Artery;
+	    private Double valuePo2Artery;
 	    
 	    @Column(name = "value_ldlcho")
-	    private BigDecimal valueLdlcho;
+	    private Double valueLdlcho;
 	    
 	    @Column(name = "value_standard_hco3")
-	    private BigDecimal valueStandardHco3;
+	    private Double valueStandardHco3;
 	    
 	    @Column(name = "value_naplus")
-	    private BigDecimal valueNaplus;
+	    private Double valueNaplus;
 	    
 	    @Column(name = "value_alkaline_balance")
-	    private BigDecimal valueAlkalineBalance;
+	    private Double valueAlkalineBalance;
 	    
 	    @Column(name = "value_kplus")
-	    private BigDecimal valueKplus;
+	    private Double valueKplus;
 	    
 	    @Column(name = "value_cl_subtract")
-	    private BigDecimal valueClSubtract;
+	    private Double valueClSubtract;
 	    
 	    @Column(name = "value_calci")
-	    private BigDecimal valueCalci;
+	    private Double valueCalci;
 	    
 	    @Column(name = "value_calci_ion")
-	    private BigDecimal valueCalciIon;
+	    private Double valueCalciIon;
 	    
 	    @Column(name = "value_phosho")
-	    private BigDecimal valuePhosho;
+	    private Double valuePhosho;
 	    
 	    @Basic(optional = false)
 	    @Column(name = "user_id")

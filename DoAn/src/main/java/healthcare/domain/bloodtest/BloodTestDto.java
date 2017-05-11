@@ -1,9 +1,6 @@
 package healthcare.domain.bloodtest;
 
-import java.math.BigDecimal;
 import java.util.Date;
-
-import javax.persistence.Column;
 
 import lombok.Data;
 @Data
@@ -15,81 +12,81 @@ public class BloodTestDto {
 	    private String bloodtestId;
 	    
 	    
-	    private BigDecimal valueUre;
+	    private Double valueUre;
 	   
-	    private BigDecimal valueFe;
+	    private Double valueFe;
 	   
-	    private BigDecimal valueGlucose;
+	    private Double valueGlucose;
 	    
-	    private BigDecimal valueMagie;
+	    private Double valueMagie;
 	   
-	    private BigDecimal valueCreatinin;
+	    private Double valueCreatinin;
 	   
-	    private BigDecimal valueAstgot;
+	    private Double valueAstgot;
 	    
-	    private BigDecimal valueAcidUric;
+	    private Double valueAcidUric;
 	   
-	    private BigDecimal valueAltgpt;
+	    private Double valueAltgpt;
 	   
-	    private BigDecimal valueBilirubintp;
+	    private Double valueBilirubintp;
 	   
-	    private BigDecimal valueAmylase;
+	    private Double valueAmylase;
 	  
-	    private BigDecimal valueBilirubintt;
+	    private Double valueBilirubintt;
 	    
-	    private BigDecimal valueCk;
+	    private Double valueCk;
 	    
-	    private BigDecimal valueBilirubingt;
+	    private Double valueBilirubingt;
 	    
-	    private BigDecimal valueCkmb;
+	    private Double valueCkmb;
 	    
-	    private BigDecimal valueProteintp;
+	    private Double valueProteintp;
 	    
-	    private BigDecimal valueLdh;
+	    private Double valueLdh;
 	    
-	    private BigDecimal valueAlbunmin;
+	    private Double valueAlbunmin;
 	    
-	    private BigDecimal valueGgt;
+	    private Double valueGgt;
 	    
-	    private BigDecimal valueGlobulin;
+	    private Double valueGlobulin;
 	    
-	    private BigDecimal valueCholinesterase;
+	    private Double valueCholinesterase;
 	    
-	    private BigDecimal valueRateag;
+	    private Double valueRateag;
 	    
-	    private BigDecimal valuePhosphatase;
+	    private Double valuePhosphatase;
 	    
-	    private BigDecimal valueFibrinogen;
+	    private Double valueFibrinogen;
 	    
-	    private BigDecimal valueCholesterol;
+	    private Double valueCholesterol;
 	    
-	    private BigDecimal valuePhArtery;
+	    private Double valuePhArtery;
 	    
-	    private BigDecimal valueTriglycerid;
+	    private Double valueTriglycerid;
 	    
-	    private BigDecimal valuePco2;
+	    private Double valuePco2;
 	    
-	    private BigDecimal valueHdlcho;
+	    private Double valueHdlcho;
 	    
-	    private BigDecimal valuePo2Artery;
+	    private Double valuePo2Artery;
 	    
-	    private BigDecimal valueLdlcho;
+	    private Double valueLdlcho;
 	    
-	    private BigDecimal valueStandardHco3;
+	    private Double valueStandardHco3;
 	    
-	    private BigDecimal valueNaplus;
+	    private Double valueNaplus;
 	    
-	    private BigDecimal valueAlkalineBalance;
+	    private Double valueAlkalineBalance;
 	    
-	    private BigDecimal valueKplus;
+	    private Double valueKplus;
 	    
-	    private BigDecimal valueClSubtract;
+	    private Double valueClSubtract;
 	    
-	    private BigDecimal valueCalci;
+	    private Double valueCalci;
 	    
-	    private BigDecimal valueCalciIon;
+	    private Double valueCalciIon;
 	    
-	    private BigDecimal valuePhosho;
+	    private Double valuePhosho;
 	    
 	    private String userId;
 	    

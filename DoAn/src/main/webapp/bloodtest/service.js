@@ -3,7 +3,7 @@
 var services = (function() {
 
 	var servicePath = {
-		getAllDoctor : 'Doctor/getAllDoctor',
+		getAllDoctor : 'bloodTest/getBloodfollowDoctorId',
 		getDoctor : 'Doctor/getDoctor',
 		removeDoctor : 'Doctor/removeDoctor',
 		insertDoctor : 'Doctor/insert'

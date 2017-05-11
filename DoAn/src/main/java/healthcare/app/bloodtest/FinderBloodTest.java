@@ -18,4 +18,7 @@ public class FinderBloodTest {
 	public BloodTestDto getBloodTest(String bloodTestId){
 		return bloodTestRep.getBloodTestId(bloodTestId);
 	}
+	public List<BloodTestDto> getAllfollowDoctor(String doctorId){
+		return bloodTestRep.getBloodDoctorId(doctorId);
+	}
 }

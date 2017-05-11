@@ -21,8 +21,8 @@ import javax.imageio.stream.ImageInputStream;
 
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
-import org.apache.poi.ss.usermodel.Sheet;
-import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.dcm4che2.data.DicomObject;
 import org.dcm4che2.data.Tag;
 import org.dcm4che2.io.DicomInputStream;
@@ -88,64 +88,189 @@ public class ReadFile {
 		} 
 	public BloodTestDto getFileCsv(String file){
 		BloodTestDto dto = new BloodTestDto();
-//		String envFilePath = System.getenv("AZURE_FILE_PATH");
-//
-//        // upload list of files/directory to blob storage
-//        File folder = new File(envFilePath);
-//        File[] listOfFiles = folder.listFiles();
-//
-//        for (int i = 0; i < listOfFiles.length; i++) {
-//            if (listOfFiles[i].isFile()) {
-//                System.out.println("File " + listOfFiles[i].getName());
-//
-//                Workbook workbook;
-//                //int masterSheetColumnIndex = 0;
-//                try {
-//                        workbook = WorkbookFactory.create(new FileInputStream(envFilePath + "\\"+ listOfFiles[i].getName()));
-//                        // Get the first sheet.
-//                        Sheet sheet = workbook.getSheetAt(0);
-//                        // Get the first cell.
-//                        Row row = sheet.getRow(0);
-//                        //Cell cell = row.getCell(0);
-//                        for (Cell cell1 : row) {
-//                            // Show what is being read.
-//                            System.out.println(cell1.toString());   
-//                            //masterSheetColumnIndex++;
-//                        }
-//                        //we will search for column index containing string "Your Column Name" in the row 0 (which is first row of a worksheet
-//                        String columnWanted = "Modality Name";
-//                        Integer columnNo = null;
-//                        //output all not null values to the list
-//                        List<Cell> cells = new ArrayList<Cell>();
-//
-//                        Row firstRow = sheet.getRow(0);
-//
-//                        for(Cell cell1:firstRow){
-//                            if (cell1.getStringCellValue().equals(columnWanted)){
-//                                columnNo = cell1.getColumnIndex();
-//                            }
-//                        }
-//
-//                        if (columnNo != null){
-//                            for (Row row1 : sheet) {
-//                               Cell c = row1.getCell(columnNo);
-//                               if (c == null || c.getCellType() == Cell.CELL_TYPE_BLANK) {
-//                                  // Nothing in the cell in this row, skip it
-//                               } else {
-//                                  cells.add(c);
-//                               }
-//                            }
-//                            System.out.println("");
-//                        }else{
-//                            System.out.println("could not find column " + columnWanted + " in first row of " + listOfFiles[i].getName());
-//                        }
-//
-//                } catch (InvalidFormatException | IOException e) {
-//                    e.printStackTrace();
-//                }
-//            }
-//        }
+
+		File myFile = new File(file);
+        FileInputStream fis = null;
+		try {
+			fis = new FileInputStream(myFile);
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+        // Finds the workbook instance for XLSX file
+        XSSFWorkbook myWorkBook = null;
+		try {
+			myWorkBook = new XSSFWorkbook (fis);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+       
+        // Return first sheet from the XLSX workbook
+        XSSFSheet mySheet = myWorkBook.getSheetAt(0);
+       
+        // Get iterator to all the rows in current sheet
+        Iterator<Row> rowIterator = mySheet.iterator();
+        // Traversing over each row of XLSX file
+        List<String> item = new ArrayList<>();
+        List<Double> value = new ArrayList<>();
+        while (rowIterator.hasNext()) {
+            Row row = rowIterator.next();
+            
+            // For each row, iterate through each columns
+            Iterator<Cell> cellIterator = row.cellIterator();
+            
+            while (cellIterator.hasNext()) {
+
+                Cell cell = cellIterator.next();
+                switch (cell.getCellType()) {
+                case Cell.CELL_TYPE_STRING:
+                    System.out.print(cell.getStringCellValue() + "\t");
+                    item.add(cell.getStringCellValue());
+                    break;
+                case Cell.CELL_TYPE_NUMERIC:
+                    System.out.print(cell.getNumericCellValue() + "\t");
+                    value.add(cell.getNumericCellValue());
+                    break;
+                case Cell.CELL_TYPE_BOOLEAN:
+                    System.out.print(cell.getBooleanCellValue() + "\t");
+                    break;
+                default :
+             
+                }
+            }
+            System.out.println("");
+        }
+        dto = insertValue(item,value);
         return dto;
     }
+	private BloodTestDto insertValue(List<String> item,List<Double> value){
+		BloodTestDto dto = new BloodTestDto();
+		for(int i = 0; i < item.size();i++){
+			switch (item.get(i)){
+			case "Ure":
+				if(value.get(i) != null){
+					dto.setValueUre(value.get(i));
+				}
+				break;
+			case "Glucose":
+				dto.setValueGlucose(value.get(i));
+				break;
+			case "Creatinin":
+				dto.setValueCreatinin(value.get(i));
+				break;
+			case "Acid Uric":
+				dto.setValueAcidUric(value.get(i));
+				break;
+			case "BilirubinT.T":
+				dto.setValueBilirubintt(value.get(i));
+				break;
+			case "BilirubinT.P":
+				dto.setValueBilirubintp(value.get(i));
+				break;
+			case "BilirubinG.T":
+				dto.setValueBilirubingt(value.get(i));
+				break;
+			case "ProteinT.P":
+				dto.setValueProteintp(value.get(i));
+				break;
+			case "Albunmin":
+				dto.setValueAlbunmin(value.get(i));
+				break;
+			case "A/G":
+				dto.setValueRateag(value.get(i));
+				break;
+				
+			case "Fibrinogen":
+				dto.setValueFibrinogen(value.get(i));
+				break;
+			case "Cholesterol":
+				dto.setValueCholesterol(value.get(i));
+				break;
+			case "Triglycerid":
+				dto.setValueTriglycerid(value.get(i));
+				break;
+			case "HDL-cho.":
+				dto.setValueHdlcho(value.get(i));
+				break;
+			case "LDL-cho.":
+				dto.setValueLdlcho(value.get(i));
+				break;
+			case "Na+":
+				dto.setValueNaplus(value.get(i));
+				break;
+			case "K+":
+				dto.setValueKplus(value.get(i));
+				break;
+			case "Cl-":
+				dto.setValueClSubtract(value.get(i));
+				break;
+			case "Calci":
+				dto.setValueCalci(value.get(i));
+				break;
+			case "Calci ion":
+				dto.setValueCalciIon(value.get(i));
+				break;
+			case "Phospho":
+				dto.setValuePhosho(value.get(i));
+				break;
+			case "Fe":
+				dto.setValueFe(value.get(i));
+				break;
+			case "Magie":
+				dto.setValueMagie(value.get(i));
+				break;
+			case "AST(GOT)":
+				dto.setValueAstgot(value.get(i));
+				break;
+			case "ALT(GPT)":
+				dto.setValueAltgpt(value.get(i));
+				break;
+			case "Amylase":
+				dto.setValueAmylase(value.get(i));
+				break;
+			case "CK":
+				dto.setValueCk(value.get(i));
+				break;
+			case "CK-MB":
+				dto.setValueCkmb(value.get(i));
+				break;
+			case "LDH":
+				dto.setValueLdh(value.get(i));
+				break;
+			case "GGT":
+				dto.setValueGgt(value.get(i));
+				break;
+			case "Cholinesterase":
+				dto.setValueCholinesterase(value.get(i));
+				break;
+			case "Phosphatase Kiềm":
+				dto.setValuePhosphatase(value.get(i));
+				break;
+			case "pH động mạch":
+				dto.setValuePhArtery(value.get(i));
+				break;
+			case "pCO2":
+				dto.setValuePco2(value.get(i));
+				break;
+			case "pO2 động mạch":
+				dto.setValuePo2Artery(value.get(i));
+				break;
+			case "HCO3 chuẩn":
+				dto.setValueStandardHco3(value.get(i));
+				break;
+			case "Kiềm dư":
+				dto.setValueAlkalineBalance(value.get(i));
+				break;
+			case "Globulin":
+				dto.setValueGlobulin(value.get(i));
+				break;
+				
+				default:
+			}
+		}
+		return dto;
+	}
 	
 }
