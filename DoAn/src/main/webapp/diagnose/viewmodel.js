@@ -15,12 +15,25 @@ ScreenModel.prototype.goCreateMode = function() {
 	var self = this;
 	self.doctor().clear();
 }
+ScreenModel.prototype.search = function(){
+	var self = this;
+	if(self.userId() ==""){
+		alert("Bạn chưa nhập userId");
+	}else{
+		services.getUserId(self.userId()).done(function(res){
+			if(res == undefined){
+				alert("không tìm thấy tài khoản này. Vui lòng nhập lại.")
+			}else{
+				self.name(res.name);
+			}
+		});
+	}
+	
+}
 ScreenModel.prototype.register = function() {
 	var self = this;
 	if(self.doctor().userId() ==""){
 		alert("Bạn chưa nhập userId");
-	}else if(self.doctor().name() ==""){
-		alert("Bạn chưa nhập name");
 	}else{
 		var data = {
 				userId : self.doctor().userId(),

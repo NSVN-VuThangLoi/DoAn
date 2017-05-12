@@ -68,8 +68,8 @@ public class BloodTestImpl extends DataConnection implements BloodTestRepository
 			entity.setDoctorId(dto.getDoctorId());
 			entity.setDayCare(dto.getDayCare());
 			entity.setGender(dto.getGender());
-			entity.setIsResult(false);
-			entity.setIsBloodTest(false);
+			entity.setIsResult(dto.getIsResult());
+			entity.setIsBloodTest(dto.getIsBloodTest());
 			entity.setDiagnose(dto.getDiagnose());
 			entity.setName(dto.getName());
 			entity.setAddress(dto.getAddress());

@@ -1,7 +1,10 @@
+var screnn;
 function ScreenModel() {
 	var self = this;
+	screnn = self;
 	self.doctor = ko.observable(new Doctor());
 	self.listDoctor = ko.observable(new ListDoctor());
+	self.bloodTest = ko.observable(new BloodTest());
 	self.listDoctor().selectionChangedEvent.add(function(selectedCode) {
 		if (selectedCode !== undefined) {
 			self.doctor().reload(selectedCode);
@@ -55,15 +58,6 @@ ScreenModel.prototype.register = function() {
 		});
 	}
 }
-ScreenModel.prototype.deleteDoctor = function() {
-	var self = this;
-	services.removeDoctor(self.doctor().userId()).done(function(res) {
-		alert(res);
-		self.listDoctor().reload();
-	}).fail(function(res){
-		alert(res);
-	});
-}
 function Doctor (){
 		var self = this;
 		var request = new Request();
@@ -71,11 +65,6 @@ function Doctor (){
 		self.name = ko.observable('');
 		self.birthDay = ko.observable(request.formatDate(new Date(), 'yyyy-MM-dd'));
 		self.address = ko.observable('');
-		self.email = ko.observable('');
-		self.password = ko.observable('');
-		self.confirmPassword = ko.observable('');
-		self.phoneNumber = ko.observable('');
-		self.position = ko.observable('');
 		self.gender = ko.observable(true);
 }
 Doctor.prototype.clear = function(){
@@ -84,32 +73,65 @@ Doctor.prototype.clear = function(){
 	self.name('');
 	self.birthDay('');
 	self.address('');
-	self.email('');
-	self.password('');
-	self.confirmPassword('');
-	self.phoneNumber('');
-	self.position('');
 	self.gender('true');
 }
 Doctor.prototype.reload = function(userId) {
 	var self = this;
 	var request = new Request();
 	var dfd = $.Deferred();
-	services.getDoctor(userId).done(function(res) {
-		self.userId(res.doctorId);
+	services.getBloodTestId(userId).done(function(res) {
+		self.userId(res.userId);
 		self.name(res.name);
-		var date = new Date(res.birthDay);
+		var date = new Date(res.dayCare);
 		self.birthDay(request.formatDate(date, 'yyyy-MM-dd'));
-		self.address(res.addressWord);
-		self.email(res.email);
-		self.phoneNumber(res.phoneNumber);
-		self.position(res.position);
-		if(res.sex){
+		self.address(res.address);
+		if(res.gender){
 			self.gender('true');
 		}else{
 			self.gender('false');
 		}
+		screnn.bloodTest().valueUre(res.valueUre);
+		screnn.bloodTest().valueFe(res.valueFe);
+		screnn.bloodTest().valueGlucose(res.valueGlucose);
+		screnn.bloodTest().valueMagie(res.valueMagie);
+		screnn.bloodTest().valueCreatinin(res.valueCreatinin);
+		screnn.bloodTest().valueAstGot(res.valueAstGot);
+		screnn.bloodTest().valueAcidUric(res.valueAcidUric);
+		screnn.bloodTest().valueAltGpt(res.valueAltGpt);
+		screnn.bloodTest().valueBilirubinTp(res.valueBilirubinTp);
+		screnn.bloodTest().valueAmylase(res.valueAmylase);
+		screnn.bloodTest().valueBilirubinTt(res.valueBilirubinTt);
 		
+		screnn.bloodTest().valueCk(res.valueCk);
+		screnn.bloodTest().valueBilirubinGt(res.valueBilirubinGt);
+		screnn.bloodTest().valueCkMb(res.valueCkMb);
+		screnn.bloodTest().valueProteinTp(res.valueProteinTp);
+		screnn.bloodTest().valueLDH(res.valueLDH);
+		screnn.bloodTest().valueAlbunmin(res.valueAlbunmin);
+		screnn.bloodTest().valueGGT(res.valueGGT);
+		screnn.bloodTest().valueGlobulin(res.valueGlobulin);
+		
+		screnn.bloodTest().valueCholinesterase(res.valueCholinesterase);
+		screnn.bloodTest().valueRateAG(res.valueRateAG);
+		screnn.bloodTest().valuePhosphatase(res.valuePhosphatase);
+		screnn.bloodTest().valueFibrinogen(res.valueFibrinogen);
+		screnn.bloodTest().valueCholesterol(res.valueCholesterol);
+		screnn.bloodTest().valuePHArtery(res.valuePHArtery);
+		screnn.bloodTest().valueTriglycerid(res.valueTriglycerid);
+		
+		screnn.bloodTest().valuePCO2(res.valuePCO2);
+		screnn.bloodTest().valueHDLcho(res.valueHDLcho);
+		screnn.bloodTest().valuePO2Artery(res.valuePO2Artery);
+		screnn.bloodTest().valueLDLCho(res.valueLDLCho);
+		screnn.bloodTest().valueStandardHCO3(res.valueStandardHCO3);
+		screnn.bloodTest().valueNaPlus(res.valueNaPlus);
+		
+		screnn.bloodTest().valueAlkalineBalance(res.valueAlkalineBalance);
+		screnn.bloodTest().valueKPlus(res.valueKPlus);
+		screnn.bloodTest().valueClSubtract(res.valueClSubtract);
+		screnn.bloodTest().valueCalci(res.valueCalci);
+		screnn.bloodTest().valueCalciIon(res.valueCalciIon);
+		screnn.bloodTest().valuePhosho(res.valuePhosho);
 		dfd.resolve();
 	});
 	return dfd.promise();
@@ -165,7 +187,7 @@ function DoctorListItem(userId, name) {
 				+ '     ' + self.name();
 	}, self);
 }
-function bloodTest(){
+function BloodTest(){
 	self.valueUre = ko.observable("123");
 	self.valueFe = ko.observable("123");
 	self.valueGlucose = ko.observable("123");

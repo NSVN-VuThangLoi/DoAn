@@ -27,7 +27,7 @@ public class PatientDto {
 	public PatientDto(){
 		
 	}
-public PatientDto(long version,String userId,String name,Date birthDay,int phoneNumber,String email,String address,Boolean sex){
+public PatientDto(long version,String userId,String name,Date birthDay,int phoneNumber,String email,String address,Boolean sex,String password){
 		this.version = version;
 		this.userId = userId;
 		this.name = name;
@@ -36,6 +36,7 @@ public PatientDto(long version,String userId,String name,Date birthDay,int phone
 		this.email = email;
 		this.address = address;
 		this.sex = sex;
+		this.password = password;
 	}
 }
 

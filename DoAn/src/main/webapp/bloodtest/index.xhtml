@@ -24,13 +24,13 @@
 		<div id ="function">
 			<button data-bind ="click: goCreateMode">New</button>
 			<button data-bind ="click: register">Save</button>
-		<button data-bind ="click: deleteDoctor">Delete</button>
+<!-- 		<button data-bind ="click: deleteDoctor">Delete</button> -->
 		</div>
 		<div>
 				<table>
 					<tr>
 						<td id="contentleft" data-bind ="with: listDoctor">
-								<div><h:outputText value="Danh Sách Bác Sỹ" /></div>
+								<div><h:outputText value="Danh Sách Hồ sơ Khám" /></div>
 								<select id="contract-list" size="20"
 									data-bind="
                                  options: items, 
@@ -46,25 +46,25 @@
 										<td><input type="text" id="UserId" data-bind="value: userId "/></td>
 									</tr>
 									<tr id="form">
-										<th class="required"><h:outputText value="Name" /></th>
+										<th class="required"><h:outputText value="Họ và Tên" /></th>
 										<td><input type="text" id="name" data-bind=" value: name " /></td>
 									</tr>
 									<tr id="form">
-										<th class="required"><h:outputText value="BirthDay" /></th>
+										<th class="required"><h:outputText value="Ngày khám" /></th>
 										<td><input type="date" id="birthDay" data-bind=" value: birthDay"/></td>
 									</tr>
 									<tr id="form">
-										<th class="required"><h:outputText value="Address" /></th>
+										<th class="required"><h:outputText value="Địa chỉ" /></th>
 										<td><input type="text" id="address" data-bind=" value: address "/></td>
 									</tr>
 									<tr>
-                                    <th><h:outputText value="Gender"/></th>
+                                    <th><h:outputText value="Giới tính"/></th>
                                     <td>
                                         <label>
-                                            <input type="radio" value="true" data-bind="checked: gender"/><h:outputText value="Male"/>                                      
+                                            <input type="radio" value="true" data-bind="checked: gender"/><h:outputText value="Nam"/>                                      
                                         </label>
                                         <label>
-                                            <input type="radio" value="false" data-bind="checked: gender"/><h:outputText value="Female"/>                                           
+                                            <input type="radio" value="false" data-bind="checked: gender"/><h:outputText value="Nữ"/>                                           
                                         </label>
                                     </td>
                                 	</tr>

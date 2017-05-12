@@ -47,12 +47,14 @@ ScreenModel.prototype.register = function() {
 		services.insertPatient(data).done(function(res) {
 			alert(res.result);
 			self.patient().clear();
-			self.listPatient().reload();
-			self.listPatient().select(res.userId);
+			self.listPatient().reload().done(function() {
+				self.listPatient().select(res.userId);
+			});
 		}).fail(function(res){
 			alert(res.result);
 		});
 	}
+	
 }
 ScreenModel.prototype.deletePatient = function() {
 	var self = this;
@@ -62,6 +64,7 @@ ScreenModel.prototype.deletePatient = function() {
 	}).fail(function(res){
 		alert(res);
 	});
+	
 }
 function Patient(){
 		var self = this;

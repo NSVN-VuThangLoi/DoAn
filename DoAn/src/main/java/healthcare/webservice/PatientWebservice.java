@@ -42,6 +42,7 @@ public class PatientWebservice {
 	}
 	@POST
 	@Path("/getPatient")
+	@Produces(MediaType.APPLICATION_JSON)
 	public PatientDto getPatient(String userId) {
 		return finderPatient.getPatient(userId);
 	}

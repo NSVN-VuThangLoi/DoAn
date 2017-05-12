@@ -3,7 +3,8 @@
 var services = (function() {
 
 	var servicePath = {
-		insertDiagnose : 'diagnose/insert'
+		insertDiagnose : 'diagnose/insert',
+		getUserId: 'Patient/getPatient'
 	};
 
 	var services = {};
@@ -15,5 +16,12 @@ var services = (function() {
 		}) ;
 		return d.promise();
 	};
+	services.getUserId = function(data){
+		var d = $.Deferred();
+		request.requestAjax(data,servicePath.getUserId).done(function(res){
+			d.resolve(res);
+		});
+		return d.promise();
+	}
 	return services;
 })();

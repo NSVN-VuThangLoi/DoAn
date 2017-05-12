@@ -38,11 +38,11 @@ public class InsertPatientCommandHandle {
 				dto.setPhoneNumber(command.getPhoneNumber());
 				dto.setSex(command.getSex());
 				patientRep.insertPatient(dto);
-				result.setResult("Đăng kí thành công DoctorId = " + command.getUserId());
+				result.setResult("Đăng kí thành công UserId = " + command.getUserId());
 				result.setUserId(command.getUserId());
 			} catch (Exception e) {
 				// TODO: handle exception
-				result.setResult("Đăng kí thất bại DoctorId = " + command.getUserId());
+				result.setResult("Đăng kí thất bại UserId = " + command.getUserId());
 				result.setUserId(command.getUserId());
 			}
 		}else{

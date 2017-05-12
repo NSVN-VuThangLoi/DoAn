@@ -93,7 +93,8 @@ public class PatientImpl extends DataConnection implements PatientRepository {
 						patientEntity.getPhoneNumber(),
 						patientEntity.getEmail(),
 						patientEntity.getAddress(),
-						patientEntity.getSex());
+						patientEntity.getSex(),
+						patientEntity.getPassword());
 				return dto;
 		}
 		return null;

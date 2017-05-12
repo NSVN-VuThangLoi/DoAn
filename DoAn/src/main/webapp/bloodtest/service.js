@@ -4,8 +4,7 @@ var services = (function() {
 
 	var servicePath = {
 		getAllDoctor : 'bloodTest/getBloodfollowDoctorId',
-		getDoctor : 'Doctor/getDoctor',
-		removeDoctor : 'Doctor/removeDoctor',
+		getBloodTestId : 'bloodTest/getBloodtest',
 		insertDoctor : 'Doctor/insert'
 	};
 
@@ -25,7 +24,7 @@ var services = (function() {
 		request.requestAjax(null,servicePath.getAllDoctor).done(function(data){
 			var patterns = [];
 			for(i = 0; i < data.length; i++){
-				patterns.push(new DoctorListItem(data[i].doctorId,data[i].name));
+				patterns.push(new DoctorListItem(data[i].bloodtestId,data[i].name));
 			}
 			
 			d.resolve(patterns);
@@ -33,16 +32,9 @@ var services = (function() {
 		return d.promise();
 	};
 	
-	services.getDoctor = function(data) {
+	services.getBloodTestId = function(data) {
 		 var d = $.Deferred();
 		request.requestAjax(data,servicePath.getDoctor).done(function(res){
-			d.resolve(res);
-		}) ;
-		return d.promise();
-	};
-	services.removeDoctor = function(data) {
-		 var d = $.Deferred();
-		request.requestText(data,servicePath.removeDoctor).done(function(res){
 			d.resolve(res);
 		}) ;
 		return d.promise();
