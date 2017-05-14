@@ -27,15 +27,7 @@ public class PatientImpl extends DataConnection implements PatientRepository {
 	}
 	@Override
 	public void insertPatient(PatientDto dto) {
-		PatientDto patientDto = new PatientDto();
-		boolean isInsert = true;
-		patientDto = getPatient(dto.getUserId());
-			if(patientDto != null){
-				isInsert = false;
-			}	
-		
 		PatientEntity entity = new PatientEntity();
-		if(isInsert){
 			entity.setAddress(dto.getAddress());
 			entity.setUserId(dto.getUserId());
 			entity.setName(dto.getName());
@@ -44,20 +36,7 @@ public class PatientImpl extends DataConnection implements PatientRepository {
 			entity.setPassword(dto.getPassword());
 			entity.setPhoneNumber(dto.getPhoneNumber());
 			entity.setSex(dto.getSex());
-		}else{
-			entity.setAddress(dto.getAddress());
-			entity.setUserId(dto.getUserId());
-			entity.setName(dto.getName());
-			entity.setBirthDay(dto.getBirthDay());
-			entity.setEmail(dto.getEmail());
-			entity.setPassword(dto.getPassword());
-			entity.setPhoneNumber(dto.getPhoneNumber());
-			entity.setSex(dto.getSex());
-			entity.setVersion(dto.getVersion());
-		}
-		
-			
-		this.entityManager.merge(entity);
+		this.entityManager.persist(entity);
 		
 	}
 
@@ -105,6 +84,22 @@ public class PatientImpl extends DataConnection implements PatientRepository {
 		String REMOVE = "DELETE FROM PatientEntity e"
                 + " WHERE e.userId = :userId";
         this.entityManager.createQuery(REMOVE).setParameter("userId", userId).executeUpdate();
+		
+	}
+
+	@Override
+	public void updatePatient(PatientDto dto) {
+		PatientEntity entity = new PatientEntity();
+		entity.setAddress(dto.getAddress());
+		entity.setUserId(dto.getUserId());
+		entity.setName(dto.getName());
+		entity.setBirthDay(dto.getBirthDay());
+		entity.setEmail(dto.getEmail());
+		entity.setPassword(dto.getPassword());
+		entity.setPhoneNumber(dto.getPhoneNumber());
+		entity.setSex(dto.getSex());
+		entity.setVersion(dto.getVersion());
+	this.entityManager.merge(entity);
 		
 	}
 

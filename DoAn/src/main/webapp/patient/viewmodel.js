@@ -47,9 +47,11 @@ ScreenModel.prototype.register = function() {
 		services.insertPatient(data).done(function(res) {
 			alert(res.result);
 			self.patient().clear();
-			self.listPatient().reload().done(function() {
-				self.listPatient().select(res.userId);
-			});
+			if(res.userId != undefined && res.userId != null){
+				self.listPatient().reload().done(function() {
+					self.listPatient().select(res.userId);
+				});
+			}
 		}).fail(function(res){
 			alert(res.result);
 		});

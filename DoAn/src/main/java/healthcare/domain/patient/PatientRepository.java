@@ -8,5 +8,6 @@ void insertPatient(PatientDto dto);
 List<PatientDto> getAllPatient();
 PatientDto getPatient(String userId);
 void remove(String userId);
+void updatePatient(PatientDto dto);
 
 }

@@ -16,17 +16,10 @@ public class InsertPatientCommandHandle {
 		PatientResultInsert result = new PatientResultInsert();
 		PatientDto patientDto = new PatientDto();
 		PatientDto dto = new PatientDto();
-		boolean isInsert = true;
 		patientDto = patientRep.getPatient(command.getUserId());
 			if(patientDto != null){
-				 isInsert = false;
-				if(command.getPassword() == null){
-					command.setPassword(patientDto.getPassword());
-				}
-				dto.setVersion(patientDto.getVersion());
-			}
-		
-		if(isInsert){
+			 result.setResult("Đã có tài khoản bạn vừa đăng ký.Vui lòng đăng ký lại!");
+			}else{
 			try {
 				
 				dto.setUserId(command.getUserId());
@@ -45,27 +38,7 @@ public class InsertPatientCommandHandle {
 				result.setResult("Đăng kí thất bại UserId = " + command.getUserId());
 				result.setUserId(command.getUserId());
 			}
-		}else{
-			try {
-				
-				dto.setUserId(command.getUserId());
-				dto.setBirthDay(command.getBirthDay());
-				dto.setEmail(command.getEmail());
-				dto.setName(command.getName());
-				dto.setPassword(command.getPassword());
-				dto.setAddress(command.getAddress());
-				dto.setPhoneNumber(command.getPhoneNumber());
-				dto.setSex(command.getSex());
-				patientRep.insertPatient(dto);
-				result.setResult("Update thành công DoctorId = " + command.getUserId());
-				result.setUserId(command.getUserId());
-			} catch (Exception e) {
-				// TODO: handle exception
-				result.setResult("Update thất bại DoctorId = " + command.getUserId());
-				result.setUserId(command.getUserId());
-			}
 		}
-		
 		return result;
 	}
 
