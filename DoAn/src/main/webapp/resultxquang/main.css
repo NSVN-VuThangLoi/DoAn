@@ -1,5 +1,5 @@
 #contentleft{
-	background-color: #ccffff;
+
 	
 }
 #contentright{
@@ -9,9 +9,27 @@
 	float: left;
 }
 #tblMain{width: 100%;}
-#contentleft {width: 200px;}
+#contentleft {min-width: 350px; width: 350px;}
 #contentleft #contract-list{height: 400px; }
 #contentright{ width:  350px;}
 #contentright .form th{ text-align: left;}
-#contentright .form input[type=text],input[type=date] {width: 100%; height: 20px;}
+#contentright .form input[type=text],input[type=date] {width: 100%; height: 30px;}
 #image{width: 50%;}
+#contentleft select{overflow: auto}
+.borderless td, .borderless th {
+    border: none;
+}
+#image img:hover{
+	width: 500px;
+	height: 400px;
+	transition: 1s
+}
+#image img:not( :hover){
+	width: 300px;
+	height: 200px;
+	transition: 1s
+}
+#demo .row div{
+	height: 200px; 
+	border: 1px solid red;
+}

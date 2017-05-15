@@ -21,10 +21,12 @@ import org.jboss.resteasy.plugins.providers.multipart.InputPart;
 import org.jboss.resteasy.plugins.providers.multipart.MultipartFormDataInput;
 
 import healthcare.app.bloodtest.FinderBloodTest;
+import healthcare.app.bloodtest.UpdateBloodtestCommand;
 import healthcare.app.common.UserLogin;
 import healthcare.app.readfile.ReadFile;
 import healthcare.domain.bloodtest.BloodTestDto;
 import healthcare.domain.bloodtest.BloodTestRepository;
+import healthcare.domain.bloodtest.ResultBloodTest;
 
 @Path("/bloodTest")
 @Stateless
@@ -106,7 +108,14 @@ public class BloodTestWebservice {
 		String doctorId = login.getDoctorId();
 		return finder.getAllfollowDoctor(doctorId);
 	}
-	
+	@POST
+	@Path("/updateresultblootest")
+	public ResultBloodTest updateResult(UpdateBloodtestCommand command){
+		BloodTestDto dto = bloodRep.getBloodTestId(command.getBloodTestId());
+		dto.setResult(command.getResult());
+		dto.setIsResult(true);
+		return this.bloodRep.Update(dto);
+	}
 	
 	private String getFileName(MultivaluedMap<String, String> header) {
 

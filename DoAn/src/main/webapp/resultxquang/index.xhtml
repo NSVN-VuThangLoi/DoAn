@@ -12,57 +12,64 @@
 		<script src="../lib/knockout-3.4.0.js"></script>
 		<script src="../lib/jquery-1.11.3.js"></script>
 		<script src="../lib/jquery-ui.js"></script>
+		<script src="../lib/bootstrap.min.js"></script>
+		<link rel="stylesheet" type="text/css"  href="../lib/bootstrap.min.css"/>
 			
 			<script type="text/javascript" src="viewmodel.js"></script>
 			<script type="text/javascript" src="../common/request.js"></script>
 			<script type="text/javascript" src="service.js"></script>
-				<script type="text/javascript" src="start.js"></script>
+			<script type="text/javascript" src="start.js"></script>
 			<link rel="stylesheet" type="text/css" href="main.css" />
 		</ui:define>
 		<ui:define name="content">
 		<div id ="function">
-			<button data-bind ="click: register">Save</button>
+			<button data-bind ="click: register" class="btn btn-primary" style="margin: 2px 0px">Lưu</button>
 		</div>
 		<div>
-				<table id="tblMain">
+		<div class="fluid-container" id="demo">
+	
+			
+		</div>
+		
+				<table id="tblMain" class='table'>
 					<tr>
 						<td id="contentleft" data-bind ="with: listCare">
-								<div><h:outputText value="Danh Sách Hồ Sơ Khám" /></div>
-								<select id="contract-list" size="40"
+								<h4><h:outputText value="Danh Sách Hồ Sơ Khám"/></h4>
+								<select id="contract-list" size="50"
 									data-bind="
                                  options: items, 
                                  value: selectedCode,
                                  optionsText: 'displayText', 
-                                 optionsValue: 'xquangId'"></select> 
+                                 optionsValue: 'xquangId'" class="form-control"></select> 
 							
  						</td> 
 						<td id="contentright">
-								<table id="content-doctor" data-bind ="with: patient" >
+								<table id="content-doctor" data-bind ="with: patient"  class='table'>
 									<tr class="form">
 										<th class="required"><h:outputText value="UserId" /></th>
-										<td><input type="text" id="UserId" data-bind="value: userId "/></td>
+										<td><input class='form-control' type="text" id="UserId" data-bind="value: userId "/></td>
 									</tr>
 									<tr class="form">
 										<th class="required"><h:outputText value="Họ và Tên" /></th>
-										<td><input type="text" id="name" data-bind=" value: name " /></td>
+										<td><input class='form-control' type="text" id="name" data-bind=" value: name " /></td>
 									</tr>
 									<tr class="form">
 										<th class="required"><h:outputText value="Tuổi" /></th>
-										<td><input type="text" id="age" data-bind=" value: age"/></td>
+										<td><input class='form-control' type="text" id="age" data-bind=" value: age"/></td>
 									</tr>
 									<tr class="form">
 										<th class="required"><h:outputText value="Địa chỉ" /></th>
-										<td><input type="text" id="address" data-bind=" value: address "/></td>
+										<td><input class='form-control' type="text" id="address" data-bind=" value: address "/></td>
 									</tr>
 									<tr class="form">
 										<th class="required"><h:outputText value="Ngày khám" /></th>
-										<td><input type="date" id="birthDay" data-bind=" value: dayCare"/></td>
+										<td><input class='form-control' type="date" id="birthDay" data-bind=" value: dayCare"/></td>
 									</tr>
 									<tr class="form">
                                     <th><h:outputText value="Giới Tính"/></th>
                                     <td>
                                         <label>
-                                            <input type="radio" value="true" data-bind="checked: gender"/><h:outputText value="Nam"/>                                      
+                                            <input  type="radio" value="true" data-bind="checked: gender"/><h:outputText value="Nam"/>                                      
                                         </label>
                                         <label>
                                             <input type="radio" value="false" data-bind="checked: gender"/><h:outputText value="Nữ"/>                                           

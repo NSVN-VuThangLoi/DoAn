@@ -13,6 +13,8 @@
 		<script src="../lib/knockout-3.4.0.js"></script>
 		<script src="../lib/jquery-1.11.3.js"></script>
 		<script src="../lib/jquery-ui.js"></script>
+		<script src="../lib/bootstrap.min.js"></script>
+		<link rel="stylesheet" type="text/css"  href="../lib/bootstrap.min.css"/>
 			
 	<script type="text/javascript" src="viewmodel.js"></script>
 	<script type="text/javascript" src="../common/request.js"></script>
@@ -22,34 +24,34 @@
 	</ui:define>
 	<ui:define name="content">
 		<div id ="function">
-			<button data-bind ="click: register">Save</button>
+			<button data-bind ="click: register" class="btn btn-primary">Lưu</button>
 		</div>
 		<div>
 			<table>
 				<tr>
-					<td id="contentleft" data-bind ="with: listFile">
-							<div><h:outputText value="Danh Sách Hồ Sơ Khám" /></div>
+					<td id="contentleft" data-bind ="with: listFile" style="width: 350px">
+							<h4><h:outputText value="Danh Sách Hồ Sơ Khám" /></h4>
 							<select id="contract-list" size="40"
 								data-bind="
                                 options: items, 
                                 value: selectedCode,
                                 optionsText: 'displayText', 
-                                optionsValue: 'xquangId'"></select> 
+                                optionsValue: 'xquangId'" class="form-control" style="width: 300px; min-width: 300px;"></select> 
 						
 					</td> 
 					<td id="contentright">
-						<table data-bind ="with: information">
+						<table data-bind ="with: information" class="table">
 								<tr id="form">
 									<th class="required"><h:outputText value="UserId" /></th>
-									<td><input type="text" id="UserId" data-bind="value: userId "/></td>
+									<td><input class="form-control" type="text" id="UserId" data-bind="value: userId "/></td>
 								</tr>
 								<tr id="form">
 									<th class="required"><h:outputText value="Họ và Tên" /></th>
-									<td><input type="text" id="name" data-bind=" value: name " /></td>
+									<td><input class="form-control" type="text" id="name" data-bind=" value: name " /></td>
 								</tr>
 								<tr id="form">
 									<th class="required"><h:outputText value="Ngày Khám" /></th>
-									<td><input type="date" id="birthDay" data-bind=" value: dayCare"/></td>
+									<td><input class="form-control" type="date" id="birthDay" data-bind=" value: dayCare"/></td>
 								</tr>
 								<tr>
 									<th></th>
@@ -59,7 +61,7 @@
 									</td>
 									
 									<td>
-									<input type="file" name="upload_file" />
+									<input class="form-control" type="file" name="upload_file" />
 									</td>	
                                		
 								</tr>

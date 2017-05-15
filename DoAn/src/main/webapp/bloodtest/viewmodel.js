@@ -2,6 +2,7 @@ var screnn;
 function ScreenModel() {
 	var self = this;
 	screnn = self;
+	self.bloodtestId = ko.observable();
 	self.doctor = ko.observable(new Doctor());
 	self.listDoctor = ko.observable(new ListDoctor());
 	self.bloodTest = ko.observable(new BloodTest());
@@ -28,44 +29,28 @@ ScreenModel.prototype.goCreateMode = function() {
 }
 ScreenModel.prototype.register = function() {
 	var self = this;
-	if(self.doctor().birthDay() ==""){
-		alert("Bạn chưa nhập ngày sinh");
-	}else if(self.doctor().userId() ==""){
-		alert("Bạn chưa nhập userId");
-	}else if(self.doctor().name() ==""){
-		alert("Bạn chưa nhập name");
-	}else if(self.doctor().password() ==""){
-		alert("Bạn chưa nhập password");
-	}else{
 		var data = {
-				doctorId : self.doctor().userId(),
-				name: self.doctor().name(),
-				birthDay: self.doctor().birthDay(),
-				password : self.doctor().password(),
-				phoneNumber: self.doctor().phoneNumber(),
-				email: self.doctor().email(),
-				position: self.doctor().position(),
-				addressWord: self.doctor().address(),
-				sex: self.doctor().gender()	
+				bloodTestId : screnn.bloodtestId(),
+				result: self.doctor().result()	
 		}
-		services.insertDoctor(data).done(function(res) {
+		services.updateBloodtest(data).done(function(res) {
 			alert(res.result);
-			self.doctor().clear();
+			self.listDoctor().clear();
 			self.listDoctor().reload();
-			self.listDoctor().select(res.doctorId);
+//			self.listDoctor().select(res.doctorId);
 		}).fail(function(res){
 			alert(res.result);
 		});
-	}
 }
 function Doctor (){
 		var self = this;
 		var request = new Request();
-		self.userId = ko.observable('');
-		self.name = ko.observable('');
+		self.userId = ko.observable();
+		self.name = ko.observable();
 		self.birthDay = ko.observable(request.formatDate(new Date(), 'yyyy-MM-dd'));
 		self.address = ko.observable('');
-		self.gender = ko.observable(true);
+		self.gender = ko.observable('');
+		self.result = ko.observable('');
 }
 Doctor.prototype.clear = function(){
 	var self = this;
@@ -73,7 +58,7 @@ Doctor.prototype.clear = function(){
 	self.name('');
 	self.birthDay('');
 	self.address('');
-	self.gender('true');
+	self.gender('');
 }
 Doctor.prototype.reload = function(userId) {
 	var self = this;
@@ -85,49 +70,46 @@ Doctor.prototype.reload = function(userId) {
 		var date = new Date(res.dayCare);
 		self.birthDay(request.formatDate(date, 'yyyy-MM-dd'));
 		self.address(res.address);
-		if(res.gender){
-			self.gender('true');
-		}else{
-			self.gender('false');
-		}
+		self.gender(res.gender == true? "Nam": "Nu");
+		
 		screnn.bloodTest().valueUre(res.valueUre);
 		screnn.bloodTest().valueFe(res.valueFe);
 		screnn.bloodTest().valueGlucose(res.valueGlucose);
 		screnn.bloodTest().valueMagie(res.valueMagie);
 		screnn.bloodTest().valueCreatinin(res.valueCreatinin);
-		screnn.bloodTest().valueAstGot(res.valueAstGot);
+		screnn.bloodTest().valueAstGot(res.valueAstgot);
 		screnn.bloodTest().valueAcidUric(res.valueAcidUric);
-		screnn.bloodTest().valueAltGpt(res.valueAltGpt);
-		screnn.bloodTest().valueBilirubinTp(res.valueBilirubinTp);
+		screnn.bloodTest().valueAltGpt(res.valueAltgpt);
+		screnn.bloodTest().valueBilirubinTp(res.valueBilirubintp);
 		screnn.bloodTest().valueAmylase(res.valueAmylase);
-		screnn.bloodTest().valueBilirubinTt(res.valueBilirubinTt);
+		screnn.bloodTest().valueBilirubinTt(res.valueBilirubintt);
 		
 		screnn.bloodTest().valueCk(res.valueCk);
-		screnn.bloodTest().valueBilirubinGt(res.valueBilirubinGt);
-		screnn.bloodTest().valueCkMb(res.valueCkMb);
-		screnn.bloodTest().valueProteinTp(res.valueProteinTp);
-		screnn.bloodTest().valueLDH(res.valueLDH);
+		screnn.bloodTest().valueBilirubinGt(res.valueBilirubingt);
+		screnn.bloodTest().valueCkMb(res.valueCkmb);
+		screnn.bloodTest().valueProteinTp(res.valueProteintp);
+		screnn.bloodTest().valueLDH(res.valueLdh);
 		screnn.bloodTest().valueAlbunmin(res.valueAlbunmin);
-		screnn.bloodTest().valueGGT(res.valueGGT);
+		screnn.bloodTest().valueGGT(res.valueGgt);
 		screnn.bloodTest().valueGlobulin(res.valueGlobulin);
 		
 		screnn.bloodTest().valueCholinesterase(res.valueCholinesterase);
-		screnn.bloodTest().valueRateAG(res.valueRateAG);
+		screnn.bloodTest().valueRateAG(res.valueRateag);
 		screnn.bloodTest().valuePhosphatase(res.valuePhosphatase);
 		screnn.bloodTest().valueFibrinogen(res.valueFibrinogen);
 		screnn.bloodTest().valueCholesterol(res.valueCholesterol);
-		screnn.bloodTest().valuePHArtery(res.valuePHArtery);
+		screnn.bloodTest().valuePHArtery(res.valuePhArtery);
 		screnn.bloodTest().valueTriglycerid(res.valueTriglycerid);
 		
-		screnn.bloodTest().valuePCO2(res.valuePCO2);
-		screnn.bloodTest().valueHDLcho(res.valueHDLcho);
-		screnn.bloodTest().valuePO2Artery(res.valuePO2Artery);
-		screnn.bloodTest().valueLDLCho(res.valueLDLCho);
-		screnn.bloodTest().valueStandardHCO3(res.valueStandardHCO3);
-		screnn.bloodTest().valueNaPlus(res.valueNaPlus);
+		screnn.bloodTest().valuePCO2(res.valuePco2);
+		screnn.bloodTest().valueHDLcho(res.valueHdlcho);
+		screnn.bloodTest().valuePO2Artery(res.valuePo2Artery);
+		screnn.bloodTest().valueLDLCho(res.valueLdlCho);
+		screnn.bloodTest().valueStandardHCO3(res.valueStandardHco3);
+		screnn.bloodTest().valueNaPlus(res.valueNaplus);
 		
 		screnn.bloodTest().valueAlkalineBalance(res.valueAlkalineBalance);
-		screnn.bloodTest().valueKPlus(res.valueKPlus);
+		screnn.bloodTest().valueKPlus(res.valueKplus);
 		screnn.bloodTest().valueClSubtract(res.valueClSubtract);
 		screnn.bloodTest().valueCalci(res.valueCalci);
 		screnn.bloodTest().valueCalciIon(res.valueCalciIon);
@@ -147,7 +129,6 @@ function ListDoctor(){
 			return;
 		}
 		if (self.items().length === 0) {
-			screenModel.createMode();
 			return;
 		}
 		if (selectedCode === undefined) {
@@ -155,7 +136,7 @@ function ListDoctor(){
 			self.selectFirst();
 			return;
 		}
-
+		screnn.bloodtestId(selectedCode);
 		self.selectionChangedEvent.fire(selectedCode);
 	});
 	self.unselecting = ko.observable(false);
@@ -171,8 +152,11 @@ ListDoctor.prototype.reload = function(){
 }
 ListDoctor.prototype.selectFirst = function() {
 	var self = this;
-	self.select(self.items()[0].userId());
-
+	if(self.items().length != 0){
+		self.select(self.items()[0].userId());
+	}else{
+		alert("Đã hết dữ liệu");
+	}
 };
 ListDoctor.prototype.select = function(code) {
 	var self = this;
@@ -188,48 +172,48 @@ function DoctorListItem(userId, name) {
 	}, self);
 }
 function BloodTest(){
-	self.valueUre = ko.observable("123");
-	self.valueFe = ko.observable("123");
-	self.valueGlucose = ko.observable("123");
-	self.valueMagie = ko.observable("123");
-	self.valueCreatinin = ko.observable("123");
-	self.valueAstGot = ko.observable("123");
-	self.valueAcidUric = ko.observable("123");
-	self.valueAltGpt = ko.observable("123");
-	self.valueBilirubinTp = ko.observable("123");
-	self.valueAmylase = ko.observable("123");
-	self.valueBilirubinTt = ko.observable("123");
+	var self = this;
+	self.valueUre = ko.observable("");
+	self.valueFe = ko.observable("");
+	self.valueGlucose = ko.observable("");
+	self.valueMagie = ko.observable("");
+	self.valueCreatinin = ko.observable("");
+	self.valueAstGot = ko.observable("");
+	self.valueAcidUric = ko.observable("");
+	self.valueAltGpt = ko.observable("");
+	self.valueBilirubinTp = ko.observable("");
+	self.valueAmylase = ko.observable("");
+	self.valueBilirubinTt = ko.observable("");
 	
-	self.valueCk = ko.observable("123");
-	self.valueBilirubinGt = ko.observable("123");
-	self.valueCkMb = ko.observable("123");
-	self.valueProteinTp = ko.observable("123");
-	self.valueLDH = ko.observable("123");
-	self.valueAlbunmin = ko.observable("123");
-	self.valueGGT = ko.observable("123");
-	self.valueGlobulin = ko.observable("123");
+	self.valueCk = ko.observable("");
+	self.valueBilirubinGt = ko.observable("");
+	self.valueCkMb = ko.observable("");
+	self.valueProteinTp = ko.observable("");
+	self.valueLDH = ko.observable("");
+	self.valueAlbunmin = ko.observable("");
+	self.valueGGT = ko.observable("");
+	self.valueGlobulin = ko.observable("");
 	
-	self.valueCholinesterase = ko.observable("123");
-	self.valueRateAG = ko.observable("123");
-	self.valuePhosphatase = ko.observable("123");
-	self.valueFibrinogen = ko.observable("123");
-	self.valueCholesterol = ko.observable("123");
-	self.valuePHArtery = ko.observable("123");
-	self.valueTriglycerid = ko.observable("123");
+	self.valueCholinesterase = ko.observable("");
+	self.valueRateAG = ko.observable("");
+	self.valuePhosphatase = ko.observable("");
+	self.valueFibrinogen = ko.observable("");
+	self.valueCholesterol = ko.observable("");
+	self.valuePHArtery = ko.observable("");
+	self.valueTriglycerid = ko.observable("");
 	
-	self.valuePCO2 = ko.observable("123");
-	self.valueHDLcho = ko.observable("123");
-	self.valuePO2Artery = ko.observable("123");
-	self.valueLDLCho = ko.observable("123");
-	self.valueStandardHCO3 = ko.observable("123");
-	self.valueNaPlus = ko.observable("123");
+	self.valuePCO2 = ko.observable("");
+	self.valueHDLcho = ko.observable("");
+	self.valuePO2Artery = ko.observable("");
+	self.valueLDLCho = ko.observable("");
+	self.valueStandardHCO3 = ko.observable("");
+	self.valueNaPlus = ko.observable("");
 	
-	self.valueAlkalineBalance = ko.observable("123");
-	self.valueKPlus = ko.observable("123");
-	self.valueClSubtract = ko.observable("123");
-	self.valueCalci = ko.observable("123");
-	self.valueCalciIon = ko.observable("123");
-	self.valuePhosho = ko.observable("123");
-	
+	self.valueAlkalineBalance = ko.observable("");
+	self.valueKPlus = ko.observable("");
+	self.valueClSubtract = ko.observable("");
+	self.valueCalci = ko.observable("");
+	self.valueCalciIon = ko.observable("");
+	self.valuePhosho = ko.observable("");
 	
 }

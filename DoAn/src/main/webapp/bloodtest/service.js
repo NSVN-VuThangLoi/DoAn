@@ -5,14 +5,14 @@ var services = (function() {
 	var servicePath = {
 		getAllDoctor : 'bloodTest/getBloodfollowDoctorId',
 		getBloodTestId : 'bloodTest/getBloodtest',
-		insertDoctor : 'Doctor/insert'
+		updateBloodtest : 'bloodTest/updateresultblootest'
 	};
 
 	var services = {};
 	var request = new Request();
-	services.insertDoctor = function(data) {
+	services.updateBloodtest = function(data) {
 		var d = $.Deferred();
-		request.requestAjax(data,servicePath.insertDoctor).done(function(res){
+		request.requestAjax(data,servicePath.updateBloodtest).done(function(res){
 			d.resolve(res);
 		}) ;
 		return d.promise();
@@ -34,7 +34,7 @@ var services = (function() {
 	
 	services.getBloodTestId = function(data) {
 		 var d = $.Deferred();
-		request.requestAjax(data,servicePath.getDoctor).done(function(res){
+		request.requestAjax(data,servicePath.getBloodTestId).done(function(res){
 			d.resolve(res);
 		}) ;
 		return d.promise();

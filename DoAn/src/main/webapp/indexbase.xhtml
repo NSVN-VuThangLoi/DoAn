@@ -22,6 +22,8 @@ ul {
   padding: 0;
 }
 ul li {display: inline-block;}
+ul>li>a:hover{color: white}
+#menu>ul>li>a{text-transform: uppercase;}
 ul li:hover {background: #555;}
 ul li:hover ul {display: block;}
 ul li ul {
@@ -52,11 +54,13 @@ ul li ul li:hover {background: #666;}
 		<script src="../lib/knockout-3.4.0.js"></script>
 		<script src="../lib/jquery-1.11.3.js"></script>
 		<script src="../lib/jquery-ui.js"></script>
+		<script src="../lib/bootstrap.min.js"></script>
+		<link rel="stylesheet" type="text/css"  href="../lib/bootstrap.min.css"/>
     </h:head>
 
     <h:body>
         
-        <div id="header" style="height:100px;background-image: url('../image/healthcare_Banner.jpg'); background-size: 100%; font-size: 25px; font-weight: bold;text-align: center; line-height: 100px; color: white;">
+        <div id="header" style="height:100px;background-image: url('../image/healthcare_Banner.jpg'); background-size: 100%; font-size: 35px; font-weight: bold;text-align: center; line-height: 100px; color: white; font-family: Algerian">
 	       HEALTHCARE
 	    </div>
 	    <div id ="menu">
@@ -67,22 +71,22 @@ ul li ul li:hover {background: #666;}
 		    <li>
 		      <a href="#">SIÊU ÂM</a>
 		      <ul>
-		        <li><a href="../sendsupersonic/index.xhtml">Gửi FILE</a></li>
-		        <li><a href="../resultsupersonic/index.xhtml">Kết Quả</a></li>
+		        <li><a href="../sendsupersonic/index.xhtml">Lấy file</a></li>
+		        <li><a href="../resultsupersonic/index.xhtml">Kết quả</a></li>
 		      </ul>
 		    </li>
 		    <li>
 		      <a href="#">X-QUANG</a>
 		      <ul>
-		        <li><a href="../sendimage/index.xhtml">UPLOAD ẢNH</a></li>
-		        <li><a href="../resultxquang/index.xhtml">Kết Quả</a></li>
+		        <li><a href="../sendimage/index.xhtml">Lấy ảnh</a></li>
+		        <li><a href="../resultxquang/index.xhtml">Kết quả</a></li>
 		      </ul>
 		    </li>
 		    <li>
 		      <a href="#">Sinh hóa máu</a>
 		      <ul>
-		        <li><a href="../sendbloodtest/index.xhtml">upload kết quả xét nghiệm sinh hóa máu</a></li>
-		        <li><a href="../bloodtest/index.xhtml">Kết Quả</a></li>
+		        <li><a href="../sendbloodtest/index.xhtml">Lấy kết quả</a></li>
+		        <li><a href="../bloodtest/index.xhtml">Kết quả</a></li>
 		      </ul>
 		    </li>
 		  </ul>

@@ -133,24 +133,24 @@ function PatientListItem(xquangId, name) {
 				+ '     ' + self.name();
 	}, self);
 }
-var increasement = 10;
-var timer = function(){setInterval(resizeImage($("#image img")), 100);}
-function resizeImage(image){
-	var width = image.width();
-	
-	if(width > 400){
-		clearInterval(timer);
-	}else{
-		var height = image.height();
-		width += increasement;
-		height += increasement;
-		image.width(width);
-		image.height(height);
-	}
-	}
-$(function(){
-	$("#image img").hover(function(){
-		timer();
-		});
-	
-});
+//var increasement = 10;
+//var timer = function(){setInterval(resizeImage($("#image img")), 100);}
+//function resizeImage(image){
+//	var width = image.width();
+//	
+//	if(width > 400){
+//		clearInterval(timer);
+//	}else{
+//		var height = image.height();
+//		width += increasement;
+//		height += increasement;
+//		image.width(width);
+//		image.height(height);
+//	}
+//	}
+//$(function(){
+//	$("#image img").hover(function(){
+//		timer();
+//		});
+//	
+//});

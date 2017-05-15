@@ -1,9 +1,5 @@
-#contentleft{
-	background-color: #ccffff;
-	width: 30%;
-}
-#contentright{
-	width: 70%;
+
+#contentright{ 
 }
 #form{
 	margin-top: 5px;
@@ -12,5 +8,4 @@
 	border-collapse: collapse;
 }
 #bloodTest ,td, th {
-	border: 1px solid black;
 }
