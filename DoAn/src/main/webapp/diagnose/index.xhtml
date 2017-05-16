@@ -13,7 +13,7 @@
 			<script src="../lib/jquery-1.11.3.js"></script>
 			<script src="../lib/jquery-ui.js"></script>
 			<script src="../lib/bootstrap.min.js"></script>
-			<script src="../lib/bootstrap.min.css"></script>
+			<link rel="stylesheet" type="text/css"  href="../lib/bootstrap.min.css"/>
 			
 			<script type="text/javascript" src="viewmodel.js"></script>
 			<script type="text/javascript" src="../common/request.js"></script>
@@ -23,19 +23,20 @@
 		</ui:define>
 		<ui:define name="content">
 		<div id ="function">
-			<button data-bind ="click: goCreateMode">New</button>
-			<button data-bind ="click: register">Save</button>
+			<button data-bind ="click: goCreateMode" class="btn btn-primary" style="margin: 2px 0px">Tạo Mới</button>
+			<button data-bind ="click: register" class="btn btn-primary" style="margin: 2px 0px">Lưu</button>
 		</div>
 		<div>
-				<table id="content-doctor" data-bind ="with: doctor">
+				<table id="content-doctor" data-bind ="with: doctor" >
 									<tr id="form">
 										<td class="required"><h:outputText value="UserId" /></td>
-										<td><input type="text" id="userId" data-bind="value: userId "/></td>
-										<td><button data-bind ="click: $root.search">Tìm Kiếm</button></td>
+										<td><input class='form-control' type="text" id="userId" data-bind="value: userId "/>
+										</td>
+										<td><button data-bind ="click: $root.search" class="btn btn-primary">Tìm Kiếm</button></td>
 									</tr>
 									<tr id="form">
 										<td class="required"><h:outputText value="Họ và Tên" /></td>
-										<td><input type="text" id="name" data-bind=" value: name " /></td>
+										<td><input class='form-control' type="text" id="name" data-bind=" value: name " /></td>
 									</tr>
 									<tr id="form">
 										<td class="required"><h:outputText value="Chuẩn Đoán" /></td>
@@ -47,19 +48,19 @@
                                     <td><h:outputText value="Yêu cầu xét nghiệm"/></td>
                                     <td>
                                         <label>
-                                            <input type="checkbox" value="true" data-bind="checked: supersonic"/><h:outputText value="Siêu Âm"/>                                      
+                                            <input  type="checkbox" value="true" data-bind="checked: supersonic"/><h:outputText value="Siêu Âm"/>                                      
                                         </label>
                                         <label>
-                                            <input type="checkbox" value="true" data-bind="checked: takeXQuang"/><h:outputText value="Chụp X-quang"/>                                           
+                                            <input  type="checkbox" value="true" data-bind="checked: takeXQuang"/><h:outputText value="Chụp X-quang"/>                                           
                                         </label>
+<!--                                         <label> -->
+<!--                                             <input  type="checkbox" value="true" data-bind="checked: ctScanner"/><h:outputText value="CT-Scanner"/>                                            -->
+<!--                                         </label> -->
+<!--                                         <label> -->
+<!--                                             <input  type="checkbox" value="true" data-bind="checked: takeXQuang"/><h:outputText value="Chụp X-quang"/>                                            -->
+<!--                                         </label> -->
                                         <label>
-                                            <input type="checkbox" value="true" data-bind="checked: ctScanner"/><h:outputText value="CT-Scanner"/>                                           
-                                        </label>
-                                        <label>
-                                            <input type="checkbox" value="true" data-bind="checked: takeXQuang"/><h:outputText value="Chụp X-quang"/>                                           
-                                        </label>
-                                        <label>
-                                            <input type="checkbox" value="true" data-bind="checked: bloodtest"/><h:outputText value="Hóa sinh máu"/>                                           
+                                            <input  type="checkbox" value="true" data-bind="checked: bloodtest"/><h:outputText value="Hóa sinh máu"/>                                           
                                         </label>
                                     </td>
                                 </tr>

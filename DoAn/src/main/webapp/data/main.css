@@ -1,13 +1,7 @@
-#contentleft{
-	background-color: #ccffff;
-	width: 30%;
-}
-#contentright{
-	width: 70%;
-}
-#content-doctor{
-	margin-top: -75px;
-}
 #form{
 	margin-top: 5px;
+}
+#contentright{
+	float: left;
+	margin-top: 40px;
 }

@@ -70,9 +70,10 @@ ScreenModel.prototype.deletePatient = function() {
 }
 function Patient(){
 		var self = this;
+		var request = new Request();
 		self.userId = ko.observable('');
 		self.name = ko.observable('');
-		self.birthDay = ko.observable(new Date());
+		self.birthDay = ko.observable(request.formatDate(new Date(), 'yyyy-MM-dd'));
 		self.address = ko.observable('');
 		self.email = ko.observable('');
 		self.password = ko.observable('');
@@ -82,9 +83,10 @@ function Patient(){
 }
 Patient.prototype.clear = function(){
 	var self = this;
+	var request = new Request();
 	self.userId('');
 	self.name('');
-	self.birthDay('');
+	self.birthDay(request.formatDate(new Date(), 'yyyy-MM-dd'));
 	self.address('');
 	self.email('');
 	self.password('');

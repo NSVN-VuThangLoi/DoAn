@@ -9,11 +9,11 @@
 	margin-top: 5px;
 }
 #form{
-	margin-top: 5px;
+	margin-top: 10px;
 }
 #function{
 	margin-top: 10px;
 }
 #content-doctor td:first-child{ text-align: left; font-weight: bold}
-#content-doctor input[type=text]{height: 20px; width: 66%;}
+#content-doctor input[type=text]{height: 30px; width: 66%;}
 #content-doctor input, textarea{border-radius: 5px; border: 1px solid gray}

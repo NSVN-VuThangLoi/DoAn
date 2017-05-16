@@ -13,5 +13,5 @@
 #contentleft #contract-list{height: 400px; }
 #contentright{ width:  350px;}
 #contentright .form th{ text-align: left;}
-#contentright .form input[type=text],input[type=date] {width: 100%; height: 20px;}
+#contentright .form input[type=text],input[type=date] {width: 100%; height: 30px;}
 #image{width: 50%;}

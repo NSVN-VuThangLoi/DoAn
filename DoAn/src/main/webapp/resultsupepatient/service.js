@@ -4,8 +4,8 @@ var services = (function() {
 
 	var servicePath = {
 		getAllDoctorId : 'supersonic/getConformUserId',
-		getSupersonicId:  "supersonic/getSupersonicId",
-		updateSupersonic : 'supersonic/updateSupersonic'
+		getSupersonicId:  "supersonic/getSupersonicId"
+//		updateSupersonic : 'supersonic/updateSupersonic'
 	};
 
 	var services = {};

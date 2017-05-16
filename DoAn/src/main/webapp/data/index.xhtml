@@ -14,7 +14,7 @@
 			<script src="../lib/jquery-1.11.3.js"></script>
 			<script src="../lib/jquery-ui.js"></script>
 			<script src="../lib/bootstrap.min.js"></script>
-			<script src="../lib/bootstrap.min.css"></script>
+			<link rel="stylesheet" type="text/css"  href="../lib/bootstrap.min.css"/>
 				
 			<script type="text/javascript" src="viewmodel.js"></script>
 			<script type="text/javascript" src="../common/request.js"></script>
@@ -24,76 +24,74 @@
 		</ui:define>
 		<ui:define name="content">
 		<div id ="function">
-			<button data-bind ="click: goCreateMode">New</button>
-			<button data-bind ="click: register">Save</button>
-		<button data-bind ="click: deleteDoctor">Delete</button>
+			<button data-bind ="click: goCreateMode" class="btn btn-primary" style="margin: 2px 0px">Tạo Mới</button>
+			<button data-bind ="click: register" class="btn btn-primary" style="margin: 2px 0px">Lưu</button>
+		<button data-bind ="click: deleteDoctor" class="btn btn-primary" style="margin: 2px 0px">Xoá</button>
 		</div>
 		<div>
-				<table  >
+				<table>
 					<tr>
 						<td id="contentleft" data-bind ="with: listDoctor">
-								<div><h:outputText value="Danh Sách Bác Sỹ" /></div>
+								<h4><h:outputText value="Danh Sách Bác Sỹ" /></h4>
 								<select id="contract-list" size="20"
 									data-bind="
                                  options: items, 
                                  value: selectedCode,
                                  optionsText: 'displayText', 
-                                 optionsValue: 'userId'"></select> 
+                                 optionsValue: 'userId'" class="form-control" style="min-width: 300px; width: 300px; min-height: 522px;"></select> 
 							
  						</td> 
 						<td id="contentright">
-							<div >
-								<table id="content-doctor" data-bind ="with: doctor" >
+								<table id="content-doctor" data-bind ="with: doctor" class='table table-responsive'>
 									<tr id="form">
-										<th class="required"><h:outputText value="UserId" /></th>
-										<td><input type="text" id="UserId" data-bind="value: userId "/></td>
+										<th class="required"><h:outputText value="Mã bác sĩ" /></th>
+										<td><input class='form-control' type="text" id="UserId" data-bind="value: userId "/></td>
 									</tr>
 									<tr id="form">
-										<th class="required"><h:outputText value="Name" /></th>
-										<td><input type="text" id="name" data-bind=" value: name " /></td>
+										<th class="required"><h:outputText value="Họ và tên" /></th>
+										<td><input class='form-control' type="text" id="name" data-bind=" value: name " /></td>
 									</tr>
 									<tr id="form">
-										<th class="required"><h:outputText value="BirthDay" /></th>
-										<td><input type="date" id="birthDay" data-bind=" value: birthDay"/></td>
+										<th class="required"><h:outputText value="Ngày sinh" /></th>
+										<td><input class='form-control' type="date" id="birthDay" data-bind=" value: birthDay"/></td>
 									</tr>
 									<tr id="form">
-										<th class="required"><h:outputText value="Address" /></th>
-										<td><input type="text" id="address" data-bind=" value: address "/></td>
+										<th class="required"><h:outputText value="Địa chỉ" /></th>
+										<td><input class='form-control' type="text" id="address" data-bind=" value: address "/></td>
 									</tr>
 									<tr id="form">
 										<th class="required"><h:outputText value="Email" /></th>
-										<td><input type="text" id="email" data-bind=" value: email " /></td>
+										<td><input class='form-control' type="text" id="email" data-bind=" value: email " /></td>
 									</tr>
 									<tr>
-                                    <th><h:outputText value="Gender"/></th>
+                                    <th><h:outputText value="Giới tính"/></th>
                                     <td>
                                         <label>
-                                            <input type="radio" value="true" data-bind="checked: gender"/><h:outputText value="Male"/>                                      
+                                            <input type="radio" value="true" data-bind="checked: gender"/><h:outputText value="Nam"/>                                      
                                         </label>
                                         <label>
-                                            <input type="radio" value="false" data-bind="checked: gender"/><h:outputText value="Female"/>                                           
+                                            <input type="radio" value="false" data-bind="checked: gender"/><h:outputText value="Nữ"/>                                           
                                         </label>
                                     </td>
                                 </tr>
 									<tr id="form">
-										<th class="required"><h:outputText value="Phone Number" /></th>
-										<td><input type="text" data-bind=" value: phoneNumber " /></td>
+										<th class="required"><h:outputText value="Số điện thoại" /></th>
+										<td><input class='form-control' type="text" data-bind=" value: phoneNumber " /></td>
 									</tr>
 									<tr id="form">
-										<th class="required"><h:outputText value="Position" /></th>
-										<td><input type="text" data-bind=" value: position " /></td>
+										<th class="required"><h:outputText value="Chức vụ" /></th>
+										<td><input class='form-control' type="text" data-bind=" value: position " /></td>
 									</tr>
 									<tr id="form">
-										<th class="required"><h:outputText value="Password" /></th>
-										<td><input type="password" id="password" data-bind="value: password "/></td>
+										<th class="required"><h:outputText value="Mật khẩu" /></th>
+										<td><input class='form-control' type="password" id="password" data-bind="value: password "/></td>
 									</tr>
 									<tr id="form">
 										<th class="required"><h:outputText
-												value="confirmPassword" /></th>
-										<td><input type="password" id="confirmPassword" data-bind="value: confirmPassword" /></td>
+												value="Nhập lại mật khẩu" /></th>
+										<td><input class='form-control' type="password" id="confirmPassword" data-bind="value: confirmPassword" /></td>
 									</tr>
 								</table>
-							</div>
 						</td>
 					</tr>
 				</table>

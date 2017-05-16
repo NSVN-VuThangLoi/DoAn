@@ -80,9 +80,10 @@ function Doctor (){
 }
 Doctor.prototype.clear = function(){
 	var self = this;
+	var request = new Request();
 	self.userId('');
 	self.name('');
-	self.birthDay('');
+	self.birthDay(request.formatDate(new Date(), 'yyyy-MM-dd'));
 	self.address('');
 	self.email('');
 	self.password('');

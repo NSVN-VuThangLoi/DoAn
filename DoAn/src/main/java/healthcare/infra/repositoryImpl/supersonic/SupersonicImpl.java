@@ -46,11 +46,12 @@ public class SupersonicImpl extends DataConnection implements SupersonicReposito
 	}
 	@Override
 	public List<SupersonicDto> getUserId(String userId) {
-		List<SupersonicEntity> supersonicEntitys = this.entityManager.createNamedQuery(FINDUSERID, SupersonicEntity.class).setParameter("userId", userId).getResultList();
+		List<SupersonicEntity> supersonicEntitys = this.entityManager.createQuery(FINDUSERID, SupersonicEntity.class).setParameter("userId", userId).getResultList();
 		if(supersonicEntitys != null){
 			List<SupersonicDto> supersonicDtos = new ArrayList<>();
 			for(SupersonicEntity entity : supersonicEntitys){
 				SupersonicDto supersonicDto = new SupersonicDto();
+				supersonicDto.setSupersonicId(entity.getSupersonicId());
 				supersonicDto.setVersion(entity.getVersion());
 				supersonicDto.setUserId(entity.getUserId());
 				supersonicDto.setDoctorId(entity.getDoctorId());
@@ -171,6 +172,7 @@ public class SupersonicImpl extends DataConnection implements SupersonicReposito
 			dto.setAddressPatient(supersonicEntity.getAddressPatient());
 			dto.setAge(supersonicEntity.getAge());
 			dto.setDiagnose(supersonicEntity.getDiagnose());
+//			dto.setUrlImage(supersonicEntity.getUrlImage());
 			dto.setResult(supersonicEntity.getResult());
 			dto.setIsResult(supersonicEntity.getIsResult());
 			if(supersonicEntity.getUrlImage() != null){

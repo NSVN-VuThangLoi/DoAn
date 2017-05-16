@@ -23,19 +23,19 @@
 		</ui:define>
 		<ui:define name="content">
 		<div id ="function">
-			<button data-bind ="click: register" class="btn btn-primary">Save</button>
+			<button data-bind ="click: register" class="btn btn-primary" style="margin: 2px 0px;">Lưu</button>
 		</div>
 		<div>
-				<table id="tblMain">
+				<table id="tblMain" class="table">
 					<tr>
 						<td id="contentleft" data-bind ="with: listCare">
-								<div><h:outputText value="Danh Sách Hồ Sơ Khám" /></div>
+								<h4><h:outputText value="Danh Sách Hồ Sơ Khám" /></h4>
 								<select id="contract-list" size="40"
 									data-bind="
                                  options: items, 
                                  value: selectedCode,
                                  optionsText: 'displayText', 
-                                 optionsValue: 'xquangId'" class="form-control" style="min-width: 300px; width: 300px;"></select> 
+                                 optionsValue: 'xquangId'" class="form-control" style="min-width: 300px; width: 300px; min-height: 200px;"></select> 
 							
  						</td> 
 						<td id="contentright">
