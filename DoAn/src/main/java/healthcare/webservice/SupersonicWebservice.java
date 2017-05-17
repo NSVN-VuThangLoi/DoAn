@@ -61,13 +61,11 @@ public class SupersonicWebservice {
 				
 		}
 		for (InputPart inputPart : inputParts) {
-
 			try {
-
 				MultivaluedMap<String, String> header = inputPart.getHeaders();
 				fileName = getFileName(header);
 
-				// convert the uploaded file to inputstream
+				// convert the uploaded file to inputStream
 				InputStream inputStream = inputPart.getBody(InputStream.class, null);
 
 				byte[] bytes = IOUtils.toByteArray(inputStream);

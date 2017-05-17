@@ -24,6 +24,7 @@ ScreenModel.prototype.start = function() {
 };
 ScreenModel.prototype.register = function() {
 	var self = this;
+	if(self.patient().result() != null){
 		var data = {
 				xquangId : screen.xquangId(),
 				result: self.patient().result()
@@ -35,6 +36,9 @@ ScreenModel.prototype.register = function() {
 		}).fail(function(res){
 			alert(res.result);
 		});
+	}else{
+		alert("Bạn chưa điền kết luận khám. Bạn vui lòng nhập và lưu lại!");
+	}	
 }
 function Patient(){
 		var self = this;

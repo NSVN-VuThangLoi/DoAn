@@ -23,7 +23,9 @@ ScreenModel.prototype.start = function() {
 	return dfd.promise();
 };
 ScreenModel.prototype.register = function() {
+	
 	var self = this;
+	if(self.patient().result() != null){
 		var data = {
 				supersonicId : screen.supersonicId(),
 				result: self.patient().result()
@@ -34,6 +36,10 @@ ScreenModel.prototype.register = function() {
 		}).fail(function(res){
 			alert(res.result);
 		});
+	}else{
+		alert("Bạn chưa nhập kết luận khám. Bạn vui lòng nhập lại và lưu kết quả");
+	}
+		
 }
 function Patient(){
 		var self = this;

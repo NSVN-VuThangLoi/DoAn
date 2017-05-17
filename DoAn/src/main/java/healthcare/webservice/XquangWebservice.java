@@ -55,24 +55,18 @@ public class XquangWebservice {
 		List<InputPart> inputXquangId = uploadForm.get("xquangId");
 		for (InputPart inputPart : inputXquangId) {
 				InputStream inputStream = inputPart.getBody(InputStream.class,null);
-
 				byte [] bytes = IOUtils.toByteArray(inputStream);
 				xquangId = new String(bytes);
-				
 		}
 		for (InputPart inputPart : inputParts) {
-
 			try {
-
 				MultivaluedMap<String, String> header = inputPart.getHeaders();
 				fileName = getFileName(header);
-
 				// convert the uploaded file to inputstream
 				InputStream inputStream = inputPart.getBody(InputStream.class, null);
 
 				byte[] bytes = IOUtils.toByteArray(inputStream);
 
-				
 				fileName = SAVE_FOLDER + xquangId + ".dcm";
 				String fileUrl = URL_IMAGE + xquangId +".PNG";
 				writeFile(bytes, fileName);
@@ -86,9 +80,7 @@ public class XquangWebservice {
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
-
 		}
-
 		return Response.status(200).entity("uploadFile is called, Uploaded file name : " + fileName).build();
 	}
 	
