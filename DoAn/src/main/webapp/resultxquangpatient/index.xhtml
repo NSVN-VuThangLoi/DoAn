@@ -18,28 +18,28 @@
 			<script type="text/javascript" src="viewmodel.js"></script>
 			<script type="text/javascript" src="../common/request.js"></script>
 			<script type="text/javascript" src="service.js"></script>
-				<script type="text/javascript" src="start.js"></script>
+			<script type="text/javascript" src="start.js"></script>
 			<link rel="stylesheet" type="text/css" href="main.css" />
 		</ui:define>
 		<ui:define name="content">
 		<div id ="function">
-<!-- 			<button data-bind ="click: register" class="btn btn-primary" style="margin: 2px 0px;">Lưu</button> -->
+<!-- 			<button data-bind ="click: register" class="btn btn-primary" style="margin: 2px 0px">Lưu</button> -->
 		</div>
 		<div>
-				<table id="tblMain" class="table">
+				<table id="tblMain" class='table'>
 					<tr>
 						<td id="contentleft" data-bind ="with: listCare">
-								<h4><h:outputText value="Danh Sách Hồ Sơ Khám" /></h4>
-								<select id="contract-list" size="40"
+								<h4><h:outputText value="Danh Sách Hồ Sơ Khám"/></h4>
+								<select id="contract-list" size="50"
 									data-bind="
                                  options: items, 
                                  value: selectedCode,
                                  optionsText: 'displayText', 
-                                 optionsValue: 'xquangId'" class="form-control" style="min-width: 300px; width: 300px; min-height: 200px;"></select> 
+                                 optionsValue: 'xquangId'" class="form-control"></select> 
 							
  						</td> 
 						<td id="contentright">
-								<table id="content-doctor" data-bind ="with: patient" class="table">
+								<table id="content-doctor" data-bind ="with: patient"  class='table'>
 									<tr class="form">
 										<th class="required"><h:outputText value="UserId" /></th>
 										<td><input class='form-control' type="text" id="UserId" data-bind="value: userId "/></td>
@@ -60,17 +60,17 @@
 										<th class="required"><h:outputText value="Ngày khám" /></th>
 										<td><input class='form-control' type="date" id="birthDay" data-bind=" value: dayCare"/></td>
 									</tr>
-									<tr class="form">
-                                    <th><h:outputText value="Giới Tính"/></th>
-                                    <td>
-                                        <label>
-                                            <input type="radio" value="true" data-bind="checked: gender"/><h:outputText value="Nam"/>                                      
-                                        </label>
-                                        <label>
-                                            <input type="radio" value="false" data-bind="checked: gender"/><h:outputText value="Nữ"/>                                           
-                                        </label>
-                                    </td>
-                                </tr>
+<!-- 									<tr class="form"> -->
+<!--                                     <th><h:outputText value="Giới Tính"/></th> -->
+<!--                                     <td> -->
+<!--                                         <label> -->
+<!--                                             <input  type="radio" value="true" data-bind="checked: gender"/><h:outputText value="Nam"/>                                       -->
+<!--                                         </label> -->
+<!--                                         <label> -->
+<!--                                             <input type="radio" value="false" data-bind="checked: gender"/><h:outputText value="Nữ"/>                                            -->
+<!--                                         </label> -->
+<!--                                     </td> -->
+<!--                                 </tr> -->
 									<tr class="form">
 										<th class="required"><h:outputText value="Chẩn Đoán" /></th>
 										<td>

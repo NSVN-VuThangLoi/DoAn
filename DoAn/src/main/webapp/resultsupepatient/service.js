@@ -28,6 +28,8 @@ var services = (function() {
 			}
 			
 			d.resolve(patterns);
+		}).fail(function(res) {
+			alert(res);
 		}) ;
 		return d.promise();
 	};

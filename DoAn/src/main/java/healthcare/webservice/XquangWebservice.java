@@ -122,7 +122,7 @@ public class XquangWebservice {
 	@Path("/getConformUserId")
 	public List<XquangDto> getConformUserId(){
 		String userId = userLogin.getUserId();
-		return find.getUserId(userId);
+			return find.getUserId(userId);
 	}
 	
 	// get uploaded filename, is there a easy way in RESTEasy?

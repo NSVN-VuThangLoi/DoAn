@@ -2,7 +2,7 @@ var screen;
 function ScreenModel() {
 	var self = this;
 	screen = self;
-	self.supersonicId = ko.observable('');
+	self.xquangId = ko.observable('');
 	self.urlImage = ko.observable("");
 	self.patient = ko.observable(new Patient());
 	self.listCare = ko.observable(new listCare());
@@ -24,16 +24,21 @@ ScreenModel.prototype.start = function() {
 };
 //ScreenModel.prototype.register = function() {
 //	var self = this;
+//	if(self.patient().result() != null){
 //		var data = {
-//				supersonicId : screen.supersonicId(),
+//				xquangId : screen.xquangId(),
 //				result: self.patient().result()
 //		}
-//		services.updateSupersonic(data).done(function(res) {
+//		services.updateXquang(data).done(function(res) {
 //			alert(res);
 //			self.listCare().reload();
+////			self.listCare().select(res.userId);
 //		}).fail(function(res){
 //			alert(res.result);
 //		});
+//	}else{
+//		alert("Bạn chưa điền kết luận khám. Bạn vui lòng nhập và lưu lại!");
+//	}	
 //}
 function Patient(){
 		var self = this;
@@ -54,11 +59,11 @@ Patient.prototype.clear = function(){
 	self.address('');
 	self.gender('true');
 }
-Patient.prototype.reload = function(supersonicId) {
+Patient.prototype.reload = function(xquangId) {
 	var self = this;
 	var request = new Request();
 	var dfd = $.Deferred();
-	services.getSupersonicId(supersonicId).done(function(res) {
+	services.getXquangId(xquangId).done(function(res) {
 		self.userId(res.userId);
 		self.name(res.name);
 		var date = new Date(res.dayCare);
@@ -95,7 +100,7 @@ function listCare(){
 			self.selectFirst();
 			return;
 		}
-		screen.supersonicId(selectedCode);
+		screen.xquangId(selectedCode);
 		self.selectionChangedEvent.fire(selectedCode);
 	});
 	self.unselecting = ko.observable(false);
@@ -133,24 +138,24 @@ function PatientListItem(xquangId, name) {
 				+ '     ' + self.name();
 	}, self);
 }
-var increasement = 10;
-var timer = function(){setInterval(resizeImage($("#image img")), 100);}
-function resizeImage(image){
-	var width = image.width();
-	
-	if(width > 400){
-		clearInterval(timer);
-	}else{
-		var height = image.height();
-		width += increasement;
-		height += increasement;
-		image.width(width);
-		image.height(height);
-	}
-	}
-$(function(){
-	$("#image img").hover(function(){
-		timer();
-		});
-	
-});
+//var increasement = 10;
+//var timer = function(){setInterval(resizeImage($("#image img")), 100);}
+//function resizeImage(image){
+//	var width = image.width();
+//	
+//	if(width > 400){
+//		clearInterval(timer);
+//	}else{
+//		var height = image.height();
+//		width += increasement;
+//		height += increasement;
+//		image.width(width);
+//		image.height(height);
+//	}
+//	}
+//$(function(){
+//	$("#image img").hover(function(){
+//		timer();
+//		});
+//	
+//});

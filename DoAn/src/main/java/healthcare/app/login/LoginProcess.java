@@ -30,6 +30,8 @@ public class LoginProcess {
 				result.setNameNotice("Đăng nhập thành công");
 				userInfoLogin.setDoctorId(dto.getDoctorId());
 				userInfoLogin.setIsDoctor(true);
+				userInfoLogin.setUserId(null);
+				userInfoLogin.setIsPatient(false);
 			}else{
 				result.setNameNotice("Bạn nhập sai mật khẩu");
 			}
@@ -48,6 +50,8 @@ public class LoginProcess {
 				result.setNameNotice("Đăng nhập thành công");
 				userInfoLogin.setUserId(dto.getUserId());
 				userInfoLogin.setIsPatient(true);
+				userInfoLogin.setDoctorId(null);
+				userInfoLogin.setIsDoctor(false);
 			}else{
 				result.setNameNotice("Bạn nhập sai mật khẩu");
 			}

@@ -16,11 +16,13 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.MultivaluedMap;
 import javax.ws.rs.core.Response;
+import javax.ws.rs.ext.ExceptionMapper;
 
 import org.apache.commons.io.IOUtils;
 import org.jboss.resteasy.plugins.providers.multipart.InputPart;
 import org.jboss.resteasy.plugins.providers.multipart.MultipartFormDataInput;
 
+import healthcare.app.common.BusinessException;
 import healthcare.app.common.UserLogin;
 import healthcare.app.readfile.ReadFile;
 import healthcare.app.supersonic.FinderSupersonic;
@@ -30,7 +32,7 @@ import healthcare.domain.supersonic.SupersonicDto;
 
 @Path("/supersonic")
 @Stateless
-public class SupersonicWebservice {
+public class SupersonicWebservice implements ExceptionMapper<Throwable> {
 	@Inject
 	private ReadFile readfile;
 	@Inject 
@@ -126,9 +128,13 @@ public class SupersonicWebservice {
 	
 	@POST
 	@Path("/getConformUserId")
-	public List<SupersonicDto> getConformUserId(){
+	public List<SupersonicDto> getConformUserId() throws Exception{
 		String userId = userLogin.getUserId();
-		return find.getUserId(userId);
+		if(userId == null){
+			 throw new BusinessException("loi roi");
+		}else{
+			return find.getUserId(userId);
+		}
 	}
 	
 	// get uploaded filename, is there a easy way in RESTEasy?
@@ -160,5 +166,11 @@ public class SupersonicWebservice {
 		fop.flush();
 		fop.close();
 
+	}
+
+	@Override
+	public Response toResponse(Throwable exception) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }
