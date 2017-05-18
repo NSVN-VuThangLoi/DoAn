@@ -39,7 +39,7 @@ public class DoctorEntity implements Serializable {/**
 	private Date birthDay;
 	
 	@Column(name = "phone_number")
-	private Integer phoneNumber;
+	private String phoneNumber;
 	
 	@Column(name = "email")
 	private String email;
