@@ -4,7 +4,7 @@ var services = (function() {
 
 	var servicePath = {
 		getAllDoctorId : 'xquang/getConformUserId',
-		getXquangId:  "xquang/getXquangId",
+		getXquangId:  "xquang/getXquangId"
 //		updateXquang : 'xquang/updateXquang'
 	};
 
@@ -18,19 +18,19 @@ var services = (function() {
 //		return d.promise();
 //	};
 //	
-//	services.getAllDoctorId = function() {
-//		 var d = $.Deferred();
-//		 var i;
-//		request.requestAjax(null,servicePath.getAllDoctorId).done(function(data){
-//			var patterns = [];
-//			for(i = 0; i < data.length; i++){
-//				patterns.push(new PatientListItem(data[i].xquangId,request.formatDate(new Date(data[i].dayCare), 'yyyy-MM-dd')));
-//			}
-//			
-//			d.resolve(patterns);
-//		}) ;
-//		return d.promise();
-//	};
+	services.getAllDoctorId = function() {
+		 var d = $.Deferred();
+		 var i;
+		request.requestAjax(null,servicePath.getAllDoctorId).done(function(data){
+			var patterns = [];
+			for(i = 0; i < data.length; i++){
+				patterns.push(new PatientListItem(data[i].xquangId,request.formatDate(new Date(data[i].dayCare), 'yyyy-MM-dd')));
+			}
+			
+			d.resolve(patterns);
+		}) ;
+		return d.promise();
+	};
 	
 	services.getXquangId = function(data) {
 		 var d = $.Deferred();

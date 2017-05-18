@@ -32,6 +32,8 @@ public class LoginProcess {
 				userInfoLogin.setIsDoctor(true);
 				userInfoLogin.setUserId(null);
 				userInfoLogin.setIsPatient(false);
+				userInfoLogin.setIsNurse(null);
+				userInfoLogin.setIsNurse(false);
 			}else{
 				result.setNameNotice("Bạn nhập sai mật khẩu");
 			}
@@ -52,6 +54,8 @@ public class LoginProcess {
 				userInfoLogin.setIsPatient(true);
 				userInfoLogin.setDoctorId(null);
 				userInfoLogin.setIsDoctor(false);
+				userInfoLogin.setNurseId(null);
+				userInfoLogin.setIsNurse(false);
 			}else{
 				result.setNameNotice("Bạn nhập sai mật khẩu");
 			}

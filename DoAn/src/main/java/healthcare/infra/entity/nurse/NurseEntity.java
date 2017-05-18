@@ -14,7 +14,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 @Entity
-@Table(name = "Doctor")
+@Table(name = "Nurse")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -29,7 +29,7 @@ public class NurseEntity implements Serializable{
 
 	@Id
 	@Column(name = "nurse_id")
-	private String doctorId;
+	private String nurseId;
 
 	@Column(name = "password")
 	private String password;
@@ -41,7 +41,7 @@ public class NurseEntity implements Serializable{
 	private Date birthDay;
 	
 	@Column(name = "phone_number")
-	private Integer phoneNumber;
+	private String phoneNumber;
 	
 	@Column(name = "email")
 	private String email;

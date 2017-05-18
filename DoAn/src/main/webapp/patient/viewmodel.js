@@ -25,14 +25,14 @@ ScreenModel.prototype.goCreateMode = function() {
 }
 ScreenModel.prototype.register = function() {
 	var self = this;
-	if(self.patient().birthDay() ==""){
-		alert("Bạn chưa nhập ngày sinh");
-	}else if(self.patient().userId() ==""){
-		alert("Bạn chưa nhập userId");
+	if(self.patient().userId() ==""){
+		alert("Bạn chưa nhập mã bệnh nhân");
 	}else if(self.patient().name() ==""){
-		alert("Bạn chưa nhập name");
+		alert("Bạn chưa nhập họ và tên");
 	}else if(self.patient().password() ==""){
-		alert("Bạn chưa nhập password");
+		alert("Bạn chưa nhập mật khẩu");
+	}else if(self.patient().password() != self.patient().confirmPassword()){
+		alert("Mật khẩu và nhập lại mật khẩu không giống nhau. Vui lòng nhập lại!");
 	}else{
 		var data = {
 				userId : self.patient().userId(),
@@ -153,8 +153,11 @@ ListPatient.prototype.reload = function(){
 }
 ListPatient.prototype.selectFirst = function() {
 	var self = this;
-	self.select(self.items()[0].userId());
-
+	if(self.items().length != 0){
+		self.select(self.items()[0].userId());
+	}else{
+		alert("Bạn chưa tạo tài khoản nào!");
+	}
 };
 ListPatient.prototype.select = function(code) {
 	var self = this;

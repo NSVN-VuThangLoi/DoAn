@@ -32,7 +32,7 @@ import healthcare.domain.supersonic.SupersonicDto;
 
 @Path("/supersonic")
 @Stateless
-public class SupersonicWebservice implements ExceptionMapper<Throwable> {
+public class SupersonicWebservice{
 	@Inject
 	private ReadFile readfile;
 	@Inject 
@@ -168,9 +168,9 @@ public class SupersonicWebservice implements ExceptionMapper<Throwable> {
 
 	}
 
-	@Override
-	public Response toResponse(Throwable exception) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+//	@Override
+//	public Response toResponse(Throwable exception) {
+//		// TODO Auto-generated method stub
+//		return null;
+//	}
 }

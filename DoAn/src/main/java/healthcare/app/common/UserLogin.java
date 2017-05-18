@@ -20,7 +20,11 @@ public class UserLogin implements Serializable{
 	
 	private String doctorId;
 	
+	private String nurseId;
+	
 	private Boolean isPatient = false;
 	
 	private Boolean isDoctor = false;
+	
+	private Boolean isNurse = false;
 }

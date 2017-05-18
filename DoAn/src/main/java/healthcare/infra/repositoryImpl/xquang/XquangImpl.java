@@ -46,7 +46,7 @@ public class XquangImpl extends DataConnection implements XquangRepository {
 	}
 	@Override
 	public List<XquangDto> getUserId(String userId) {
-		List<XquangEntity> xquangEntitys = this.entityManager.createNamedQuery(FINDUSERID, XquangEntity.class).setParameter("userId", userId).getResultList();
+		List<XquangEntity> xquangEntitys = this.entityManager.createQuery(FINDUSERID, XquangEntity.class).setParameter("userId", userId).getResultList();
 		if(xquangEntitys != null){
 			List<XquangDto> xquangDtos = new ArrayList<>();
 			for(XquangEntity entity : xquangEntitys){

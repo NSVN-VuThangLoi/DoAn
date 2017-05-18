@@ -25,10 +25,8 @@ ScreenModel.prototype.goCreateMode = function() {
 }
 ScreenModel.prototype.register = function() {
 	var self = this;
-	if(self.doctor().birthDay() ==""){
-		alert("Bạn chưa nhập ngày sinh");
-	}else if(self.doctor().userId() ==""){
-		alert("Bạn chưa nhập mã bác sĩ");
+	if(self.doctor().userId() ==""){
+		alert("Bạn chưa nhập Mã y tá");
 	}else if(self.doctor().name() ==""){
 		alert("Bạn chưa nhập họ và tên");
 	}else if(self.doctor().password() ==""){
@@ -37,7 +35,7 @@ ScreenModel.prototype.register = function() {
 		alert("Mật khẩu và nhập lại mật khẩu không giống nhau. Vui lòng nhập lại!");
 	}else{
 		var data = {
-				doctorId : self.doctor().userId(),
+				nurseId : self.doctor().userId(),
 				name: self.doctor().name(),
 				birthDay: self.doctor().birthDay(),
 				password : self.doctor().password(),
@@ -47,11 +45,11 @@ ScreenModel.prototype.register = function() {
 				addressWord: self.doctor().address(),
 				sex: self.doctor().gender()	
 		}
-		services.insertDoctor(data).done(function(res) {
+		services.insertNurse(data).done(function(res) {
 			alert(res.result);
 			self.doctor().clear();
-			self.listDoctor().reload().done(function(){
-				self.listDoctor().select(res.doctorId);
+			self.listDoctor().reload().done(function() {
+				self.listDoctor().select(res.nurseId);
 			});
 		}).fail(function(res){
 			alert(res.result);
@@ -60,7 +58,7 @@ ScreenModel.prototype.register = function() {
 }
 ScreenModel.prototype.deleteDoctor = function() {
 	var self = this;
-	services.removeDoctor(self.doctor().userId()).done(function(res) {
+	services.removeNurse(self.doctor().userId()).done(function(res) {
 		alert(res);
 		self.listDoctor().reload();
 	}).fail(function(res){
@@ -99,8 +97,8 @@ Doctor.prototype.reload = function(userId) {
 	var self = this;
 	var request = new Request();
 	var dfd = $.Deferred();
-	services.getDoctor(userId).done(function(res) {
-		self.userId(res.doctorId);
+	services.getNurse(userId).done(function(res) {
+		self.userId(res.nurseId);
 		self.name(res.name);
 		var date = new Date(res.birthDay);
 		self.birthDay(request.formatDate(date, 'yyyy-MM-dd'));
@@ -145,7 +143,7 @@ function ListDoctor(){
 ListDoctor.prototype.reload = function(){
 	var self = this;
 	var dfd = $.Deferred();
-	services.getAllDoctor().done(function(patterns) {
+	services.getAllNurse().done(function(patterns) {
 		self.items(patterns);
 		dfd.resolve();
 	});

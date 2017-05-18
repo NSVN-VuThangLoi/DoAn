@@ -14,8 +14,8 @@ public class FinderDoctor {
 	public List<DoctorDto> getAllDoctor(){
 		return doctorRep.getAllDoctor();
 	}
-	public DoctorDto getDoctor(String userId){
-		return doctorRep.getDoctor(userId);
+	public DoctorDto getDoctor(String doctorId){
+		return doctorRep.getDoctor(doctorId);
 	}
 
 }
