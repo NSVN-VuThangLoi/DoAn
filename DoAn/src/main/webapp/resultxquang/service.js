@@ -24,7 +24,7 @@ var services = (function() {
 		request.requestAjax(null,servicePath.getAllDoctorId).done(function(data){
 			var patterns = [];
 			for(i = 0; i < data.length; i++){
-				patterns.push(new PatientListItem(data[i].xquangId,request.formatDate(new Date(data[i].dayCare), 'yyyy-MM-dd')));
+				patterns.push(new PatientListItem(data[i].xquangId,data[i].name,request.formatDate(new Date(data[i].dayCare), 'yyyy-MM-dd')));
 			}
 			
 			d.resolve(patterns);

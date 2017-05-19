@@ -134,12 +134,13 @@ listFile.prototype.select = function(code) {
 	var self = this;
 	self.selectedCode(code);
 };
-function DoctorListItem(xquangId, name) {
+function DoctorListItem(xquangId, name,dayCare) {
 	var self = this;
 	self.xquangId = ko.observable(xquangId);
 	self.name = ko.observable(name);
+	self.dayCare = ko.observable(dayCare);
 	self.displayText = ko.computed(function() {
-		return self.xquangId()
-				+ '     ' + self.name();
+		return self.name()
+				+ '     ' + self.dayCare();
 	}, self);
 }

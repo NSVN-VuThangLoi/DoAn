@@ -15,7 +15,7 @@ var services = (function() {
 			var patterns = [];
 			if(res != undefined){
 				for(i = 0; i < res.length; i++){
-					patterns.push(new DoctorListItem(res[i].xquangId,request.formatDate(new Date(res[i].dayCare), 'yyyy-MM-dd')));
+					patterns.push(new DoctorListItem(res[i].xquangId,res[i].name,request.formatDate(new Date(res[i].dayCare), 'yyyy-MM-dd')));
 				}
 			}
 			d.resolve(patterns);

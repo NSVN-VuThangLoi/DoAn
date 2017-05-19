@@ -122,6 +122,7 @@ public class XquangImpl extends DataConnection implements XquangRepository {
 				xquangDto.setVersion(entity.getVersion());
 				xquangDto.setUserId(entity.getUserId());
 				xquangDto.setDoctorId(entity.getDoctorId());
+				xquangDto.setName(entity.getName());
 				xquangDto.setAge(entity.getAge());
 				xquangDto.setDiagnose(entity.getDiagnose());
 				xquangDto.setResult(entity.getResult());
@@ -178,6 +179,7 @@ public class XquangImpl extends DataConnection implements XquangRepository {
 			for(XquangEntity entity : xquangEntitys){
 				XquangDto dto = new XquangDto();
 				dto.setXquangId(entity.getXquangId());
+				dto.setName(entity.getName());
 				dto.setAddressPatient(entity.getAddressPatient());
 				dto.setUserId(entity.getUserId());
 				dto.setDiagnose(entity.getDiagnose());
