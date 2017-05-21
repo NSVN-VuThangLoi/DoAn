@@ -32,9 +32,9 @@ public class InsertXquangCommandHandle {
 		dto.setName(command.getName());
 		try {
 			xQuangrep.insertXquang(dto);
-			result.setResult("Insert thành công");
+			result.setResult("Hồ sơ chẩn đoán của bệnh nhân " + command.getName() +" được lưu thành công.");
 		} catch (Exception e) {
-			result.setResult("Insert thất bại");
+			result.setResult("Lưu hồ sơ chẩn đoán thất bại");
 		}
 		
 		return result;

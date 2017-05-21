@@ -23,11 +23,11 @@
 	<link rel="stylesheet" type="text/css" href="main.css" />
 	</ui:define>
 	<ui:define name="content">
-		<div id ="function">
+		<div id ="function" style ="margin-left: 5px">
 			<button data-bind ="click: register" class='btn btn-primary' style="margin: 2px 0px;">Save</button>
 		</div>
-		<div>
-			<table class="table">
+		<div style ="margin-left: 5px">
+			<table>
 				<tr>
 					<td id="contentleft" data-bind ="with: listFile">
 							<div><h:outputText value="Danh Sách Hồ Sơ Khám" /></div>
@@ -36,11 +36,11 @@
                                 options: items, 
                                 value: selectedCode,
                                 optionsText: 'displayText', 
-                                optionsValue: 'xquangId'" class="form-control" style="min-width: 300px; width: 300px; min-height: 200px;"></select> 
+                                optionsValue: 'xquangId'" class="form-control input-lg"  style="min-width: 300px; width: 346px; min-height: 470px;"></select> 
 						
 					</td> 
 					<td id="contentright">
-						<table data-bind ="with: information" class='table table-res'>
+						<table data-bind ="with: information" class='table table-res' style="margin-top: 20px;">
 								<tr id="form">
 									<th class="required"><h:outputText value="Mã bệnh nhân" /></th>
 									<td><input class='form-control' type="text" id="UserId" data-bind="value: userId "/></td>
@@ -59,11 +59,12 @@
 	                                   <progress max="100"></progress>
 										<span id="progress_percent">0</span>%
 									</td>
-									
+								</tr>
+								<tr>
+									<th class="required"><h:outputText value="Chọn File" /></th>
 									<td>
-									<input class='form-control' type="file" name="upload_file" />
-									</td>	
-                               		
+									<input class="form-control" type="file" name="upload_file" />
+									</td>
 								</tr>
 						</table>		
 					</td>

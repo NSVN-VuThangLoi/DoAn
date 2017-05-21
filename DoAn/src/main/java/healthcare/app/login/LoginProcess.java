@@ -38,7 +38,7 @@ public class LoginProcess {
 				result.setNameNotice("Bạn nhập sai mật khẩu");
 			}
 		}else{
-			result.setNameNotice("Bạn nhập sai:" + query.getUserId());
+			result.setNameNotice("Bạn nhập sai mã bác sĩ:" + query.getUserId());
 		}
 		return result;
 	}
@@ -60,7 +60,7 @@ public class LoginProcess {
 				result.setNameNotice("Bạn nhập sai mật khẩu");
 			}
 		}else{
-			result.setNameNotice("Bạn nhập sai:" + query.getUserId());
+			result.setNameNotice("Bạn nhập sai mã bệnh nhân:" + query.getUserId());
 		}
 		return result;
 	}

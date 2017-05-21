@@ -24,5 +24,6 @@ public class ApplicationRest extends Application {
     	resource.add(healthcare.webservice.SupersonicWebservice.class);
     	resource.add(healthcare.webservice.NurseWebservice.class);
     	resource.add(healthcare.webservice.ChangePassword.class);
+    	resource.add(healthcare.webservice.HomeWebservice.class);
     }
 }

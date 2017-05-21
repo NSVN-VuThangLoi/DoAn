@@ -27,7 +27,7 @@
 			<button data-bind ="click: register" class="btn btn-primary" style="margin: 2px 0px">Lưu</button>
 		</div>
 		<div>
-				<table id="content-doctor" data-bind ="with: doctor" >
+				<table id="content-doctor" data-bind ="with: doctor"  style="margin-left: 10px">
 									<tr id="form">
 										<td class="required"><h:outputText value="UserId" /></td>
 										<td><input class='form-control' type="text" id="userId" data-bind="value: userId "/>
@@ -36,8 +36,26 @@
 									</tr>
 									<tr id="form">
 										<td class="required"><h:outputText value="Họ và Tên" /></td>
-										<td><input class='form-control' type="text" id="name" data-bind=" value: name " /></td>
+										<td><input class='form-control' type="text" id="name" data-bind=" value: name" disabled="disabled"/></td>
 									</tr>
+									<tr id="form">
+										<th class="required"><h:outputText value="Địa chỉ" /></th>
+										<td>
+										<input type="text" data-bind=" value: address" disabled="disabled" />
+										</td>
+									</tr>
+									<tr id="form">
+										<th class="required"><h:outputText value="Ngày sinh" /></th>
+										<td>
+										<input type="text" data-bind=" value: birthday" disabled="disabled" />
+										</td>
+									</tr>
+									<tr>
+                                    <th><h:outputText value="Giới tính"/></th>
+                                    <td>
+                                        <input type="text" data-bind=" value: gender" disabled="disabled" />
+                                    </td>
+                                	</tr>
 									<tr id="form">
 										<td class="required"><h:outputText value="Chẩn Đoán" /></td>
 										<td>

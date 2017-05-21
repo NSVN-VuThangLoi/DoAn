@@ -83,6 +83,7 @@ public class SupersonicImpl extends DataConnection implements SupersonicReposito
 				dto.setDiagnose(entity.getDiagnose());
 				dto.setAge(entity.getAge());
 				dto.setDayCare(entity.getDayCare());
+				dto.setName(entity.getName());
 				supersonicDtos.add(dto);
 			}
 			return supersonicDtos;
@@ -145,6 +146,7 @@ public class SupersonicImpl extends DataConnection implements SupersonicReposito
 				dto.setVersion(entity.getVersion());
 				dto.setUserId(entity.getUserId());
 				dto.setDoctorId(entity.getDoctorId());
+				dto.setName(entity.getName());
 				dto.setAge(entity.getAge());
 				dto.setDiagnose(entity.getDiagnose());
 				dto.setResult(entity.getResult());

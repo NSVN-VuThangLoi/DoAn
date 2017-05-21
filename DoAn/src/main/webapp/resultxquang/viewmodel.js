@@ -134,6 +134,6 @@ function PatientListItem(xquangId, name,dayCare) {
 	self.name = ko.observable(name);
 	self.dayCare = ko.observable(dayCare)
 	self.displayText = ko.computed(function() {
-		return self.name()+ '\u00A0'  + '\u00A0' + '\u00A0' +'\u00A0' +'\u00A0' +'\u00A0'+ self.dayCare();
+		return self.dayCare()+ '\u00A0'  + '\u00A0' + '\u00A0' +'\u00A0' +'\u00A0' +'\u00A0' + self.name();
 	}, self);
 }

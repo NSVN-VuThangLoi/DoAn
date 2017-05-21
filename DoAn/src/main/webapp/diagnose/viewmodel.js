@@ -17,6 +17,7 @@ ScreenModel.prototype.goCreateMode = function() {
 }
 ScreenModel.prototype.search = function(){
 	var self = this;
+	var request = new Request();
 	if(self.userId() ==""){
 		alert("Bạn chưa nhập userId");
 	}else{
@@ -25,6 +26,9 @@ ScreenModel.prototype.search = function(){
 				alert("không tìm thấy tài khoản này. Vui lòng nhập lại.")
 			}else{
 				self.name(res.name);
+				self.address(res.address);
+				self.gender(res.sex == true? "Nam": "Nữ");
+				self.birthday(request.formatDate(new Date(res.birthDay), 'dd-MM-yyyy'));
 			}
 		});
 	}
@@ -46,6 +50,7 @@ ScreenModel.prototype.register = function() {
 		}
 		services.insertDiagnose(data).done(function(res) {
 			alert(res.result);
+			self.doctor().clear();
 		}).fail(function(res){
 			alert(res.result);
 		});
@@ -60,6 +65,9 @@ function Doctor (){
 		self.takeXQuang = ko.observable(false);
 		self.ctScanner = ko.observable(false);
 		self.bloodtest = ko.observable(false);
+		self.address = ko.observable('');
+		self.gender = ko.observable('');
+		self.birthday = ko.observable('');
 }
 Doctor.prototype.clear = function(){
 	var self = this;
@@ -69,5 +77,8 @@ Doctor.prototype.clear = function(){
 	self.supersonic(false);
 	self.takeXQuang(false);
 	self.ctScanner(false);
+	self.address('');
+	self.gender('');
+	self.birthday('');
 }
 

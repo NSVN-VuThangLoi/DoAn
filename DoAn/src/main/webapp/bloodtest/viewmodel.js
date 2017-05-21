@@ -70,7 +70,7 @@ Doctor.prototype.reload = function(userId) {
 		var date = new Date(res.dayCare);
 		self.birthDay(request.formatDate(date, 'yyyy-MM-dd'));
 		self.address(res.address);
-		self.gender(res.gender == true? "Nam": "Nu");
+		self.gender(res.gender == true? "Nam": "Nữ");
 		
 		screnn.bloodTest().valueUre(res.valueUre);
 		screnn.bloodTest().valueFe(res.valueFe);
@@ -162,13 +162,14 @@ ListDoctor.prototype.select = function(code) {
 	var self = this;
 	self.selectedCode(code);
 };
-function DoctorListItem(userId, name) {
+function DoctorListItem(userId, name,dayCare) {
 	var self = this;
 	self.userId = ko.observable(userId);
 	self.name = ko.observable(name);
+	self.dayCare = ko.observable(dayCare);
 	self.displayText = ko.computed(function() {
-		return self.userId()
-				+ '     ' + self.name();
+		return self.dayCare()
+				+ '\u00A0'  + '\u00A0' + '\u00A0' +'\u00A0' +'\u00A0' +'\u00A0'+ self.name();
 	}, self);
 }
 function BloodTest(){

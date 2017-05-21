@@ -24,7 +24,7 @@ var services = (function() {
 		request.requestAjax(null,servicePath.getAllDoctor).done(function(data){
 			var patterns = [];
 			for(i = 0; i < data.length; i++){
-				patterns.push(new DoctorListItem(data[i].bloodtestId,data[i].name));
+				patterns.push(new DoctorListItem(data[i].bloodtestId,data[i].name,data[i].dayCare));
 			}
 			
 			d.resolve(patterns);

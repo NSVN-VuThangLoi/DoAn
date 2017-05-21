@@ -43,6 +43,7 @@ ScreenModel.prototype.register = function() {
         processData: false,
         success: function(res){
             alert('file upload complete');
+            self.listFile().reload();
         },
         error: function(response){
             var error = "error";
@@ -140,7 +141,6 @@ function DoctorListItem(xquangId, name,dayCare) {
 	self.name = ko.observable(name);
 	self.dayCare = ko.observable(dayCare);
 	self.displayText = ko.computed(function() {
-		return self.name()
-				+ '     ' + self.dayCare();
+		return self.dayCare()+ '\u00A0'  + '\u00A0' + '\u00A0' +'\u00A0' +'\u00A0' +'\u00A0' + self.name();
 	}, self);
 }

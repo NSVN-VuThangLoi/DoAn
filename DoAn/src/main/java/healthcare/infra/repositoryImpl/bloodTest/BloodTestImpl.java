@@ -33,6 +33,7 @@ public class BloodTestImpl extends DataConnection implements BloodTestRepository
 		query = new StringBuilder();
 		query.append(FIND +" WHERE b.isBloodTest = 0");
 		FIND_ALL_NON_BLOOD_TEST = query.toString();
+		
 	}
 
 	@Override
@@ -51,9 +52,9 @@ public class BloodTestImpl extends DataConnection implements BloodTestRepository
 			entity.setName(dto.getName());
 			entity.setAddress(dto.getAddress());
 			this.entityManager.persist(entity);
-			result.setResult("insert thành công");
+			result.setResult("Hồ sơ chẩn đoán của bệnh nhân " + dto.getName() +" được lưu thành công.");
 		} catch (Exception e) {
-			result.setResult("insert thất bại");
+			result.setResult("Lưu hồ sơ chẩn đoán thất bại");
 		}
 		return result;
 	}
