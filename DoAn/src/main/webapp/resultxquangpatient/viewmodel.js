@@ -129,13 +129,14 @@ listCare.prototype.select = function(code) {
 	var self = this;
 	self.selectedCode(code);
 };
-function PatientListItem(xquangId, name) {
+function PatientListItem(xquangId, name,dayCare) {
 	var self = this;
 	self.xquangId = ko.observable(xquangId);
 	self.name = ko.observable(name);
+	self.dayCare = ko.observable(dayCare);
 	self.displayText = ko.computed(function() {
-		return self.xquangId()
-				+ '     ' + self.name();
+		return self.name()
+				+ '\u00A0'  + '\u00A0' + '\u00A0' +'\u00A0' +'\u00A0' +'\u00A0' + self.dayCare();
 	}, self);
 }
 //var increasement = 10;

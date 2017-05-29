@@ -14,4 +14,5 @@ public interface BloodTestRepository {
 	
 	public List<BloodTestDto> getNonvalueBloodTest();
 	
+	public List<BloodTestDto> getAllUserId(String userId);
 }

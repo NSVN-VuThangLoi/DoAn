@@ -24,4 +24,9 @@ public class LoginWebservice {
 		return loginProcess.loginPatient(query);
 		
 	}
+	@POST
+	@Path("/checkNurse")
+	public LoginResult signInNurse(LoginQuery query){
+		return loginProcess.loginNurse(query);
+	}
 }

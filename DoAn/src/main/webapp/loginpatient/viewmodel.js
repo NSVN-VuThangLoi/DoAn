@@ -21,7 +21,7 @@ ScreenModel.prototype.signIn = function() {
 	services.getPatient(data).done(function(res){
 		if(res.nameNotice == "Đăng nhập thành công"){
 			alert(res.nameNotice);
-			window.location.href='http://localhost:8080/DoAn/resultxquang/index.xhtml?preUrl='+window.location.href;
+			window.location.href='http://localhost:8080/DoAn/resultxquangpatient/index.xhtml?preUrl='+window.location.href;
 		}else{
 			alert(res.nameNotice);
 		}

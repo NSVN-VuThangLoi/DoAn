@@ -61,6 +61,7 @@ public class XquangImpl extends DataConnection implements XquangRepository {
 				xquangDto.setAddressPatient(entity.getAddressPatient());
 				xquangDto.setUrlImage(entity.getUrlImage());
 				xquangDto.setName(entity.getName());
+				xquangDto.setXquangId(entity.getXquangId());
 				xquangDtos.add(xquangDto);
 			}
 			return xquangDtos;

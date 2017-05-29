@@ -1,0 +1,45 @@
+
+#form{
+	margin-top: 5px;
+}
+
+#function{
+	margin-top: 10px;
+}
+.required{
+	margin-top: 10px;
+}
+H4{
+	margin: 10px 0px 0px 10px;
+}
+span {
+         font-size:24px;
+         font-weight:bold;
+	 -webkit-animation: my 1000ms infinite;
+	 -moz-animation: my 1000ms infinite; 
+	 -o-animation: my 1000ms infinite; 
+	 animation: my 1000ms infinite;
+}
+
+
+@-webkit-keyframes my {
+	 0% { color: #ff0000; } 
+	 50% { color: #fff;  } 
+	 100% { color: #ff0000;  } 
+ }
+ @-moz-keyframes my { 
+	 0% { color: #ff0000;  } 
+	 50% { color: #fff;  }
+	 100% { color: #ff0000;  } 
+ }
+ @-o-keyframes my { 
+	 0% { color: #ff0000; } 
+	 50% { color: #fff; } 
+	 100% { color: #ff0000;  } 
+ }
+ @keyframes my { 
+	 0% { color: #ff0000;  } 
+	 50% { color: #fff;  }
+	 100% { color: #ff0000;  } 
+ } 
+ 

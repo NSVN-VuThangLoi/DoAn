@@ -17,6 +17,7 @@ public class BloodTestImpl extends DataConnection implements BloodTestRepository
 	private static String FIND_BLOOD_TESTID;
 	private static String FIND_ALL_FOLLOW_DOCTORID;
 	private static String FIND_ALL_NON_BLOOD_TEST;
+	private static String FINDUSERID;
 	static{
 		StringBuilder query = new StringBuilder();
 		query.append(" SELECT b FROM BloodTestEntity b ");
@@ -33,6 +34,10 @@ public class BloodTestImpl extends DataConnection implements BloodTestRepository
 		query = new StringBuilder();
 		query.append(FIND +" WHERE b.isBloodTest = 0");
 		FIND_ALL_NON_BLOOD_TEST = query.toString();
+		
+		query = new StringBuilder();
+		query.append(FIND +" WHERE b.userId = :userId");
+		FINDUSERID = query.toString();
 		
 	}
 
@@ -204,6 +209,25 @@ public class BloodTestImpl extends DataConnection implements BloodTestRepository
 	@Override
 	public List<BloodTestDto> getNonvalueBloodTest() {
 		List<BloodTestEntity> entitys = this.entityManager.createQuery(FIND_ALL_NON_BLOOD_TEST,BloodTestEntity.class).getResultList();
+		if(entitys != null){
+			List<BloodTestDto> bloodTestDtos = new ArrayList<>();
+			for(BloodTestEntity entity : entitys){
+				BloodTestDto dto = new BloodTestDto();
+				dto.setBloodtestId(entity.getBloodtestId());
+				dto.setDayCare(entity.getDayCare());
+				dto.setUserId(entity.getUserId());
+				dto.setName(entity.getName());
+				bloodTestDtos.add(dto);
+			}
+			return bloodTestDtos;
+		}
+		return null;
+	}
+
+	@Override
+	public List<BloodTestDto> getAllUserId(String userId) {
+		
+		List<BloodTestEntity> entitys = this.entityManager.createQuery(FINDUSERID,BloodTestEntity.class).setParameter("userId", userId).getResultList();
 		if(entitys != null){
 			List<BloodTestDto> bloodTestDtos = new ArrayList<>();
 			for(BloodTestEntity entity : entitys){

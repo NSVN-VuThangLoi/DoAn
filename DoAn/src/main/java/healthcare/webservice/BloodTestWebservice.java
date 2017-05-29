@@ -74,6 +74,7 @@ public class BloodTestWebservice {
 				BloodTestDto bloodTestDto = finder.getBloodTest(bloodTest);
 				BloodTestDto dto = new BloodTestDto();
 				dto = readFile.getFileCsv(fileName);
+				dto.setAddress(bloodTestDto.getAddress());
 				dto.setBloodtestId(bloodTestDto.getBloodtestId());
 				dto.setUserId(bloodTestDto.getUserId());
 				dto.setDayCare(bloodTestDto.getDayCare());
@@ -90,7 +91,7 @@ public class BloodTestWebservice {
 			}
 
 		}
-		return "thanh coong";
+		return "thành công";
 	}
 	@POST
 	@Path("/getIsBloodTest")
@@ -107,6 +108,12 @@ public class BloodTestWebservice {
 	public List<BloodTestDto> getBloodTestDoctorId(){
 		String doctorId = login.getDoctorId();
 		return finder.getAllfollowDoctor(doctorId);
+	}
+	@POST
+	@Path("/getBloodfollowuserId")
+	public List<BloodTestDto> getBloodTestUserId(){
+		String userId = login.getUserId();
+		return finder.getAllfollowDoctor(userId);
 	}
 	@POST
 	@Path("/updateresultblootest")

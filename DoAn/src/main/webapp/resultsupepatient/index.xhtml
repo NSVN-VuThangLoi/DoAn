@@ -5,7 +5,7 @@
 	xmlns:com="http://xmlns.jcp.org/jsf/component"
 	xmlns:h="http://xmlns.jcp.org/jsf/html">
 <body>
-	<ui:composition template="../indexbase.xhtml">
+	<ui:composition template="../indexbasepatient.xhtml">
 		<ui:define name="htmlHead">
 
     	<script src="../lib/jquery-2.0.0.min.js"></script>
@@ -23,7 +23,7 @@
 		</ui:define>
 		<ui:define name="content">
 		<div id ="function">
-<!-- 			<button data-bind ="click: register" class="btn btn-primary" style="margin: 2px 0px;">Lưu</button> -->
+			<h4><h:outputText value="Danh sách hồ sơ khám siêu âm" /></h4>
 		</div>
 		<div>
 				<table id="tblMain" class="table">
@@ -35,7 +35,7 @@
                                  options: items, 
                                  value: selectedCode,
                                  optionsText: 'displayText', 
-                                 optionsValue: 'xquangId'" class="form-control" style="min-width: 300px; width: 300px; min-height: 200px;"></select> 
+                                 optionsValue: 'supersonicId'" class="form-control input-lg"  style="min-width: 300px; width: 346px; min-height: 470px;"></select> 
 							
  						</td> 
 						<td id="contentright">

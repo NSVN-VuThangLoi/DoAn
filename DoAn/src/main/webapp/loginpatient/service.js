@@ -3,7 +3,7 @@
 var services = (function() {
 
 	var servicePath = {
-		getPatient : 'loginDoctor/checkPatient',
+		getPatient : 'loginDoctor/checkPatient'
 	};
 
 	var services = {};

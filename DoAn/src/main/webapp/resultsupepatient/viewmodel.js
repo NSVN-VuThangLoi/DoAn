@@ -114,7 +114,7 @@ listCare.prototype.reload = function(){
 listCare.prototype.selectFirst = function() {
 	var self = this;
 	if(self.items().length != 0){
-		self.select(self.items()[0].xquangId());
+		self.select(self.items()[0].supersonicId());
 	}else{
 		alert("không có dữ liệu");
 	}
@@ -124,33 +124,13 @@ listCare.prototype.select = function(code) {
 	var self = this;
 	self.selectedCode(code);
 };
-function PatientListItem(xquangId, name) {
+function PatientListItem(supersonicId, name,dayCare) {
 	var self = this;
-	self.xquangId = ko.observable(xquangId);
+	self.supersonicId = ko.observable(supersonicId);
 	self.name = ko.observable(name);
+	self.dayCare = ko.observable(dayCare);
 	self.displayText = ko.computed(function() {
-		return self.xquangId()
-				+ '     ' + self.name();
+		return self.name()
+				+ '\u00A0'  + '\u00A0' + '\u00A0' +'\u00A0' +'\u00A0' +'\u00A0' + self.dayCare();
 	}, self);
 }
-var increasement = 10;
-var timer = function(){setInterval(resizeImage($("#image img")), 100);}
-function resizeImage(image){
-	var width = image.width();
-	
-	if(width > 400){
-		clearInterval(timer);
-	}else{
-		var height = image.height();
-		width += increasement;
-		height += increasement;
-		image.width(width);
-		image.height(height);
-	}
-	}
-$(function(){
-	$("#image img").hover(function(){
-		timer();
-		});
-	
-});
