@@ -35,7 +35,7 @@ ScreenModel.prototype.register = function() {
     formData.append('file', file);
     formData.append('bloodTest',self.bloodTest());
     $.ajax({
-        url: 'http://localhost:8080/DoAn/Demo/bloodTest/upload',
+        url: "http://" + window.location.host + "/DoAn/Demo/bloodTest/upload",
         type: 'POST',
         data: formData,
         cache: false,

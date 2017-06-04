@@ -35,14 +35,15 @@ ScreenModel.prototype.register = function() {
     formData.append('file', file);
     formData.append('supersonicId',self.supersonicId());
     $.ajax({
-        url: 'http://localhost:8080/DoAn/Demo/supersonic/upload',
+        url: "http://" + window.location.host + "/DoAn/Demo/supersonic/upload",
         type: 'POST',
         data: formData,
         cache: false,
         contentType: false,
         processData: false,
         success: function(res){
-            alert('file upload complete');
+            alert('Bạn đã gửi thành công');
+            self.listFile().reload();
         },
         error: function(response){
             var error = "đã xảy ra một lỗi";

@@ -21,7 +21,7 @@ ScreenModel.prototype.signIn = function() {
 	services.getDoctor(data).done(function(res){
 		if(res.nameNotice == "Đăng nhập thành công"){
 			alert(res.nameNotice);
-			window.location.href='http://localhost:8080/DoAn/Home/index.xhtml?preUrl='+window.location.href;
+			window.location.href="http://" + window.location.host +"/DoAn/Home/index.xhtml?preUrl=" + window.location.href;
 		}else{
 			alert(res.nameNotice);
 		}

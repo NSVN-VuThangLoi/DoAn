@@ -35,7 +35,7 @@ ScreenModel.prototype.register = function() {
     formData.append('file', file);
     formData.append('xquangId',self.xquangId());
     $.ajax({
-        url: 'http://localhost:8080/DoAn/Demo/xquang/upload',
+        url: "http://" + window.location.host + "DoAn/Demo/xquang/upload",
         type: 'POST',
         data: formData,
         cache: false,
